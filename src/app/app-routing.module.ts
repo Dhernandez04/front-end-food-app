@@ -10,7 +10,7 @@ const routes: Routes = [
   {path:'',component:DashboardComponent},
   {path:'dashboard',component:DashboardComponent},
   {path:'', redirectTo:'dashboard',pathMatch:'full'},
-  {path:'**', component:NotfoundComponent},
+  {path:'**', component:NotfoundComponent },
 ];
 
 @NgModule({
