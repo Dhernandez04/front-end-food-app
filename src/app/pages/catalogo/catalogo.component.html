@@ -1,0 +1,18 @@
+<div class="cointainer">
+    <div class="row pt-3">
+        <div class="col-md-3"  *ngFor="let alimento of alimentos">
+                <div class="card" style="width: 18rem;">
+                    <img [src]="alimento.imagen" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{alimento.nombre}}</h5>
+                        <span class="card-text mr-4">Categoria</span>
+                        <div class="float-right">
+                            <a href="#" class="btn btn-green">Ver mas</a>
+                        </div>
+                    </div>
+                </div>
+     
+       
+        </div>
+    </div>
+</div>
