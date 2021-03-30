@@ -16,4 +16,10 @@ export class AlimentoService {
       })
     );
   }
+
+  cargarAliCatego(id: number){
+    const url='http://localhost:3000/Api/buscar/alimentosC/'+id;
+    return this.http.get(url);
+}
+
 }
