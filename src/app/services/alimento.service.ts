@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 import { Alimento } from '../models/alimento.model';
+const base_url = environment.base_url
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +20,7 @@ export class AlimentoService {
   }
 
   cargarAliCatego(id: number){
-    const url='http://localhost:3000/Api/buscar/alimentosC/'+id;
+    const url='http://localhost:3000/api/buscar/alimentosc/'+id;
     return this.http.get(url);
 }
 

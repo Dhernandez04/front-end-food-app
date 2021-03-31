@@ -11,9 +11,15 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { CalculosComponent } from './pages/calculos/calculos.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DashboardComponent } from './mantenimiento/dashboard/dashboard.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { CatalogoComponent } from './pages/catalogo/catalogo.component';
+import { PagesComponent } from './pages/pages.component';
+import { UsuariosComponent } from './mantenimiento/usuarios/usuarios.component';
+import { AlimentosComponent } from './mantenimiento/alimentos/alimentos.component';
+import { CategoriasComponent } from './mantenimiento/categorias/categorias.component';
+import { RolesComponent } from './mantenimiento/roles/roles.component';
+import { MantenimientoComponent } from './mantenimiento/mantenimiento.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,13 @@ import { CatalogoComponent } from './pages/catalogo/catalogo.component';
     SidebarComponent,
     DashboardComponent,
     NotfoundComponent,
-    CatalogoComponent
+    CatalogoComponent,
+    PagesComponent,
+    UsuariosComponent,
+    AlimentosComponent,
+    CategoriasComponent,
+    RolesComponent,
+    MantenimientoComponent
   ],
   imports: [
     BrowserModule,

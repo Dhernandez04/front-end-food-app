@@ -13,7 +13,10 @@ export class CatalogoComponent implements OnInit {
   constructor(private alimetoService:AlimentoService) { }
 
   ngOnInit(): void {
+    console.log('hola');
+    
     this.cargarAlimentos()
+
   }
 
   cargarAlimentos() {
