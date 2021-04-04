@@ -1,1 +1,82 @@
-<p>login works!</p>
+<section id="login-wrapper">
+    
+    <div class="content-hero text-left mt-5 pl-5">
+        <h1>logotipo</h1>
+        <p>Con nuestra plataforma consigue todo en un mismo lugar</p>
+        <ul>
+            <li>
+                <i class="fas fa-check"></i>
+                Calcula las propiedades termofisicas de los alimentos
+            </li>
+            <li>
+                <i class="fas fa-check"></i>
+                Exporta tus reportes en pdf
+            </li>
+            <li>
+                <i class="fas fa-check"></i>
+                Compara las variantes de diferentes alimentos
+            </li>
+            <li>
+                <i class="fas fa-check"></i>
+               Visualiza las graficas
+            </li>
+           
+        </ul>
+        <div class="w-100 float-right" >
+            <img class="float-right" src="../../../assets/img/Invest-1.svg" alt="ilustacion1">
+        </div>
+    </div>
+    <div class="form-login pt-5">
+        <div class="form-header text-center mb-5">
+            <img src="../../../assets/img/fruits.svg" width="100" height="100" alt="ilustracion2">
+            <h1>Bienvenidos</h1>
+        </div>
+        <div class="content">
+            <form 
+            autocomplete="off"
+            [formGroup]="loginForm"
+            (ngSubmit)="login()">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="email"
+                         class="form-control"
+                         placeholder="Ingrese email" 
+                         aria-label="Username" 
+                         aria-describedby="basic-addon1"
+                         formControlName="email">
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                    </div>
+                    <input type="password"
+                         class="form-control" 
+                         placeholder="Password"
+                          aria-label="Username" 
+                          aria-describedby="basic-addon1"
+                          formControlName="password">
+                  </div>
+                
+                    <div class="input-group mb-3">
+                        <button class="btn btn-block btn-blue">Iniciar sesion</button>
+                      </div>
+              
+            </form>
+            
+              <div class="text-center">
+    
+                  <a href="">¿Olvidaste tu contraseña?</a>
+                  <p class="text-center">o</p>
+                  <a routerLink="/registrar">Crear una cuenta nueva</a>
+              </div>
+        </div>
+          <div class="wave">
+
+              <svg height="100%" width="100%" id="svg" viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150"><path d="M 0,400 C 0,400 0,133 0,133 C 151.46428571428572,115.60714285714286 302.92857142857144,98.21428571428571 426,101 C 549.0714285714286,103.78571428571429 643.75,126.75 763,141 C 882.25,155.25 1026.0714285714287,160.78571428571428 1143,158 C 1259.9285714285713,155.21428571428572 1349.9642857142858,144.10714285714286 1440,133 C 1440,133 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="#4ca02f88" class="transition-all duration-300 ease-in-out delay-150"></path><path d="M 0,400 C 0,400 0,266 0,266 C 122.03571428571428,260.8928571428571 244.07142857142856,255.78571428571428 347,253 C 449.92857142857144,250.21428571428572 533.75,249.75 653,264 C 772.25,278.25 926.9285714285716,307.2142857142857 1064,310 C 1201.0714285714284,312.7857142857143 1320.5357142857142,289.3928571428571 1440,266 C 1440,266 1440,400 1440,400 Z" stroke="none" stroke-width="0" fill="#4ca02fff" class="transition-all duration-300 ease-in-out delay-150"></path></svg>
+          </div>
+
+    </div>
+    
+</section>

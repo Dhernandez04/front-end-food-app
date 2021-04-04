@@ -56,14 +56,16 @@ export class CalculosComponent implements OnInit {
   }
 
   cargarCategorias() {
+   
     
-      this.CategoriaService.cargarCategoria().subscribe((categorias: Categoria[])=>{
-        this.categorias= categorias;
+    this.CategoriaService.cargarCategoria().subscribe((categorias: Categoria[]) => {
+      console.log(categorias);
+        this.categorias = categorias;
       })
   }
 
   cargaralimentos(co: number) {
-    
+    console.log(co);
     this.alimetoService.cargarAliCatego(co).subscribe((alimentos: Alimento[])=>{
       this.alimentos= alimentos['alimentoDB'];
       console.log(alimentos['alimentoDB']);

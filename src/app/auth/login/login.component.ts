@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import Swal from 'sweetalert2';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -6,11 +11,26 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  constructor() { }
+  public formSumitted = false;
+  public loginForm = this.fb.group({
+    
+    email: ['', Validators.required],
+    password: ['', Validators.required],
 
-  ngOnInit(): void {
+    
+  });
+  constructor(private router:Router ,private fb:FormBuilder,private usuarioService:UsuarioService) { }
+
+  login() {
+    this.usuarioService.login(this.loginForm.value).subscribe((resp) => {
+      this.router.navigateByUrl('/admin/dashboard')
+    }, (err => {
+      
+      
+      Swal.fire('error',err.error.msg,'error')
+     }))    
   }
-
+  
 }

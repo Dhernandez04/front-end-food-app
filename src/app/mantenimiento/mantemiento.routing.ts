@@ -9,14 +9,19 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { AlimentosComponent } from './alimentos/alimentos.component';
 import { RolesComponent } from './roles/roles.component';
 import { CategoriasComponent } from './categorias/categorias.component';
+import { AuthGuard } from '../guards/auth.guard';
+import { AlimentoComponent } from './alimentos/alimento.component';
+
 
 
 const routes:Routes = [
     {path:'admin',
-        component:MantenimientoComponent,
+        component: MantenimientoComponent,
+        canActivate:[AuthGuard],
         children:[
          {path:'dashboard',component:DashboardComponent},
          {path:'alimentos',component:AlimentosComponent},
+         {path:'alimento/:id',component:AlimentoComponent},
          {path:'usuarios',component:UsuariosComponent},
          {path:'roles',component:RolesComponent},
          {path:'categorias',component:CategoriasComponent},

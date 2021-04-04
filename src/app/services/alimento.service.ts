@@ -11,17 +11,21 @@ export class AlimentoService {
 
   constructor(private http:HttpClient) { }
 
+  get token():string {
+    return localStorage.getItem('token');
+  }
   cargarAlimetos() {
-    return this.http.get(`http://localhost:3000/api/alimentos`).pipe(
+    return this.http.get(`${base_url}/api/alimentos`,{headers:{'x-token':this.token}}).pipe(
       map(( resp :{alimentos:Alimento[]}) => {
         return resp.alimentos;
       })
     );
   }
 
-  cargarAliCatego(id: number){
-    const url='http://localhost:3000/api/buscar/alimentosc/'+id;
-    return this.http.get(url);
+
+  cargarAliCatego(id: number) {
+    const url =`${base_url}/api/buscar/alimentosc/${id}`;
+    return this.http.get(url,{headers:{'x-token':this.token}});
 }
 
 }

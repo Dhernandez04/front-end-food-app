@@ -1,11 +1,39 @@
 <div class="bg-light border-right" id="sidebar-wrapper">
     <div class="sidebar-heading bg-white">Logotipo </div>
-    <div class="list-group list-group-flush">
-      <a routerLink="Dashboard" class="list-group-item list-group-item-action bg-green">Dashboard</a>
-      <a routerLink="alimentos" class="list-group-item list-group-item-action bg-light">Alimentos</a>
-      <a routerLink="categorias" class="list-group-item list-group-item-action bg-light">Categorias</a>
-      <a routerLink="usuarios" class="list-group-item list-group-item-action bg-light">Usuarios</a>
-      <a routerLink="roles" class="list-group-item list-group-item-action bg-light">Roles</a>
-    
-    </div>
+
+    <ul class="list-group">
+      <li class="list-group-item" routerLinkActive="active-admin" aria-current="true">
+        <a  routerLink="dashboard" class="list-group-item-action bg-light">
+        <i class="fa fa-tachometer"></i>
+          Dashboard
+        </a>
+      </li>
+      <li class="list-group-item" routerLinkActive="active-admin" aria-current="true">
+        <a  routerLink="alimentos" class="list-group-item-action bg-light">
+          <i class="fa fa-seedling"></i>
+          Alimentos
+        </a>
+      </li>
+      <li class="list-group-item" routerLinkActive="active-admin">
+        <a  routerLink="categorias" class="list-group-item-action bg-light">
+          <i class="fa fa-list"></i>
+          Categorias
+        </a>
+      </li>
+      <li class="list-group-item" routerLinkActive="active-admin">
+        <a  routerLink="usuarios" class="list-group-item-action bg-light">
+          <i class="fa fa-user"></i>
+          Usuarios
+        </a>
+      </li>
+      <li class="list-group-item" routerLinkActive="active-admin">
+        <a  routerLink="roles" class="list-group-item-action bg-light">
+          <i class="fa fa-tasks"></i>
+          Roles
+        </a>
+      </li>
+ 
+    </ul>
+
+
   </div>

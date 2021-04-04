@@ -116,6 +116,10 @@
               "devServerTarget": "food-app-frt:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
