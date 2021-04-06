@@ -33,7 +33,7 @@ export class RegisterComponent  {
     //creando usuario
     this.usuarioService.crearUsuario(this.registerForm.value).subscribe((resp) => {
         console.log(resp);
-        this.router.navigateByUrl('/admin/dashborad')
+        this.router.navigateByUrl('/admin/dashboard')
       },(err => {
        Swal.fire('error',err.error.error.errors[0].message,'error')
       })

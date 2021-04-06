@@ -1,15 +1,15 @@
 
-  <div class="d-flex" id="wrapper">
+  <div class="d-flex" #wrapper id="wrapper">
+    <app-sidebar></app-sidebar>
 
     <!-- Sidebar -->
-   <app-sidebar></app-sidebar>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-        <button class="btn" id="menu"><i class="fa fa-bars"></i></button>
+        <button class="btn btn-menu" (click)="open()" id="menu"><i class="fa fa-bars"></i></button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -56,6 +56,5 @@
   </div>
   <!-- /#wrapper -->
 
- 
 
   <!-- Menu Toggle Script -->

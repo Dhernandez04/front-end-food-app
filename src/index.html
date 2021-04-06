@@ -15,14 +15,16 @@
 <body>
   <app-root></app-root>
 
-  <script src="./assets/js/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   
   <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
-  <script>
   
+  <script>
+   
+    console.log($("#wrapper"));
     $(document).ready(function(){
-
-    
+      console.log($("#menu"));
+     
     $("#menu").click(function() {
       console.log('hola');
       $("#wrapper").toggleClass("toggled");

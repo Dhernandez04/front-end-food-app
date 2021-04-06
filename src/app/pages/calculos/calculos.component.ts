@@ -9,6 +9,7 @@ import { AlimentoService } from '../../services/alimento.service';
 
 import { Categoria } from '../../models/categoria.model';
 import { Alimento } from '../../models/alimento.model';
+import { BusquedaService } from '../../services/busqueda.service';
 
 let conduc=0;
 let difu=0;
@@ -26,16 +27,23 @@ export class CalculosComponent implements OnInit {
   public temperaturaForm: FormGroup;
   public buscarForm: FormGroup;
   public alimentoForm: FormGroup;
-
   public alimentos: Alimento[] = [];
   public categorias: Categoria[] = [];
-
+  public composicion: any[] = [];
+  public cargando: boolean;
+  public minerales: any[] = [];
+  public vitamina: any[] = [];
+  public acidos: any[] = [];
+  public estado: boolean = false;
 
   constructor(private fb: FormBuilder,
     private calculoService: CalculoService,
     private CategoriaService: CategoriaService,
-    private alimetoService: AlimentoService) { }
+    private alimetoService: AlimentoService,
+    private busquedaService:BusquedaService) { }
 
+
+  
   ngOnInit(): void {
     this.temperaturaForm = this.fb.group({
       temperatura: ['', Validators.required],
@@ -56,10 +64,8 @@ export class CalculosComponent implements OnInit {
   }
 
   cargarCategorias() {
-   
-    
     this.CategoriaService.cargarCategoria().subscribe((categorias: Categoria[]) => {
-      console.log(categorias);
+    
         this.categorias = categorias;
       })
   }
@@ -68,9 +74,25 @@ export class CalculosComponent implements OnInit {
     console.log(co);
     this.alimetoService.cargarAliCatego(co).subscribe((alimentos: Alimento[])=>{
       this.alimentos= alimentos['alimentoDB'];
-      console.log(alimentos['alimentoDB']);
+    
     })
-}
+  }
+  
+  cargarComposicion() {
+   this.cargando = true;
+    const id = this.buscarForm.get('alimen').value;
+  
+    this.busquedaService.cargarComposicion(id).subscribe((resp) => {
+      
+      this.minerales =resp.composicionDB.minerale
+      this.acidos = resp.composicionDB.acidos_graso
+      this.vitamina =resp.composicionDB.vitamina
+      this.cargando = false;
+      this.estado = true;
+   
+      
+    })
+  }
 
 
   tomarID(){
