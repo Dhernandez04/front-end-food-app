@@ -26,6 +26,14 @@ export class AlimentoService {
   cargarAliCatego(id: number) {
     const url =`${base_url}/api/buscar/alimentosc/${id}`;
     return this.http.get(url,{headers:{'x-token':this.token}});
-}
+   }
+
+   cargarAlimento(id: number) {
+    return this.http.get(`${base_url}/api/alimentos/${id}`,{headers:{'x-token':this.token}}).pipe(
+      map(( resp :any) => {
+        return resp;
+      })
+    );
+  }
 
 }
