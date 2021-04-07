@@ -1,34 +1,32 @@
-<div  class="row">
-    <div class="col-md-4 bg-green p-4">
-      <h3 class="text-header">Propiedades Termofisicas</h3>
+<div class="row">
+    <div class="col-md-4 bg-green p-4" >
+        <h3 class="text-header">Propiedades Termofisicas</h3>
     </div>
     <div class="col-md-8 bg-blue-light">
         <form class="form" [formGroup]="buscarForm">
             <div class="row">
-                <div class="col-md-4 pl-5" >
+                <div class="col-md-4 pl-5">
                     <label for="">Escoje una categoria</label>
-                    <select class="form-control"  name="" id="" formControlName="cate" (change)="tomarID()">
+                    <select class="form-control" name="" id="" formControlName="cate" (change)="tomarID()">
                         <option selected value="">Seleccione categoria</option>
-                        <option *ngFor="let categoria of categorias"
-                        [value]="categoria.id">{{categoria.nombre}}</option>
+                        <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}
+                        </option>
                     </select>
                 </div>
                 <div class="col-md-4">
-                      <label for="">Alimentos</label>
-                      <select class="form-control" 
-                      formControlName="alimen"
-                      name="" id="" >
-                      <option selected value="">Seleccione alimento</option>
-                      <option *ngFor="let alimento of alimentos"
-                      [value]="alimento.codigo">{{alimento.nombre}}</option>
-                      </select>
+                    <label for="">Alimentos</label>
+                    <select class="form-control" formControlName="alimen" name="" id="" (change)="estados()">
+                        <option selected value="">Seleccione alimento</option>
+                        <option *ngFor="let alimento of alimentos" [value]="alimento.codigo">{{alimento.nombre}}
+                        </option>
+                    </select>
                 </div>
                 <div class="col-md-4">
                     <button class="btn btn-success mt-4" (click)="cargarComposicion()">
-                      <i class="fa fa-search"></i> Buscar 
-                      </button>  
+                        <i class="fa fa-search"></i> Buscar
+                    </button>
                     <button class="btn btn-blue mt-4">
-                      Reportes
+                        Reportes
                     </button>
                 </div>
             </div>
@@ -36,138 +34,176 @@
 
     </div>
 </div>
-<div *ngIf="cargando"class="text-center">
+<div *ngIf="cargando" class="text-center">
     <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  </div>
-<div *ngIf="estado"class="row">
-    <div class="col-md-4 bg-blue-light p-5">
-      <form  [formGroup]="temperaturaForm" (ngSubmit)="agregarTem()">
-          <div class="form-group">
-              <label for="">Ingrese la temperatua</label>
-              <input type="text" class="form-control" formControlName="temperatura" placeholder="°C">
-              
-          </div>
-          <div class="form-group">
-              <button class="btn btn-blue" [disabled]="temperaturaForm.invalid">Calcular</button>
-          </div>
-      </form>
-
-      <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Conductividad
-            <span class="badge badge-primary badge-pill" id="conductivi">{{obtenerConductividad()}}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Difisividad
-            <span class="badge badge-primary badge-pill">{{obtenerDifusivity()}}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Densidad
-            <span class="badge badge-primary badge-pill">{{obtenerDensity()}}</span>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Calor especifico
-            <span class="badge badge-primary badge-pill">{{obtenerSpecifici()}}</span>
-        </li>
-    </ul>
-    </div>
-    <div class="col-md-8 p-4">
-        <div class="row p-4">
-            <h4>Minerales</h4>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr> 
-                            <th>Calcio</th>
-                            <th>Hierro</th>
-                            <th>Sodio</th>
-                            <th>Fosforo</th>
-                            <th>Yodo</th>
-                            <th>Zinc</th>
-                            <th>Magnecio</th>
-                            <th>Potasio</th>
-                        </tr>
-                        
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{minerales.calcio}}</td>
-                            <td>{{minerales.hierro}}</td>
-                            <td>{{minerales.sodio}}</td>
-                            <td>{{minerales.fosforo}}</td>
-                            <td>{{minerales.yodo}}</td>
-                            <td>{{minerales.zinc}}</td>
-                            <td>{{minerales.magnecio}}</td>
-                            <td>{{minerales.potasio}}</td>
-                        
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row p-4">
-            <h4>Vitamina</h4>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr> 
-                            <th>Tiamina</th>
-                            <th>Riboflaxina</th>
-                            <th>niaxina</th>
-                            <th>Folatos</th>
-                            <th>Vitamina A</th>
-
-                            <th>Vitamina C</th>
-                            <th>Vitamina B12</th>
-                        </tr>
-                        
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{vitamina.tiamina}}</td>
-                            <td>{{vitamina.riboflaxina}}</td>
-                            <td>{{vitamina.niaxina}}</td>
-                            <td>{{vitamina.folatos}}</td>
-                            <td>{{vitamina.vitaminaA}}</td>
-                            
-                            <td>{{vitamina.vitaminaC}}</td>
-                            <td>{{vitamina.vitamina_b12}}</td>
-                            
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-       
-        <div class="row p-4">
-            <h4>Acido grasos</h4>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr> 
-                            <th>Grasa saturada</th>
-                            <th>Grasa Menos Saturada</th>
-                            <th>Grasa Polinsaturada</th>
-                            <th>Colesterol</th>
-                            <th>Parte Comestible</th>
-                         
-                        </tr>
-                        
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{acidos.grasaSaturada}}</td>
-                            <td>{{acidos.grasaMenosSaturada}}</td>
-                            <td>{{acidos.grasaPoliinsaturada}}</td>
-                            <td>{{acidos.colesterol}}</td>
-                            <td>{{acidos.parteComestible}}</td>
-                           
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-       
+        <span class="sr-only">Loading...</span>
     </div>
 </div>
+<div *ngIf="estado2" class="row">
+    <h1 class=" bg-blue-light ">Informacion de los alimentos</h1>
+    </div>
+<div *ngIf="estado" class="row">
+    <div class="col-md-4 bg-blue-light p-5">
+        <form [formGroup]="temperaturaForm" (ngSubmit)="agregarTem()">
+            <div class="form-group">
+                <label for="">Ingrese la temperatua</label>
+                <input type="text" class="form-control" formControlName="temperatura" placeholder="°C">
+
+            </div>
+            <div class="form-group">
+                <button class="btn btn-blue" [disabled]="temperaturaForm.invalid">Calcular</button>
+            </div>
+        </form>
+
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center ">
+                 <h5>Conductividad</h5>
+                <span class="badge badge-primary badge-pill" id="conductivi"><h6>{{obtenerConductividad()}} W/(m*k)</h6></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h5>Difisividad</h5>
+                <span class="badge badge-primary badge-pill" ><h6>{{obtenerDifusivity()}} m²/s</h6></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h5>Densidad</h5>
+                <span class="badge badge-primary badge-pill"><h6>{{obtenerDensity()}} kg/m³</h6></span>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h5>Calor especifico</h5>
+                <span class="badge badge-primary badge-pill"><h6>{{obtenerSpecifici()}} J/(kg*K)</h6></span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-md-8 p-4">
+        <div class="row p-4">
+            <h4>Análisis proximal</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th >Humedad(g)</th>
+                            <th >Energia(Kcal)</th>
+                            <th >Energia(Kj)</th>
+                            <th >Proteina(g)</th>
+                            <th> Lipidos(g)</th>
+                            <th >Carbo_total(g)</th>
+                            <th >Carbo_disp(g)</th>
+                            <th>Fibra dietaria(g)</th>
+                            <th>Cenizas(g)</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{alimento['analisis'].humedad}}</td>
+                            <td>{{alimento['analisis'].energiaKcal}}</td>
+                            <td>{{alimento['analisis'].energiaKj}}</td>
+                            <td>{{alimento['analisis'].proteinaG}}</td>
+                            <td>{{alimento['analisis'].lipidosG}}</td>
+                            <td>{{alimento['analisis'].carbohidratos_total}}</td>
+                            <td>{{alimento['analisis'].carbohidratos_disp}}</td>
+                            <td>{{alimento['analisis'].fibra_dietaria}}</td>
+                            <td>{{alimento['analisis'].cenizas}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row p-4">
+                <h4>Minerales</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Calcio</th>
+                                <th>Hierro</th>
+                                <th>Sodio</th>
+                                <th>Fosforo</th>
+                                <th>Yodo</th>
+                                <th>Zinc</th>
+                                <th>Magnecio</th>
+                                <th>Potasio</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{minerales.calcio}}%</td>
+                                <td>{{minerales.hierro}}%</td>
+                                <td>{{minerales.sodio}}%</td>
+                                <td>{{minerales.fosforo}}%</td>
+                                <td>{{minerales.yodo}}%</td>
+                                <td>{{minerales.zinc}}%</td>
+                                <td>{{minerales.magnecio}}%</td>
+                                <td>{{minerales.potasio}}%</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row p-4">
+                <h4>Vitamina</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tiamina</th>
+                                <th>Riboflaxina</th>
+                                <th>niaxina</th>
+                                <th>Folatos</th>
+                                <th>Vitamina A</th>
+
+                                <th>Vitamina C</th>
+                                <th>Vitamina B12</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{vitamina.tiamina}}%</td>
+                                <td>{{vitamina.riboflaxina}}%</td>
+                                <td>{{vitamina.niaxina}}%</td>
+                                <td>{{vitamina.folatos}}%</td>
+                                <td>{{vitamina.vitaminaA}}%</td>
+
+                                <td>{{vitamina.vitaminaC}}%</td>
+                                <td>{{vitamina.vitamina_b12}}%</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row p-4">
+                <h4>Acido grasos</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Grasa saturada</th>
+                                <th>Grasa Menos Saturada</th>
+                                <th>Grasa Polinsaturada</th>
+                                <th>Colesterol</th>
+                                <th>Parte Comestible</th>
+
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{acidos.grasaSaturada}}%</td>
+                                <td>{{acidos.grasaMenosSaturada}}%</td>
+                                <td>{{acidos.grasaPoliinsaturada}}%</td>
+                                <td>{{acidos.colesterol}}%</td>
+                                <td>{{acidos.parteComestible}}%</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
