@@ -1,1 +1,58 @@
-<p>categorias works!</p>
+<div class="row p-4">
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Acciones</th>
+            <th scope="col">Id</th>
+            <th class="w-25" scope="col">Nombre</th>
+            <th scope="col">Estado</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let categoria of categorias">
+          <tr >
+            <td scope="row">
+                <a class="cursor" 
+                data-toggle="tooltip" 
+                data-original-title="Guardar cambios"
+                (click)="actualizarCambios(categoria)"
+                > 
+                <i class="fa fa-pencil text-inverse m-r-10"></i> 
+            </a>
+              <a class="cursor"
+              data-toggle="tooltip"
+              data-original-title="Close"
+              (click)="eliminarCategoria(categoria)"> 
+                <i class="fa fa-close text-danger"></i>
+              </a>
+            </td>
+            <td>{{categoria.id}}</td>
+            
+            <td>
+                <input type="text" 
+                class="form-control"
+                 placeholder="Nombre del hospital"
+                [(ngModel)]="categoria.nombre">
+            </td> 
+            
+            <td *ngIf="usuario.activa">
+              <span class="bagde badge-info badge-pill">Activo</span>
+            </td>
+            <td *ngIf="!usuario.activa">
+              <span class="bagde badge-danger badge-pill">Inactivo</span>
+            </td>
+          </tr>
+         
+        </tbody>
+      </table>
+
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+
+</div>

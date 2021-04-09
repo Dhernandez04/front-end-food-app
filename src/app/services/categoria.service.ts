@@ -11,15 +11,40 @@ const base_url = environment.base_url
    providedIn: 'root'
 })
 export class CategoriaService{
-    constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) { }
+  
     get token():string {
       return localStorage.getItem('token');
+  }
+  get headers(){
+    return { headers: { 'x-token': this.token } };
     }
+  
+  
     cargarCategoria(){
-          return this.http.get(`${base_url}/api/categoria`,{headers:{'x-token':this.token}}).pipe(
+          return this.http.get(`${base_url}/api/categoria`,this.headers).pipe(
       map(( resp :{categoria:Categoria[]}) => {
         return resp.categoria;
       })
     );
+    }
+
+    crearCategoria(nombre: string) {
+    
+      return this.http.post(`${base_url}/categoria`, { nombre }, this.headers);
+    
+    }
+
+
+    actualizarCategoria(id:number,nombre: string) {
+    
+      return this.http.put(`${base_url}/categoria/${id}`, { nombre }, this.headers);
+    
+    }
+  
+    eliminarCategoria(id:number) {
+      
+      return this.http.delete(`${base_url}/categoria/${id}`, this.headers);
+    
     }
 }

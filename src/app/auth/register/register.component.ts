@@ -12,16 +12,16 @@ import { Router } from '@angular/router';
 export class RegisterComponent  {
   public formSumitted = false;
   public registerForm = this.fb.group({
-    nombre:['',Validators.required],
-    apellido:['',Validators.required],
-    email: ['', Validators.required],
-    password: ['', Validators.required],
-    password2: ['', Validators.required],
+    nombre:[,Validators.required],
+    apellido:[,Validators.required],
+    email: [, Validators.required],
+    password: [, Validators.required],
+    password2: [, Validators.required],
     
   }, {
     validators:this.passIguales('password','password2')
   })
-  constructor(private fb:FormBuilder,private usuarioService:UsuarioService,private router:Router) { }
+  constructor(private router:Router,private fb:FormBuilder,private usuarioService:UsuarioService) { }
 
   crearUsuario() {
     this.formSumitted = true;
@@ -32,8 +32,8 @@ export class RegisterComponent  {
 
     //creando usuario
     this.usuarioService.crearUsuario(this.registerForm.value).subscribe((resp) => {
-        console.log(resp);
-        this.router.navigateByUrl('/admin/dashboard')
+     
+      this.router.navigateByUrl('/admin/dashboard')
       },(err => {
        Swal.fire('error',err.error.error.errors[0].message,'error')
       })

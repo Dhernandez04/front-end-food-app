@@ -4,8 +4,8 @@
     </div>
     <div class="col-md-8 bg-blue-light">
         <form class="form" [formGroup]="buscarForm">
-            <div class="row">
-                <div class="col-md-4 pl-5">
+            <div class="row p-4">
+                <div class="col-md-4">
                     <label for="">Escoje una categoria</label>
                     <select class="form-control" name="" id="" formControlName="cate" (change)="tomarID()">
                         <option selected value="">Seleccione categoria</option>
@@ -22,7 +22,7 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <button class="btn btn-success mt-4" (click)="cargarComposicion()">
+                    <button class="btn btn-success mt-4 mr-2" (click)="cargarComposicion()">
                         <i class="fa fa-search"></i> Buscar
                     </button>
                     <button class="btn btn-blue mt-4">
@@ -34,16 +34,20 @@
 
     </div>
 </div>
+<div *ngIf="estado2" class="w-100 text-center mt-5">
+    <img class="empty-state"src="../../../assets/img/undraw_survey_05s5.svg" alt="">
+    <p>Para buscar informacion primero selecciona una categoria y luego 
+        escoge el alimento de tu preferencia.</p>
+</div>
+
 <div *ngIf="cargando" class="text-center">
     <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
     </div>
 </div>
-<div *ngIf="estado2" class="row">
-    <h1 class=" bg-blue-light ">Informacion de los alimentos</h1>
-    </div>
+
 <div *ngIf="estado" class="row">
-    <div class="col-md-4 bg-blue-light p-5">
+    <div class="col-md-4 bg-blue-light p-2">
         <form [formGroup]="temperaturaForm" (ngSubmit)="agregarTem()">
             <div class="form-group">
                 <label for="">Ingrese la temperatua</label>
@@ -55,27 +59,36 @@
             </div>
         </form>
 
-        <ul class="list-group">
+        <ul class="list-group" id="result-p">
             <li class="list-group-item d-flex justify-content-between align-items-center ">
-                 <h5>Conductividad</h5>
-                <span class="badge badge-primary badge-pill" id="conductivi"><h6>{{obtenerConductividad()}} W/(m*k)</h6></span>
+                 <span class="title">Conductividad</span>
+                <span class="tex-result" id="conductivi"><h6><span class="pg">{{obtenerConductividad()}}</span> <span class="medidas"> W/(m*k)</span></h6> </span>
+                
             </li>
+           
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <h5>Difisividad</h5>
-                <span class="badge badge-primary badge-pill" ><h6>{{obtenerDifusivity()}} m²/s</h6></span>
+                <span class="title">Difisividad</span>
+                <span class="tex-result" ><h6><span class="pg">{{obtenerDifusivity()}} </span> <span class="medidas"> m²/s</span></h6>   </span>
+                             
             </li>
+           
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <h5>Densidad</h5>
-                <span class="badge badge-primary badge-pill"><h6>{{obtenerDensity()}} kg/m³</h6></span>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <h5>Calor especifico</h5>
-                <span class="badge badge-primary badge-pill"><h6>{{obtenerSpecifici()}} J/(kg*K)</h6></span>
+                <span class="title">Densidad</span>
+                <span class="tex-result"><h6><span class="pg">{{obtenerDensity()}} </span><span class="medidas">kg/m³</span></h6>    </span>
+             
             </li>
+            
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="title">Calor especifico</span>
+                <span class="tex-result"><h6><span class="pg">{{obtenerSpecifici()}}</span> <span class="medidas"> J/(kg*K)</span> </h6></span>
+                                 
+            </li>
+           
         </ul>
     </div>
 
-    <div class="col-md-8 p-4">
-        <div class="row p-4">
+    <div class="col-md-8 p-3">
+        <div class="row p-3">
             <h4>Análisis proximal</h4>
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -85,8 +98,8 @@
                             <th >Energia(Kcal)</th>
                             <th >Energia(Kj)</th>
                             <th >Proteina(g)</th>
-                            <th> Lipidos(g)</th>
-                            <th >Carbo_total(g)</th>
+                            <th>Lipidos(g)</th>
+                            <th>Carbo_total(g)</th>
                             <th >Carbo_disp(g)</th>
                             <th>Fibra dietaria(g)</th>
                             <th>Cenizas(g)</th>
