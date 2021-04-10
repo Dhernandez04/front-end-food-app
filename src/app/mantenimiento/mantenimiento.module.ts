@@ -9,6 +9,8 @@ import { MantenimientoComponent } from './mantenimiento.component';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { AlimentoComponent } from './alimentos/alimento.component';
+import { ModalImageComponent } from '../components/modal-image/modal-image.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +23,8 @@ import { AlimentoComponent } from './alimentos/alimento.component';
     AlimentosComponent,
     CategoriasComponent,
     RolesComponent,
-    AlimentoComponent],
+    AlimentoComponent,
+  ModalImageComponent],
   exports: [
     DashboardComponent,
     UsuariosComponent,
@@ -29,10 +32,13 @@ import { AlimentoComponent } from './alimentos/alimento.component';
     AlimentosComponent,
     CategoriasComponent,
     RolesComponent,
+    ModalImageComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ]
 })

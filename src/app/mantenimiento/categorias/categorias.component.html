@@ -2,10 +2,10 @@
     <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">Acciones</th>
-            <th scope="col">Id</th>
-            <th class="w-25" scope="col">Nombre</th>
-            <th scope="col">Estado</th>
+            <th class="w100">Acciones</th>
+            <th  class="w100" >Id</th>
+            <th class="w-25" >Nombre</th>
+            <th  class="w100">Estado</th>
           </tr>
         </thead>
         <tbody *ngFor="let categoria of categorias">
@@ -28,16 +28,13 @@
             <td>{{categoria.id}}</td>
             
             <td>
-                <input type="text" 
-                class="form-control"
-                 placeholder="Nombre del hospital"
-                [(ngModel)]="categoria.nombre">
+                {{categoria.nombre}}
             </td> 
             
-            <td *ngIf="usuario.activa">
+            <td *ngIf="categoria.activa">
               <span class="bagde badge-info badge-pill">Activo</span>
             </td>
-            <td *ngIf="!usuario.activa">
+            <td *ngIf="!categoria.activa">
               <span class="bagde badge-danger badge-pill">Inactivo</span>
             </td>
           </tr>

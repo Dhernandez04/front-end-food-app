@@ -41,9 +41,13 @@ export class UsuarioService {
   get token():string {
     return localStorage.getItem('token');
   }
+  get headers(){
+    return { headers: { 'x-token': this.token } };
+    }
+  
 
   obtenerUsuarios() {
-    return this.http.get(`${base_url}/api/usuarios`, { headers: { 'x-token': this.token }}).pipe(
+    return this.http.get(`${base_url}/api/usuarios`, this.headers).pipe(
       map(( resp :{usuarios:Usuario[]}) => {
         return resp.usuarios;
       })

@@ -19,11 +19,17 @@
               <a class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
             </td>
             <td>{{usuario.id}}</td>
-            <td><img [src]="usuario.imagen" alt="imagen de usuario" width="50" height="50"></td>
+            <td class="text-center">
+              <img class="img-avatar cursor"
+              alt="Avatar de usuario"
+               [src]="usuario.imagen"
+               (click)="abrirModal(usuario)"
+                >
+          </td>
             <td>{{usuario.nombre}}</td>
             <td>{{usuario.apellido}}</td>
             <td>{{usuario.email}}</td>
-            <td>{{usuario.rol}}</td>
+            <td>{{usuario.id_rol}}</td>
             <td *ngIf="usuario.activo">
               <span class="bagde badge-info badge-pill">Activo</span>
             </td>

@@ -25,7 +25,7 @@ export class LoginComponent {
 
   login() {
     this.usuarioService.login(this.loginForm.value).subscribe((resp) => {
-      this.router.navigateByUrl('/admin/dashboard')
+      this.router.navigateByUrl('/dashboard')
     }, (err => {
       
       

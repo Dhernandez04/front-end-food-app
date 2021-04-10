@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from '../../services/usuario.service';
+import { ModalImageService } from '../../services/modal-image.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -10,7 +11,7 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class UsuariosComponent implements OnInit {
   public usuarios: Usuario[] = [];
-  constructor(private usuarioService:UsuarioService) { }
+  constructor(private usuarioService:UsuarioService,private modalImageService:ModalImageService) { }
 
   ngOnInit(): void {
     this.cargarUsuarios();
@@ -21,5 +22,11 @@ export class UsuariosComponent implements OnInit {
       console.log(resp);
       this.usuarios = resp;
     })
+  }
+
+  abrirModal(usuario: Usuario) {
+    this.modalImageService.abrirModal('usuarios', usuario.id, usuario.imagen);
+    console.log(usuario);
+    
   }
 }

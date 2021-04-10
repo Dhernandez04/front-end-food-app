@@ -15,18 +15,17 @@ import { AlimentoComponent } from './alimentos/alimento.component';
 
 
 const routes:Routes = [
-    {path:'admin',
+    {path:'dashboard',
         component: MantenimientoComponent,
         canActivate:[AuthGuard],
         children:[
-         {path:'dashboard',component:DashboardComponent},
+        {path:'',component:DashboardComponent},
+        //  {path:'dashboard',component:DashboardComponent},
          {path:'alimentos',component:AlimentosComponent},
          {path:'alimento/:id',component:AlimentoComponent},
          {path:'usuarios',component:UsuariosComponent},
          {path:'roles',component:RolesComponent},
          {path:'categorias',component:CategoriasComponent},
-        
-         {path:'', redirectTo:'/dashboard',pathMatch:'full'},
         ]
      }
     

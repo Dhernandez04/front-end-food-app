@@ -15,7 +15,7 @@ export class Usuario {
         if(this.imagen){
             return this.imagen;
         } else {
-            return '';
+            return 'https://res.cloudinary.com/dptovaszm/image/upload/v1617992659/istockphoto-922962354-612x612_1_z9zsxu.jpg';
         }
     }
 }

@@ -14,10 +14,11 @@ const routes:Routes = [
     {path:'',
         component: PagesComponent,
         canActivate:[AuthGuard],
-        children:[
+        children: [
+            {path:'',component:CalculosComponent},
          {path:'calculos',component:CalculosComponent},
          {path:'catalogo',component:CatalogoComponent},
-         {path:'', redirectTo:'/calculos',pathMatch:'full'},
+
         ]
      }
     

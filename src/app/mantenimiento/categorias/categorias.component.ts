@@ -19,13 +19,15 @@ export class CategoriasComponent implements OnInit {
 
   listarCategoria(){
     this.categoriaService.cargarCategoria().subscribe((resp) => {
+      console.log(resp);
+      
       this.categorias = resp;
    });
   }
 
   async crearCategoria() {
     const {value=''} = await Swal.fire<string>({
-      title:'Crear Hospital',
+      title:'Crear Categoria',
       text:'Ingrese la nueva categoria',
       input:'text',
       inputPlaceholder: 'Nombre de la categoria',
