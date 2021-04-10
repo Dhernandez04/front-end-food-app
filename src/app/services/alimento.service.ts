@@ -14,22 +14,32 @@ export class AlimentoService {
   get token():string {
     return localStorage.getItem('token');
   }
+  get headers(){
+    return { headers: { 'x-token': this.token } };
+    }
+  //metodo para listar los alimentos
   cargarAlimetos() {
-    return this.http.get(`${base_url}/api/alimentos`,{headers:{'x-token':this.token}}).pipe(
+    return this.http.get(`${base_url}/api/alimentos`,this.headers).pipe(
       map(( resp :{alimentos:Alimento[]}) => {
         return resp.alimentos;
       })
     );
   }
 
+  //metodo para crear un alimento
+  crearAlimento(data) {
+    return this.http.post(`${base_url}/api/alimentos`, data, this.headers);
+  }
 
+  //metodo para cargar los alimentos asociados a una categoria
   cargarAliCatego(id: number) {
     const url =`${base_url}/api/buscar/alimentosc/${id}`;
-    return this.http.get(url,{headers:{'x-token':this.token}});
-   }
-
+    return this.http.get(url,this.headers);
+  }
+  
+//metodo para obtener un alimento en especifico
    cargarAlimento(id: number) {
-    return this.http.get(`${base_url}/api/alimentos/${id}`,{headers:{'x-token':this.token}}).pipe(
+    return this.http.get(`${base_url}/api/alimentos/${id}`,this.headers).pipe(
       map(( resp :any) => {
         return resp;
       })
