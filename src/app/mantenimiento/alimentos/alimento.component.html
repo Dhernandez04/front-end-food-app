@@ -2,305 +2,375 @@
     <div class="row">
         <a class="btn btn-danger" routerLink="/dashboard/alimentos">Regresar</a>
     </div>
-    <form autocomplete="off"(ngSubmit)="siguiente()">
-    <div *ngIf="step==1" class="row p-3">
-        <div class="col-md-12">
-            <p>Informacion del alimento</p>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Categoria</label>
-                <select class="form-control form-control-sm">
-                    <option>Small select</option>
-                  </select>
-              
+    <form autocomplete="off" [formGroup]="formaAlimento" (ngSubmit)=" agregar()">
+        <div *ngIf="step==1" class="row p-3">
+            <div class="col-md-12">
+                <p>Informacion del alimento</p>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="exampleInputPassword1">Nombre del alimento</label>
-                <input type="text" autofocus class="form-control form-control-sm" id="exampleInputPassword1">
-              </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="exampleInputPassword1">parte analizada</label>
-                <input type="text" class="form-control form-control-sm" id="exampleInputPassword1">
-              </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="exampleInputPassword1">Parte analizada</label>
-                <input type="text" class="form-control form-control-sm" id="exampleInputPassword1">
-              </div>
-        </div>
-         
-    </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Categoria</label>
+                    <select class="form-control form-control-sm" formControlName="cat">
+                        <option value="2">Small select</option>
+                    </select>
 
-    <div *ngIf="step==2" class="row p-3">
-        <div class="col-md-12">
-            <p class="pg">Analisis Proximal</p><hr>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Humedad</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Energia (kcal)</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Nombre del alimento</label>
+                    <input type="text" autofocus class="form-control form-control-sm" id="exampleInputPassword1"
+                        formControlName="nombre" [class.is-invalid]="nombreInvalid">
+                    <small *ngIf="proteinaInvalid" class="text-danger">
+                        Ingrese el nombre
+                    </small>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Energia (kj)</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Proteinas (G)</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Lipidos(G)</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Carbohidratos totales(G)</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Carbohidratos Disponibles(G)</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Fibra Dietaria</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Cenizas</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-    </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">parte analizada</label>
+                    <input type="text" class="form-control form-control-sm" id="exampleInputPassword1"
+                        formControlName="parte1">
 
-    <div *ngIf="step==3"class="row p-3">
-        <div class="col-md-12">
-            <p class="pg">Minerales</p>
-            <hr>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Parte analizada</label>
+                    <input type="text" class="form-control form-control-sm" id="exampleInputPassword1"
+                        formControlName="parte2">
+                </div>
+            </div>
+
         </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Calcio </label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
+
+        <div *ngIf="step==2" class="row p-3">
+            <div class="col-md-12">
+                <p class="pg">Analisis Proximal</p>
+                <hr>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Humedad</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="humedad" [class.is-invalid]="humedadInvalid">
+                        <small *ngIf="humedadInvalid" class="text-danger">
+                            Campo requerido*
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Energia (kcal)</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="energiakc" [class.is-invalid]="energiakcInvalid">
+                        <small *ngIf="energiakcInvalid" class="text-danger">
+                            Campo requerido*
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Energia (kj)</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="energiak" [class.is-invalid]="energiakInvalid">
+                        <small *ngIf="energiakInvalid" class="text-danger">
+                            Campo requerido*
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Proteinas (G)</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="proteina" [class.is-invalid]="proteinaInvalid">
+                        <small *ngIf="proteinaInvalid" class="text-danger">
+                            Campo requerido*
+                        </small>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Lipidos(G)</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="lipidos" [class.is-invalid]="lipidosInvalid">
+                        <small *ngIf="lipidosInvalid" class="text-danger">
+                            Campo requerido*
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Carbohidratos totales(G)</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="carb1" [class.is-invalid]="carb1Invalid">
+                        <small *ngIf="carb1Invalid" class="text-danger">
+                            Campo requerido*
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Carbohidratos Disponibles(G)</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="carb2" [class.is-invalid]="carb2Invalid">
+                        <small *ngIf="carb2Invalid" class="text-danger">
+                            Campo requerido*
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Fibra Dietaria</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="fibra" [class.is-invalid]="fibraInvalid">
+                        <small *ngIf="fibraInvalid" class="text-danger">
+                            Campo requerido*
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Cenizas</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="ceniza" [class.is-invalid]="cenizaInvalid">
+                        <small *ngIf="cenizaInvalid" class="text-danger">
+                            Campo requerido*
+                        </small>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Hierro</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
+
+        <div *ngIf="step==3" class="row p-3">
+            <div class="col-md-12">
+                <p class="pg">Minerales</p>
+                <hr>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Calcio </label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="mcalcio">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Hierro</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="mhierro">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Sodio</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="msodio">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Fosforos</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="mfosoro">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Yodo</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="myodo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Zinc</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="mzinc">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Magnecio</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="mmag">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Potacio</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="mpota">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Sodio</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Fosforos</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Yodo</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Zinc</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Magnecio</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Potacio</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-    </div>
 
 
-    <div *ngIf="step==4" class="row p-3">
-        <div class="col-md-12">
-            <p class="pg">vitaminas</p>
-            <hr>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Tiamina</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
+        <div *ngIf="step==4" class="row p-3">
+            <div class="col-md-12">
+                <p class="pg">vitaminas</p>
+                <hr>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Tiamina</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="vtiamina">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">riboflaxina</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="vribo">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Niacina</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="vnia">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Folatos</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="vfola">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">VitaminaA</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="vvA">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">VitaminaC</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="vvC">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">VitaminaB12</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="vvB">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">riboflaxina</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Niacina</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Folatos</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">VitaminaA</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">VitaminaC</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">VitaminaB12</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div *ngIf="step==5" class="row p-3">
-        <div class="col-md-12">
-            <p class="pg">Acidos grasos</p>
+        <div *ngIf="step==5" class="row p-3">
+            <div class="col-md-12">
+                <p class="pg">Acidos grasos</p>
 
-            <hr>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Grasa saturada</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
+                <hr>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Grasa saturada</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="agrasas">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Grasa Monosaturada</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="agrasam">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Grasa Polinsaturada</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="agrasap">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Colesterol</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="aCole">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-5 col-form-label">Parte Comestible</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control form-control-sm" id="inputPassword"
+                            formControlName="acomes">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Grasa Monosaturada</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
+        <div class="row d-flex justify-content-center text-center p-3">
+            <a (click)="previus()" *ngIf="step!=1" class="btn btn-info mr-1">Anterior</a>
+            <button (click)="siguiente()" *ngIf="step!=5" class="btn btn-primary mr-1">Siguiente</button>
+            <button type="submit" *ngIf="step==5" class="btn btn-success mr-1">Agregar</button>
         </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Grasa Polinsaturada</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Colesterol</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-5 col-form-label">Parte Comestible</label>
-                <div class="col-sm-7">
-                  <input type="text" class="form-control form-control-sm" id="inputPassword">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row d-flex justify-content-center text-center p-3">
-        <a (click)="previus()" *ngIf="step!=1"class="btn btn-info mr-1">Anterior</a>
-        <button type="submit" *ngIf="step!=5"class="btn btn-primary mr-1">Siguiente</button>
-        <button type="submit"  *ngIf="step==5"class="btn btn-success mr-1">Agregar</button>
-    </div>
-</form>
+    </form>
 </div>
+
+<pre>
+    estado del formulario: {{formaAlimento.valid}}
+    datos de form: {{formaAlimento.value | json}}
+</pre>
