@@ -10,6 +10,7 @@ import { VitaminaService } from '../../services/vitamina.service';
 import { AcidograsoService } from '../../services/acidograso.service';
 import { CompocisionService } from '../../services/compocision.service';
 import { Compocision } from '../../models/Compocision';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alimento',
@@ -35,12 +36,16 @@ export class AlimentoComponent implements OnInit {
 
 
   
-  constructor(private fb: FormBuilder, private categoriaService: CategoriaService, 
+  constructor(
+   
+    private fb: FormBuilder,
+    private categoriaService: CategoriaService,
     private alimentoService: AlimentoService,
     private mineralService: MineralService,
     private acidograsoService: AcidograsoService,
     private vitaminaService: VitaminaService,
-    private compocisionService: CompocisionService) { }
+    private compocisionService: CompocisionService,
+  private router:Router) { }
 
   ngOnInit(): void {
     this.crearForm();
@@ -101,7 +106,7 @@ export class AlimentoComponent implements OnInit {
 
   agregar() {
      this.alimentoService.crearAlimento(this.formaAlimento.value).subscribe((res:any)=>{
-      console.log(res);
+    
       this.idRes=res.alimento.codigo;
       console.log("Dato obtenido: "+this.idRes)
       const observable = forkJoin({
@@ -109,49 +114,45 @@ export class AlimentoComponent implements OnInit {
         obs2: this.agregarAcido(),
         obs3: this.agregarVitamina(),
       });
-      observable.subscribe({
-       next: value => console.log(value),
-       complete: () => console.log('This is how it ends!'),
+       observable.subscribe((value: any) => {
        
+        
+         this.idMin = value.obs1.mineral.codigom;
+         this.idAci = value.obs2.acido_graso.codigoa;
+         this.idVit = value.obs3.vitamina.codigov;
+         this.composi={
+          id_minerales:this.idMin,
+          id_vitaminas: this.idVit,
+          id_acidosGrasos: this.idAci,
+          cod_alimento: this.idRes,
+          estado: "Aprobado",
+         };
+        
+         this.agregarComposicion(this.composi);
+        this.router.navigateByUrl('/dashboard/alimentos')
       });
     });
   }
 
   agregarMineral(){
-      this.mineralService.crearMineral(this.formaAlimento.value).subscribe((res:any)=>{
-        console.log(res);
-        this.idMin=res.mineral.codigom;
-      })
+     return  this.mineralService.crearMineral(this.formaAlimento.value)
   }
 
   agregarAcido(){
-      this.acidograsoService.crearAcido(this.formaAlimento.value).subscribe((res:any)=>{
-        console.log(res);
-        this.idAci=res.acido_graso.codigoa;
-      })
+     return  this.acidograsoService.crearAcido(this.formaAlimento.value)
   }
 
   agregarVitamina(){
-    this.vitaminaService.crearVitamina(this.formaAlimento.value).subscribe((res:any)=>{
-      console.log(res);
-      this.idVit=res.vitamina.codigov;
-    })
+    return this.vitaminaService.crearVitamina(this.formaAlimento.value);
   }
 
   
-  agregarComposicion(){
-    this.composi={
-       id_minerales:this.idMin,
-       id_vitaminas: this.idVit,
-       id_acidosGrasos: this.idAci,
-       cod_alimento: this.idRes,
-       estado: "Aprobado",
-    };
-   
-    
-    this.compocisionService.crearComposiciones(this.composi).subscribe((res:any)=>{
+  agregarComposicion(compocision){
+  
+  
+    this.compocisionService.crearComposiciones(compocision).subscribe((res:any)=>{
       console.log(res);
-      this.idVit=res.vitamina.codigov;
+     
     })
   }
 
@@ -198,5 +199,6 @@ export class AlimentoComponent implements OnInit {
     })
   }
 
+ 
 
 }

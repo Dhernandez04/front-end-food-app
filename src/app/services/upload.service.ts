@@ -11,10 +11,10 @@ export class UploadService {
   async actualizarFoto(
     archivo: File,
     tipo: 'alimentos' | 'usuarios',
-    id:string
+    id:string|number
   ) {
     try {
-      const url = `${base_url}/uploads/${tipo}/${id}`;
+      const url = `${base_url}/api/uploads/${tipo}/${id}`;
       const formData = new FormData();
       formData.append('imagen', archivo);
 

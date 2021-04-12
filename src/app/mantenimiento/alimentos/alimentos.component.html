@@ -3,6 +3,11 @@
     <a class="btn btn-success" [routerLink]="['/dashboard/alimento','nuevo']"><i class="fas fa-plus"></i> Nuevo alimento</a>
   </div>
 </div>
+<div *ngIf="!cargando" class="text-center">
+  <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+  </div>
+</div>
 
 <div class="row p-4">
     <table class="table table-bordered">
@@ -17,7 +22,10 @@
             <th scope="col">Estado</th>
           </tr>
         </thead>
+        
         <tbody *ngFor="let alimento of alimentos">
+         
+       
           <tr >
             <td scope="row">
               <a class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a> &nbsp;
@@ -25,7 +33,13 @@
               <a class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
             </td>
             <td>{{alimento.codigo}}</td>
-            <td><img [src]="alimento.imagen" alt="imagen" width="50" height="50"></td>
+            <td class="text-center">
+              <img class="img-avatar cursor"
+              alt="Avatar de usuario"
+               [src]="alimento.imagen"
+               (click)="abrirModal(alimento)"
+                >
+          </td>
             <td>{{alimento.nombre}}</td>
             <td>{{alimento.categoria.nombre}}</td>
             <td>{{alimento.parte_analizada}}</td>
