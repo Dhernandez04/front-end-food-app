@@ -12,11 +12,12 @@ import { Router } from '@angular/router';
 export class RegisterComponent  {
   public formSumitted = false;
   public registerForm = this.fb.group({
-    nombre:[,Validators.required],
-    apellido:[,Validators.required],
-    email: [, Validators.required],
-    password: [, Validators.required],
-    password2: [, Validators.required],
+    nombre:['jose',Validators.required],
+    apellido:['miguel',Validators.required],
+    email: ['h1@gmail.com', Validators.required],
+    password: ['123456', Validators.required],
+    password2: ['123456', Validators.required],
+    id_rol:[1]
     
   }, {
     validators:this.passIguales('password','password2')
@@ -32,9 +33,12 @@ export class RegisterComponent  {
 
     //creando usuario
     this.usuarioService.crearUsuario(this.registerForm.value).subscribe((resp) => {
-     console.log(resp);
+    
      
-      this.router.navigateByUrl('/')
+     
+      this.router.navigateByUrl('/dashboard')
+      console.log('todo ok');
+      
       },(err => {
        Swal.fire('error',err.error.error.errors[0].message,'error')
       })

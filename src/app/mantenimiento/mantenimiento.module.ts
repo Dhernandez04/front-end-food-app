@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { AlimentoComponent } from './alimentos/alimento.component';
 import { ModalImageComponent } from '../components/modal-image/modal-image.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 
@@ -24,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CategoriasComponent,
     RolesComponent,
     AlimentoComponent,
-  ModalImageComponent],
+  ModalImageComponent,
+  PerfilComponent],
   exports: [
     DashboardComponent,
     UsuariosComponent,

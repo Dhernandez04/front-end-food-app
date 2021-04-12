@@ -22,5 +22,13 @@ export class Alimento {
         public id_categoria?:number,
         public analisis?:analisis,
         public id_usuario?:number
-    ){}
+    ) { }
+    
+    get imagenUrl(){
+        if(this.imagen){
+            return this.imagen;
+        } else {
+            return 'https://res.cloudinary.com/dptovaszm/image/upload/v1617992659/istockphoto-922962354-612x612_1_z9zsxu.jpg';
+        }
+    }
 }

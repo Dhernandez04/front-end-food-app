@@ -6,6 +6,6 @@ export interface RegisterForm{
     email:  string,
     password:string, 
     password2: string,
-    
+    id_rol:number
 }
     

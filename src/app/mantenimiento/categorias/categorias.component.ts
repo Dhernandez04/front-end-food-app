@@ -11,17 +11,18 @@ import { CategoriaService } from '../../services/categoria.service';
 })
 export class CategoriasComponent implements OnInit {
   public categorias: Categoria[] = [];
+  cargando :boolean = false;
   constructor(private categoriaService:CategoriaService) { }
 
   ngOnInit(): void {
     this.listarCategoria();
+    
   }
 
   listarCategoria(){
-    this.categoriaService.cargarCategoria().subscribe((resp) => {
-      console.log(resp);
-      
+    this.categoriaService.cargarCategoria().subscribe((resp) => {    
       this.categorias = resp;
+      this.cargando = true;
    });
   }
 

@@ -8,7 +8,7 @@ export class ModalImageService {
 
   constructor() { }
   public tipo:'usuarios'|'alimentos';
-  public id:string;
+  public id:string|number;
   public img: string;
   public nuevaImagen: EventEmitter<string> = new EventEmitter<string>();
   
@@ -17,7 +17,7 @@ export class ModalImageService {
   get ocultarModal(){
     return this._ocultarModal;
   }
-  abrirModal(tipo:'usuarios'|'alimentos',id:string,img:string='https://res.cloudinary.com/dptovaszm/image/upload/v1617992659/istockphoto-922962354-612x612_1_z9zsxu.jpg') {
+  abrirModal(tipo:'usuarios'|'alimentos',id:string|number,img:string='https://res.cloudinary.com/dptovaszm/image/upload/v1617992659/istockphoto-922962354-612x612_1_z9zsxu.jpg') {
     this._ocultarModal = false;
     this.tipo = tipo;
     this.id = id;
