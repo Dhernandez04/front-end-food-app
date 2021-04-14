@@ -13,6 +13,7 @@ import { CategoriaService } from '../../services/categoria.service';
 export class CategoriasComponent implements OnInit {
   public categorias: Categoria[] = [];
   cargando :boolean = false;
+
   public categoriaForm: FormGroup;
   constructor(private categoriaService:CategoriaService, private fb: FormBuilder) { }
 
@@ -22,7 +23,7 @@ export class CategoriasComponent implements OnInit {
       nombre: [, Validators.required],
       activa: [, Validators.required]
     })
-  }
+
 
   listarCategoria(){
     this.categoriaService.cargarCategoria().subscribe((resp) => {    
