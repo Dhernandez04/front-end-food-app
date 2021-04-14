@@ -17,8 +17,8 @@ export class CompocisionService {
     return { headers: { 'x-token': this.token } };
   }
   
-  cargarComposiciones() {
-    return this.http.get(`${base_url}/api/composicion`,this.headers);
+  cargarComposiciones(desde:number=0)   {
+    return this.http.get(`${base_url}/api/composicion?desde=${desde}`,this.headers);
   }
 
   crearComposiciones(data:Compocision) {

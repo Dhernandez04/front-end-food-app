@@ -20,9 +20,9 @@ export class CatalogoComponent implements OnInit {
   }
 
   cargarAlimentos() {
-    this.alimetoService.cargarAlimetos().subscribe(resp => {
+    this.alimetoService.cargarAlimetos().subscribe((resp:any) => {
       console.log(resp);
-      this.alimentos = resp;
+      this.alimentos = resp.alimentos;
     })
   }
 

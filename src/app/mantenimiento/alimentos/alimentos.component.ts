@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Alimento } from 'src/app/models/alimento.model';
 import { AlimentoService } from '../../services/alimento.service';
 import { ModalImageService } from '../../services/modal-image.service';
+import { CompocisionService } from '../../services/compocision.service';
 
 @Component({
   selector: 'app-alimentos',
@@ -12,10 +13,16 @@ import { ModalImageService } from '../../services/modal-image.service';
 export class AlimentosComponent implements OnInit {
   cargando: boolean = false;
   public alimentos: Alimento[] = [];
-  constructor(private alimentoService:AlimentoService,private modalImageService:ModalImageService) { }
+  public composiciones: any = [];
+  public total: number;
+  public desde: number = 0;
+  constructor(private alimentoService: AlimentoService,
+    private modalImageService: ModalImageService,
+   ) { }
 
   ngOnInit(): void {
     this.cargarAlimentos();
+   
   }
   abrirModal(alimento: Alimento ) {
    
@@ -25,11 +32,24 @@ export class AlimentosComponent implements OnInit {
   }
 
   cargarAlimentos() {
-    this.alimentoService.cargarAlimetos().subscribe((resp) => {
+    this.cargando = false;
+    this.alimentoService.cargarAlimetos(this.desde).subscribe((resp: any ) => {
     
-      this.alimentos = resp;
+      
+      this.total = resp.count;
+      this.alimentos = resp.alimentos;
       this.cargando = true;
+      
     })
+  }
+  cargarPagina(valor: number) {
+    this.desde += valor;
+    if (this.desde < 0) {
+      this.desde=0
+    } else if (this.desde > this.total) {
+      this.desde -= valor;
+    }
+    this.cargarAlimentos();
   }
 
 }

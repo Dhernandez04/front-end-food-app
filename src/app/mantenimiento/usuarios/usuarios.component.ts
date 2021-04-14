@@ -12,6 +12,8 @@ import { ModalImageService } from '../../services/modal-image.service';
 export class UsuariosComponent implements OnInit {
   public usuarios: Usuario[] = [];
   public cargando: boolean = false;
+  public total: number;
+  public desde: number = 0;
   constructor(private usuarioService:UsuarioService,private modalImageService:ModalImageService) { }
 
   ngOnInit(): void {
@@ -19,7 +21,8 @@ export class UsuariosComponent implements OnInit {
   }
 
   cargarUsuarios() {
-    this.usuarioService.obtenerUsuarios().subscribe((resp) => {
+    this.cargando = false;
+    this.usuarioService.obtenerUsuarios(this.desde).subscribe((resp) => {
     
       this.usuarios = resp;
       this.cargando = true;
@@ -31,5 +34,14 @@ export class UsuariosComponent implements OnInit {
     this.modalImageService.abrirModal('usuarios', usuario.id, usuario.imagen);
     
     
+  }
+  cargarPagina(valor: number) {
+    this.desde += valor;
+    if (this.desde < 0) {
+      this.desde=0
+    } else if (this.desde > this.total) {
+      this.desde -= valor;
+    }
+    this.cargarUsuarios();
   }
 }

@@ -50,6 +50,7 @@ export class AlimentoComponent implements OnInit {
   ngOnInit(): void {
     this.crearForm();
     this.traerCategorias();
+    
   }
 
   get nombreInvalid(){

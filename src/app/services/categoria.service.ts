@@ -40,13 +40,13 @@ export class CategoriaService{
 
     actualizarCategoria(id:number,nombre: string) {
     
-      return this.http.put(`${base_url}/categoria/${id}`, { nombre }, this.headers);
+      return this.http.put(`${base_url}/api/categoria/${id}`, { nombre }, this.headers);
     
     }
   
     eliminarCategoria(id:number) {
       
-      return this.http.delete(`${base_url}/categoria/${id}`, this.headers);
+      return this.http.delete(`${base_url}/api/categoria/${id}`, this.headers);
     
     }
 }

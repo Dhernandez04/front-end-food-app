@@ -44,8 +44,8 @@ export class UsuarioService {
        )
      }
 
-  obtenerUsuarios() {
-    return this.http.get(`${base_url}/api/usuarios`, this.headers).pipe(
+  obtenerUsuarios(desde:number=0) {
+    return this.http.get(`${base_url}/api/usuarios?desde=${desde}`, this.headers).pipe(
       map(( resp :{usuarios:Usuario[]}) => {
         return resp.usuarios;
       })

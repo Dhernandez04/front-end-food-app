@@ -24,7 +24,7 @@ export class CategoriasComponent implements OnInit {
       activa: [, Validators.required]
     })
 
-
+  }
   listarCategoria(){
     this.categoriaService.cargarCategoria().subscribe((resp) => {    
       this.categorias = resp;

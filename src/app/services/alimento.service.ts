@@ -18,12 +18,8 @@ export class AlimentoService {
     return { headers: { 'x-token': this.token } };
     }
   //metodo para listar los alimentos
-  cargarAlimetos() {
-    return this.http.get(`${base_url}/api/alimentos`,this.headers).pipe(
-      map(( resp :{alimentos:Alimento[]}) => {
-        return resp.alimentos;
-      })
-    );
+  cargarAlimetos(desde:number=0) {
+    return this.http.get(`${base_url}/api/alimentos?desde=${desde}`, this.headers);
   }
 
   //metodo para crear un alimento
