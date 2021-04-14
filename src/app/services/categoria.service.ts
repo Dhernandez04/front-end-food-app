@@ -29,11 +29,13 @@ export class CategoriaService{
     );
     }
 
-    crearCategoria(nombre: string) {
-    
-      return this.http.post(`${base_url}/categoria`, { nombre }, this.headers);
-    
+   
+
+    crearCategoria(categoria: Categoria){
+      const url=`${base_url}/api/categoria`;
+        return this.http.post(url,categoria,this.headers);
     }
+    
 
 
     actualizarCategoria(id:number,nombre: string) {

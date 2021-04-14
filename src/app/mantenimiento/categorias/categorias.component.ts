@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Categoria } from '../../models/categoria.model';
 import { CategoriaService } from '../../services/categoria.service';
@@ -12,12 +13,17 @@ import { CategoriaService } from '../../services/categoria.service';
 export class CategoriasComponent implements OnInit {
   public categorias: Categoria[] = [];
   cargando :boolean = false;
-  constructor(private categoriaService:CategoriaService) { }
+
+  public categoriaForm: FormGroup;
+  constructor(private categoriaService:CategoriaService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.listarCategoria();
-    
-  }
+    this.categoriaForm = this.fb.group({
+      nombre: [, Validators.required],
+      activa: [, Validators.required]
+    })
+
 
   listarCategoria(){
     this.categoriaService.cargarCategoria().subscribe((resp) => {    
@@ -26,23 +32,6 @@ export class CategoriasComponent implements OnInit {
    });
   }
 
-  async crearCategoria() {
-    const {value=''} = await Swal.fire<string>({
-      title:'Crear Categoria',
-      text:'Ingrese la nueva categoria',
-      input:'text',
-      inputPlaceholder: 'Nombre de la categoria',
-      showCancelButton:true
-  })
-  
-  if (value.trim().length>0) {
-    this.categoriaService.crearCategoria(value).subscribe((resp:any) => {
-      this.categorias.push(resp.categotia);
-      Swal.fire('Exito', 'Categoria creada', 'success');
-    })
-  }
-  }
-  
   actualizarCambios(categoria: Categoria) {
     this.categoriaService.actualizarCategoria(categoria.id, categoria.nombre)
       .subscribe(resp => {
@@ -57,9 +46,17 @@ export class CategoriasComponent implements OnInit {
         Swal.fire('Eliminado', categoria.nombre, 'success');
         
       })
-  
-    
   }
+
+  agregarCategoria() {
+    console.log(this.categoriaForm.value.nombre);
+    this.categoriaService.crearCategoria(this.categoriaForm.value)
+      .subscribe(res => {
+        console.log(res);
+      })
+     this.refresh(); 
+  }
+  refresh(): void { window.location.reload(); }
  
 
 }
