@@ -5,9 +5,9 @@
                     <img [src]="alimento.imagen" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{alimento.nombre}}</h5>
-                        <span class="card-text mr-4">Categoria</span>
+                        <span class="card-text mr-4">{{alimento['categoria'].nombre}}</span>
                         <div class="float-right">
-                            <a href="#" class="btn btn-green">Ver mas</a>
+                            <a href="detalle/{{alimento.codigo}}"  class="btn btn-green">Ver mas</a>
                         </div>
                     </div>
                 </div>

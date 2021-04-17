@@ -25,21 +25,15 @@ export class AlimentosComponent implements OnInit {
    
   }
   abrirModal(alimento: Alimento ) {
-   
     this.modalImageService.abrirModal('alimentos', alimento.codigo, alimento.imagen);
-    
-    
   }
 
   cargarAlimentos() {
     this.cargando = false;
     this.alimentoService.cargarAlimetos(this.desde).subscribe((resp: any ) => {
-    
-      
       this.total = resp.count;
       this.alimentos = resp.alimentos;
       this.cargando = true;
-      
     })
   }
   cargarPagina(valor: number) {

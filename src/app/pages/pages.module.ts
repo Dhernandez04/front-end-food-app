@@ -5,6 +5,7 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
 import { PagesComponent } from './pages.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { DetalleComponent } from './catalogo/detalle.component';
 
 
 
@@ -13,6 +14,7 @@ import { RouterModule } from '@angular/router';
     PagesComponent,
     CalculosComponent,
     CatalogoComponent,
+    DetalleComponent,
   ],
   exports: [
     CalculosComponent,
