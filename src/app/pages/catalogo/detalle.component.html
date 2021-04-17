@@ -1,0 +1,57 @@
+<div class="float-left">
+    <a href="catalogo" class="btn btn-green">Regresar</a>
+</div>
+<div class="Con-general ">
+    <div class="Con-imagen">
+        <img src="https://www.desdemitrinchera.com/wordpress/wp-content/uploads/2016/08/Corn.jpg" alt="">
+    </div>
+    <div class="Con-detalle ">
+        <h2>{{alimento.nombre}}</h2>
+        <div class="Con-item">
+            <h5>Parte analizada</h5>
+            <h6>{{alimento.parte_analizada}}</h6>
+        </div>
+
+        <div class="Con-item">
+            <h6>Humedad</h6>
+            <h6>{{alimento['analisis'].humedad}}</h6>
+        </div>
+        <div class="Con-item">
+            <h6>Energía(k,Cal)</h6>
+            <h6>{{alimento['analisis'].energiaKcal}}</h6>
+        </div>
+        <div class="Con-item">
+            <h6>Energía(k,j)</h6>
+            <h6>{{alimento['analisis'].energiaKj}}</h6>
+        </div>
+        <div class="Con-item">
+            <h6>Proteina(g)</h6>
+            <h6>{{alimento['analisis'].proteinaG}}</h6>
+        </div>
+        <div class="Con-item">
+            <h6>Lipido(g)</h6>
+            <h6>{{alimento['analisis'].lipidosG}}</h6>
+        </div>
+        <div class="Con-item">
+            <h6>Carbohidratos totales</h6>
+            <h6>{{alimento['analisis'].carbohidratos_total}}</h6>
+        </div>
+        <div class="Con-item">
+            <h6>Carbohidratos disponibles</h6>
+            <h6>{{alimento['analisis'].carbohidratos_disp}}</h6>
+        </div>
+        <div class="Con-item">
+            <h6>Fibra dietaria</h6>
+            <h6>{{alimento['analisis'].fibra_dietaria}}</h6>
+        </div>
+        <div class="Con-item">
+            <h6>Ceniza</h6>
+            <h6>{{alimento['analisis'].cenizas}}</h6>
+        </div>
+        <div class="float-right">
+            <a href="catalogo" class="btn btn-green">Calcular</a>
+        </div>
+
+    </div>
+
+</div>

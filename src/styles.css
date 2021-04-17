@@ -151,6 +151,30 @@ bottom: 0px;
 .oculto{
     display: none;
 }
+.Con-general{
+    width: 98%;
+    margin: 25px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.Con-imagen{
+    width: 54%;
+}
+.Con-imagen>img{
+    width: 100%;
+}
+.Con-detalle{
+    width: 40%;
+    background:#F4F8F9;
+}
+.Con-item{
+    margin: 15px auto;
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 @media screen and (max-width:800px) {
     .empty-state{
         width: 150px;

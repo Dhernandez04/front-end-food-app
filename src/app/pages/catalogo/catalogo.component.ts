@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AlimentoService } from '../../services/alimento.service';
 import { Alimento } from '../../models/alimento.model';
 
@@ -10,12 +10,13 @@ import { Alimento } from '../../models/alimento.model';
 })
 export class CatalogoComponent implements OnInit {
   public alimentos: Alimento[] = [];
+  @Input() nombreAli: String;
   constructor(private alimetoService:AlimentoService) { }
 
   ngOnInit(): void {
     console.log('hola');
-    
     this.cargarAlimentos()
+    
 
   }
 
@@ -25,5 +26,7 @@ export class CatalogoComponent implements OnInit {
       this.alimentos = resp.alimentos;
     })
   }
+
+ 
 
 }

@@ -14,7 +14,11 @@ export class CategoriasComponent implements OnInit {
   public categorias: Categoria[] = [];
   cargando :boolean = false;
 
+  id: number;
+  nombre: string;
+
   public categoriaForm: FormGroup;
+  public actualizarCForm: FormGroup;
   constructor(private categoriaService:CategoriaService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -22,6 +26,11 @@ export class CategoriasComponent implements OnInit {
     this.categoriaForm = this.fb.group({
       nombre: [, Validators.required],
       activa: [, Validators.required]
+    })
+
+    this.actualizarCForm = this.fb.group({
+      id: [, ],
+      nombre2: [, ]
     })
 
   }
@@ -32,13 +41,21 @@ export class CategoriasComponent implements OnInit {
    });
   }
 
-  actualizarCambios(categoria: Categoria) {
-    this.categoriaService.actualizarCategoria(categoria.id, categoria.nombre)
+  cargarModal(categoria: Categoria) {
+    this.id=categoria.id
+    this.nombre=categoria.nombre;
+  }
+
+  actualizarCambios() {
+    
+    this.categoriaService.actualizarCategoria(this.id, this.actualizarCForm.value.nombre2)
       .subscribe(resp => {
-        Swal.fire('Actualizado', categoria.nombre, 'success');
+        Swal.fire('Actualizado', this.actualizarCForm.value.nombre2, 'success');
+        this.refresh(); 
       })
     
   }
+
   eliminarCategoria(categoria: Categoria) {
     this.categoriaService.eliminarCategoria(categoria.id)
       .subscribe(resp => {
@@ -58,5 +75,5 @@ export class CategoriasComponent implements OnInit {
   }
   refresh(): void { window.location.reload(); }
  
-
+  
 }
