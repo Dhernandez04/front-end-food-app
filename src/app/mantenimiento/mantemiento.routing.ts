@@ -11,6 +11,7 @@ import { RolesComponent } from './roles/roles.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { AlimentoComponent } from './alimentos/alimento.component';
+import { UsuarioComponent } from './usuarios/usuario.component';
 
 
 
@@ -23,8 +24,9 @@ const routes:Routes = [
         //  {path:'dashboard',component:DashboardComponent},
          {path:'alimentos',component:AlimentosComponent},
          {path:'alimento/:id',component:AlimentoComponent},
-         {path:'usuarios',component:UsuariosComponent},
          {path:'roles',component:RolesComponent},
+         {path:'usuarios',component:UsuariosComponent},
+         {path:'usuarios/nuevo',component:UsuarioComponent},
          {path:'categorias',component:CategoriasComponent},
         ]
      }

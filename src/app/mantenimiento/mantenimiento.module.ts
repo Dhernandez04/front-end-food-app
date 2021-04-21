@@ -12,6 +12,7 @@ import { AlimentoComponent } from './alimentos/alimento.component';
 import { ModalImageComponent } from '../components/modal-image/modal-image.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfilComponent } from './perfil/perfil.component';
+import { UsuarioComponent } from './usuarios/usuario.component';
 
 
 
@@ -26,7 +27,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     RolesComponent,
     AlimentoComponent,
   ModalImageComponent,
-  PerfilComponent],
+  PerfilComponent,
+  UsuarioComponent],
   exports: [
     DashboardComponent,
     UsuariosComponent,

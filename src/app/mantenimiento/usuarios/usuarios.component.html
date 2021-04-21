@@ -4,9 +4,15 @@
       <span class="sr-only">Loading...</span>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <a  [routerLink]="['/dashboard/usuarios/nuevo']" class="btn btn-primary">Nuevo usuario</a>
+  </div>
+</div>
 
 
 <div class="row p-4">
+
     <table class="table table-bordered">
         <thead>
           <tr>
@@ -24,7 +30,7 @@
           <tr >
             <td scope="row">
               <a class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a> &nbsp;
-              <a class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+              <a class="btn btn-sm btn-danger"(click)="eliminarUsuario(usuario)"><i class="fas fa-trash"></i></a>
             </td>
             <td>{{usuario.id}}</td>
             <td class="text-center">
@@ -37,7 +43,7 @@
             <td>{{usuario.nombre}}</td>
             <td>{{usuario.apellido}}</td>
             <td>{{usuario.email}}</td>
-            <td>{{usuario.id_rol}}</td>
+            <td>{{usuario.role.nombre}}</td>
             <td *ngIf="usuario.activo">
               <span class="bagde badge-info badge-pill">Activo</span>
             </td>
