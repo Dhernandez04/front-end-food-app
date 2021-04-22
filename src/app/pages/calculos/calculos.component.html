@@ -25,8 +25,8 @@
                     <button class="btn btn-success mt-4 mr-2" (click)="cargarComposicion()">
                         <i class="fa fa-search"></i> Buscar
                     </button>
-                    <button class="btn btn-blue mt-4">
-                        Reportes
+                    <button *ngIf="statusPdf" (click)="generarPdf()" class="btn btn-blue mt-4">
+                        Generar reporte
                     </button>
                 </div>
             </div>
@@ -46,7 +46,7 @@
     </div>
 </div>
 
-<div *ngIf="estado" class="row">
+<div *ngIf="estado"  class="row">
     <div class="col-md-4 bg-blue-light p-2">
         <form [formGroup]="temperaturaForm" (ngSubmit)="agregarTem()">
             <div class="form-group">

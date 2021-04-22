@@ -12,6 +12,11 @@ import { Alimento } from '../../models/alimento.model';
 import { BusquedaService } from '../../services/busqueda.service';
 
 import { analisis } from '../../interfaces/analisis.interfaces';
+import { DocumentoService } from '../../services/documento.service';
+import { Mineral } from '../../models/mineral.model';
+import { Vitamina } from '../../models/Vitamina.model';
+import { AcidoGraso } from '../../models/AcidoGraso';
+import Swal from 'sweetalert2';
 
 let conduc = 0;
 let difu = 0;
@@ -35,19 +40,22 @@ export class CalculosComponent implements OnInit {
   public categorias: Categoria[] = [];
   public composicion: any[] = [];
   public cargando: boolean;
-  public minerales: any[] = [];
-  public vitamina: any[] = [];
-  public acidos: any[] = [];
+  public minerales: Mineral[] = [];
+  public vitamina: Vitamina[] = [];
+  public acidos: AcidoGraso[] = [];
+
   public estado: boolean = false;
   public estado2: boolean = true;
 
+  public statusPdf:boolean = false;
 
 
   constructor(private fb: FormBuilder,
     private calculoService: CalculoService,
     private CategoriaService: CategoriaService,
     private alimetoService: AlimentoService,
-    private busquedaService: BusquedaService) { }
+    private busquedaService: BusquedaService,
+    private pdf: DocumentoService) { }
 
 
 
@@ -94,17 +102,15 @@ export class CalculosComponent implements OnInit {
       this.vitamina = resp.composicionDB.vitamina
       this.cargando = false;
       this.estado = true;
-      this.estado2=false;
-
+      this.estado2 = false;
       this.cargarAlimento();
 
     })
 
   }
-
   estados() {
     this.estado = false;
-    this.estado2=true;
+    this.estado2 = true;
     conduc = 0;
     difu = 0;
     densy = 0;
@@ -116,9 +122,12 @@ export class CalculosComponent implements OnInit {
   }
 
   cargarAlimento() {
+    console.log(this.buscarForm.get('alimen'));
+    
     const id = this.buscarForm.get('alimen').value;
     this.alimetoService.cargarAlimento(id).subscribe((alimento: Alimento[]) => {
       this.alimento = alimento['alimentoDB'];
+
       datosCalculo = this.alimento['analisis'];
     })
   }
@@ -140,7 +149,14 @@ export class CalculosComponent implements OnInit {
         difu = res['difusivity'];
         densy = res['density'];
         speci = res['specifici'];
-        console.log(res);
+        this.statusPdf = true
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Resultados obtenidos satisfactoriamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
   }
 
@@ -160,4 +176,17 @@ export class CalculosComponent implements OnInit {
     return speci['component'];
   }
 
+  //generando pdf
+  generarPdf() {
+    let data = [this.alimento['analisis']];
+    let propiedades = [this.obtenerConductividad(),
+      this.obtenerDifusivity(),
+      this.obtenerSpecifici(),
+      this.obtenerDensity()];
+
+    console.log("propiedades",propiedades);
+    
+    this.pdf.generarPdf(propiedades,this.alimento['nombre'],this.alimento['categoria'].nombre,data,this.minerales, this.acidos, this.vitamina);
+  }
+  //'Humedad(g)','Energia(kcal)','Energia(kj)','Proteina(g)','Proteina(g)','lipidos(g)','carbohidrato totales(g)','carbohidratos disponibles(g)','fibra dietaria(g)','cenizas(g)'
 }
