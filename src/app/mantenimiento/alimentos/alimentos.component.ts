@@ -3,6 +3,8 @@ import { Alimento } from 'src/app/models/alimento.model';
 import { AlimentoService } from '../../services/alimento.service';
 import { ModalImageService } from '../../services/modal-image.service';
 import { CompocisionService } from '../../services/compocision.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alimentos',
@@ -16,7 +18,9 @@ export class AlimentosComponent implements OnInit {
   public composiciones: any = [];
   public total: number;
   public desde: number = 0;
-  constructor(private alimentoService: AlimentoService,
+  constructor(
+    private router:Router,
+    private alimentoService: AlimentoService,
     private modalImageService: ModalImageService,
    ) { }
 
@@ -44,6 +48,29 @@ export class AlimentosComponent implements OnInit {
       this.desde -= valor;
     }
     this.cargarAlimentos();
+  }
+
+  eliminarUsuario(alimento: Alimento) {
+
+      
+    Swal.fire({
+      title: '¿Borrar Alimento?',
+      text: `Esta a punto de borrar a ${alimento.nombre}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor:'#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText:'Si, borrarlo'
+    }).then(result=>{
+      
+      
+      })
+    
+    
+  }
+
+  editar(alimento:Alimento) {
+    this.router.navigateByUrl(`alimento/${alimento.codigo}`)
   }
 
 }

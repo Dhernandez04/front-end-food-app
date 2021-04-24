@@ -16,6 +16,7 @@ import { UsuarioComponent } from './usuarios/usuario.component';
 
 
 
+
 @NgModule({
   declarations: [
     MantenimientoComponent,
@@ -28,7 +29,8 @@ import { UsuarioComponent } from './usuarios/usuario.component';
     AlimentoComponent,
   ModalImageComponent,
   PerfilComponent,
-  UsuarioComponent],
+  UsuarioComponent,
+ ],
   exports: [
     DashboardComponent,
     UsuariosComponent,

@@ -11,6 +11,7 @@ import { AcidograsoService } from '../../services/acidograso.service';
 import { CompocisionService } from '../../services/compocision.service';
 import { Compocision } from '../../models/Compocision';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-alimento',
@@ -152,45 +153,46 @@ export class AlimentoComponent implements OnInit {
   
   
     this.compocisionService.crearComposiciones(compocision).subscribe((res:any)=>{
-      console.log(res);
+      Swal.fire('success','Alimento agregado','success')
      
     })
   }
 
   crearForm() {
     this.formaAlimento = this.fb.group({
-      id_categoria: ['1', Validators.required],
-      nombre: ['Prueba2', Validators.required],
-      parte_analizada: ['semilla', Validators.required],
-      humedad: ['1', Validators.required],
-      energiaKcal: ['1', Validators.required],
-      energiaKj: ['1', Validators.required],
-      proteinaG: ['1', Validators.required],
-      lipidosG: ['1', Validators.required],
-      carbohidratos_total: ['1', Validators.required],
-      carbohidratos_disp: ['1', Validators.required],
-      fibra_dietaria: ['1', Validators.required],
-      cenizas: ['1', Validators.required],
-      calcio:['1',Validators.required],
-      hierro:['1',Validators.required],
-      sodio:['1',Validators.required],
-      fosforo:['1',Validators.required],
-      yodo:['1',Validators.required],
-      zinc:['1',Validators.required],
-      magnecio:['1',Validators.required],
-      potasio:['1',Validators.required],
-      tiamina:['1',Validators.required],
-      riboflaxina:['1',Validators.required],
-      niaxina:['1',Validators.required],
-      folatos:['1',Validators.required],
-      vitaminaA:['1',Validators.required],
-      vitaminaC:['1',Validators.required],
-      vitamina_b12:['1',Validators.required],
-      grasaSaturada:['1',Validators.required],
-      grasaMenosSaturada:['1',Validators.required],
-      grasaPoliinsaturada:['1',Validators.required],
-      colesterol:['1',Validators.required],
-      parteComestible:['1',Validators.required]
+      id_categoria: ['', Validators.required],
+      nombre: ['', Validators.required],
+      parte_analizada: ['', Validators.required],
+      humedad: ['', Validators.required],
+      
+      energiaKcal: ['', Validators.required],
+      energiaKj: ['', Validators.required],
+      proteinaG: ['', Validators.required],
+      lipidosG: ['', Validators.required],
+      carbohidratos_total: ['', Validators.required],
+      carbohidratos_disp: ['', Validators.required],
+      fibra_dietaria: ['', Validators.required],
+      cenizas: ['', Validators.required],
+      calcio:['',Validators.required],
+      hierro:['',Validators.required],
+      sodio:['',Validators.required],
+      fosforo:['',Validators.required],
+      yodo:['',Validators.required],
+      zinc:['',Validators.required],
+      magnecio:['',Validators.required],
+      potasio:['',Validators.required],
+      tiamina:['',Validators.required],
+      riboflaxina:['',Validators.required],
+      niaxina:['',Validators.required],
+      folatos:['',Validators.required],
+      vitaminaA:['',Validators.required],
+      vitaminaC:['',Validators.required],
+      vitamina_b12:['',Validators.required],
+      grasaSaturada:['',Validators.required],
+      grasaMenosSaturada:['',Validators.required],
+      grasaPoliinsaturada:['',Validators.required],
+      colesterol:['',Validators.required],
+      parteComestible:['',Validators.required]
     });
   }
 
