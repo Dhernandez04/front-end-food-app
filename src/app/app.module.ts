@@ -18,9 +18,10 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
   declarations: [
     AppComponent,
     NotfoundComponent,
-   
-   
-  
+
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -29,7 +30,7 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
     PagesModule,
     MantenimientoModule,
     AuthModule
- 
+
   ],
   providers: [],
   bootstrap: [AppComponent]

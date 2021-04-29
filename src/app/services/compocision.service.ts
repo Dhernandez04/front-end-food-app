@@ -24,4 +24,8 @@ export class CompocisionService {
   crearComposiciones(data:Compocision) {
     return this.http.post(`${base_url}/api/composicion`,data,this.headers);
   }
+  ComposicionById(id:number)   {
+    return this.http.get(`${base_url}/api/composicion/${id}`,this.headers);
+  }
+
 }
