@@ -44,11 +44,14 @@ export class AlimentoComponent implements OnInit {
     private compocisionService: CompocisionService,
     private router: Router,
     private activatedRoute: ActivatedRoute) { }
-
+  public id: string;
   ngOnInit(): void {
     this.crearForm();
     this.traerCategorias();
-    this.activatedRoute.params.subscribe(({ id }) => {
+    this.activatedRoute.params.subscribe(({ id, tipo }) => {
+      this.id = id;
+      console.log(tipo);
+      this.cargarStep(tipo);
       this.cargarcomposicionPorId(id);
     })
 
@@ -64,38 +67,50 @@ export class AlimentoComponent implements OnInit {
         id_categoria:resp.composicionDB.alimento.id_categoria,
         nombre:resp.composicionDB.alimento.nombre,
         parte_analizada:resp.composicionDB.alimento.parte_analizada ,
-        humedad: resp.composicionDB ,
-        energiaKcal:resp.composicionDB,
-        energiaKj:resp.composicionDB,
-        proteinaG: resp.composicionDB,
-        lipidosG: resp.composicionDB,
-        carbohidratos_total:resp.compocisionDB,
-        carbohidratos_disp:resp.compocisionDB ,
-        fibra_dietaria:resp.compocisionDB ,
-        cenizas: resp.compocisionDB,
-        calcio:resp.compocisionDB ,
-        hierro:resp.compocisionDB ,
-        sodio:resp.compocisionDB ,
-        fosforo:resp.compocisionDB ,
-        yodo: resp.compocisionDB,
-        zinc: resp.compocisionDB,
-        magnecio:resp.compocisionDB,
-        potasio: resp.compocisionDB,
-        tiamina: resp.compocisionDB,
-        riboflaxina: resp.compocisionDB,
-        niaxina: resp.compocisionDB,
-        folatos: resp.compocisionDB,
-        vitaminaA: resp.compocisionDB,
-        vitaminaC: resp.compocisionDB,
-        vitamina_b12: resp.compocisionDB,
-        grasaSaturada: resp.compocisionDB,
-        grasaMenosSaturada: resp.compocisionDB,
-        grasaPoliinsaturada: resp.compocisionDB,
-        colesterol: resp.compocisionDB,
-        parteComestible: resp.compocisionDB
+        humedad: resp.composicionDB.alimento.humedad ,
+        energiaKcal:resp.composicionDB.alimento.energiaKcal,
+        energiaKj:resp.composicionDB.alimento.energiaKj,
+        proteinaG: resp.composicionDB.alimento.proteinaG,
+        lipidosG: resp.composicionDB.alimento.lipidosG,
+        carbohidratos_total:resp.composicionDB.alimento.carbohidratos_total,
+        carbohidratos_disp:resp.composicionDB.alimento.carbohidratos_disp ,
+        fibra_dietaria:resp.composicionDB.alimento.fibra_dietaria ,
+        cenizas: resp.composicionDB.alimento.cenizas,
+        calcio:resp.composicionDB.minerale.calcio ,
+        hierro:resp.composicionDB.minerale.hierro ,
+        sodio:resp.composicionDB.minerale.sodio ,
+        fosforo:resp.composicionDB.minerale.fosforo ,
+        yodo: resp.composicionDB.minerale.yodo,
+        zinc: resp.composicionDB.minerale.zinc,
+        magnecio:resp.composicionDB.minerale.magnecio,
+        potasio: resp.composicionDB.minerale.potasio,
+        tiamina: resp.composicionDB.vitamina.tiamina,
+        riboflaxina: resp.composicionDB.vitamina.riboflaxina,
+        niaxina: resp.composicionDB.vitamina.niaxina,
+        folatos: resp.composicionDB.vitamina.folatos,
+        vitaminaA: resp.composicionDB.vitamina.vitaminaA,
+        vitaminaC: resp.composicionDB.vitamina.vitaminaC,
+        vitamina_b12: resp.composicionDB.vitamina.vitamina_b12,
+        grasaSaturada: resp.composicionDB.acidos_graso.grasaSaturada,
+        grasaMenosSaturada: resp.composicionDB.acidos_graso.grasaMenosSaturada,
+        grasaPoliinsaturada: resp.composicionDB.acidos_graso.grasaPoliinsaturada,
+        colesterol: resp.composicionDB.acidos_graso.colesterol,
+        parteComestible: resp.composicionDB.acidos_graso.parteComestible
       })
 
     })
+  }
+
+  cargarStep(tipo) {
+    if (tipo === 'mineral') {
+      this.step = 2;
+    } else if (tipo === 'acidograso') {
+      this.step = 4;
+    } else if (tipo === 'vitamina') {
+      this.step=3
+    } else {
+      this.step = 1;
+    }
   }
 //validaciones 
   get nombreInvalid() {

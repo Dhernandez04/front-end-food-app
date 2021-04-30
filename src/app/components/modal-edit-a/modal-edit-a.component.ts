@@ -20,20 +20,20 @@ export class ModalEditAComponent implements OnInit {
 
   alimento() {
     this.cerrarModal()
-    this.router.navigateByUrl(`dashboard/alimento/${this.modalEditService.id}`)
+    this.router.navigateByUrl(`dashboard/alimentos/alimento/${this.modalEditService.id}`)
   }
   minerales() {
     this.cerrarModal()
-    this.router.navigateByUrl(`dashboard/alimento/${this.modalEditService.id}`)
+    this.router.navigateByUrl(`dashboard/alimentos/mineral/${this.modalEditService.id}`)
   }
   acidos() {
     this.cerrarModal()
-    this.router.navigateByUrl(`dashboard/alimento/${this.modalEditService.id}`)
+    this.router.navigateByUrl(`dashboard/alimentos/acidograso/${this.modalEditService.id}`)
   }
   vitamina() {
     this.cerrarModal()
 
-    this.router.navigateByUrl(`dashboard/alimento/${this.modalEditService.id}`)
+    this.router.navigateByUrl(`dashboard/alimentos/vitamina/${this.modalEditService.id}`)
   }
 
 }

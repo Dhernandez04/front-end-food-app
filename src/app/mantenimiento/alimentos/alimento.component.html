@@ -361,7 +361,7 @@
         <div class="row d-flex justify-content-center text-center p-3">
             <a (click)="previus()" *ngIf="step!=1" class="btn btn-info mr-1">Anterior</a>
             <button (click)="siguiente()" *ngIf="step!=4" class="btn btn-primary mr-1">Siguiente</button>
-            <button (click)="agregar()" *ngIf="step==4" class="btn btn-success mr-1">Agregar</button>
+            <button (click)="agregar()" *ngIf="step==4  || id!=='nuevo'" class="btn btn-success mr-1">Agregar</button>
         </div>
     </form>
 </div>
