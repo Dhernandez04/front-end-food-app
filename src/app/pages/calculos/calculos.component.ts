@@ -23,7 +23,7 @@ let difu = 0;
 let densy = 0;
 let speci = 0;
 let codigo = 0;
-let datosCalculo: analisis;
+let datosCalculo: any;
 @Component({
   selector: 'app-calculos',
   templateUrl: './calculos.component.html',
@@ -43,10 +43,10 @@ export class CalculosComponent implements OnInit {
   public minerales: Mineral[] = [];
   public vitamina: Vitamina[] = [];
   public acidos: AcidoGraso[] = [];
-
+  
   public estado: boolean = false;
   public estado2: boolean = true;
-
+  public analisis: any;
   public statusPdf:boolean = false;
 
 
@@ -97,6 +97,7 @@ export class CalculosComponent implements OnInit {
     this.cargando = true;
     const id = this.buscarForm.get('alimen').value;
     this.busquedaService.cargarComposicion(id).subscribe((resp) => {
+      console.log(resp)
       this.minerales = resp.composicionDB.minerale
       this.acidos = resp.composicionDB.acidos_graso
       this.vitamina = resp.composicionDB.vitamina
@@ -127,8 +128,21 @@ export class CalculosComponent implements OnInit {
     const id = this.buscarForm.get('alimen').value;
     this.alimetoService.cargarAlimento(id).subscribe((alimento: Alimento[]) => {
       this.alimento = alimento['alimentoDB'];
-
-      datosCalculo = this.alimento['analisis'];
+     
+   
+      datosCalculo =   {
+        humedad: alimento['alimentoDB'].humedad,
+        energiaKcal: alimento['alimentoDB'].energiaKcal,
+        energiaKj: alimento['alimentoDB'].energiaKj,
+        proteinaG:alimento['alimentoDB'].proteinaG,
+        lipidosG:alimento['alimentoDB'].lipidosG, 
+        carbohidratos_total:alimento['alimentoDB'].carbohidratos_total,
+        carbohidratos_disp:alimento['alimentoDB'].carbohidratos_disp,
+        fibra_dietaria:alimento['alimentoDB'].fibra_dietaria,
+        cenizas: alimento['alimentoDB'].cenizas,
+     
+      };
+    ;
     })
   }
 
@@ -141,6 +155,7 @@ export class CalculosComponent implements OnInit {
 
   agregarTem() {
     let t = this.temperaturaForm.value['temperatura'];
+    console.log(t);
     datosCalculo.temperatura = Number(t);
     datosCalculo.hielo = 0;
     this.calculoService.hacerCalculo(datosCalculo)
@@ -178,7 +193,7 @@ export class CalculosComponent implements OnInit {
 
   //generando pdf
   generarPdf() {
-    let data = [this.alimento['analisis']];
+    let data = [datosCalculo];
     let propiedades = [this.obtenerConductividad(),
       this.obtenerDifusivity(),
       this.obtenerSpecifici(),
