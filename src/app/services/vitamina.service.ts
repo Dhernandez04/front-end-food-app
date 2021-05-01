@@ -21,7 +21,7 @@ export class VitaminaService {
     return this.http.post(`${base_url}/api/vitaminas`,data,this.headers);
   }
 
-  actualizarVitamina(id:number,data:Vitamina) {
+  actualizarVitamina(id,data:Vitamina) {
     return this.http.put(`${base_url}/api/vitaminas/${id}`,data,this.headers);
   }
 }

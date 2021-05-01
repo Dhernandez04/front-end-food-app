@@ -12,7 +12,7 @@ import { CompocisionService } from '../../services/compocision.service';
 import { Compocision } from '../../models/Compocision';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Alimento } from '../../models/alimento.model';
+
 
 @Component({
   selector: 'app-alimento',
@@ -167,37 +167,41 @@ export class AlimentoComponent implements OnInit {
   }
 
   agregar() {
-    console.log(this.id);
+  
     
     if(this.id !== 'nuevo'){
-      console.log('hola');
+      
       console.log(this.tipo);
       
        switch (this.tipo) {
          case 'alimento':
-           this.alimentoService.actualizarAlimento(this.id,this.formaAlimento.value).subscribe(resp=>{
+           this.alimentoService.actualizarAlimento(this.id,this.formaAlimento.value).subscribe((resp:any)=>{
              console.log(resp);
-             
+             Swal.fire('success', `${resp.mgs}`, 'success');
+             this.router.navigateByUrl('/dashboard/alimentos')
            })      
            break;
            case 'vitamina':
-           this.vitaminaService.actualizarVitamina(this.id,this.formaAlimento.value).subscribe(resp=>{
-             console.log(resp);
+           this.vitaminaService.actualizarVitamina(this.id,this.formaAlimento.value).subscribe((resp:any)=>{
+
+          
+             Swal.fire('success', `${resp.mgs}`, 'success');
+             this.router.navigateByUrl('/dashboard/alimentos')
            })
-           console.log('actualiando vitamina');
            break;
            case'mineral':
-           this.mineralService.ac(this.id,this.formaAlimento.value).subscribe(resp=>{
-             console.log(resp);
-             
+           this.mineralService.actualizarMineral(this.id,this.formaAlimento.value).subscribe((resp:any)=>{
+            
+             Swal.fire('success', `${resp.mgs}`, 'success');
+             this.router.navigateByUrl('/dashboard/alimentos')
            })
-           console.log('actualizando mineral');
+
            case'acidograso':
-           this.acidograsoService.actualiarAcido(this.id,this.formaAlimento.value).subscribe(resp=>{
-             console.log(resp);
-             
+           this.acidograsoService.actualiarAcido(this.id,this.formaAlimento.value).subscribe((resp:any)=>{
+            Swal.fire('success', `${resp.mgs}`, 'success');
+            this.router.navigateByUrl('/dashboard/alimentos')
            })
-           console.log('actualizando acidos');
+        
            break;
 
            
