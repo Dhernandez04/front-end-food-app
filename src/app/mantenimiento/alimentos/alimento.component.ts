@@ -45,12 +45,13 @@ export class AlimentoComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute) { }
   public id: string;
+  public tipo:string;
   ngOnInit(): void {
     this.crearForm();
     this.traerCategorias();
     this.activatedRoute.params.subscribe(({ id, tipo }) => {
       this.id = id;
-      console.log(tipo);
+      this.tipo = tipo;
       this.cargarStep(tipo);
       this.cargarcomposicionPorId(id);
     })
@@ -166,15 +167,51 @@ export class AlimentoComponent implements OnInit {
   }
 
   agregar() {
-    this.alimentoService.crearAlimento(this.formaAlimento.value).subscribe((res: any) => {
+    console.log(this.id);
+    
+    if(this.id !== 'nuevo'){
+      console.log('hola');
+      console.log(this.tipo);
+      
+       switch (this.tipo) {
+         case 'alimento':
+           this.alimentoService.actualizarAlimento(this.id,this.formaAlimento.value).subscribe(resp=>{
+             console.log(resp);
+             
+           })      
+           break;
+           case 'vitamina':
+           this.vitaminaService.actualizarVitamina(this.id,this.formaAlimento.value).subscribe(resp=>{
+             console.log(resp);
+           })
+           console.log('actualiando vitamina');
+           break;
+           case'mineral':
+           this.mineralService.ac(this.id,this.formaAlimento.value).subscribe(resp=>{
+             console.log(resp);
+             
+           })
+           console.log('actualizando mineral');
+           case'acidograso':
+           this.acidograsoService.actualiarAcido(this.id,this.formaAlimento.value).subscribe(resp=>{
+             console.log(resp);
+             
+           })
+           console.log('actualizando acidos');
+           break;
 
+           
+         default:
+           break;
+       }
+    }else{
+       this.alimentoService.crearAlimento(this.formaAlimento.value).subscribe((res: any) => {
       this.idRes = res.alimento.codigo;
       const observable = forkJoin({
         obs1: this.agregarMineral(),
         obs2: this.agregarAcido(),
         obs3: this.agregarVitamina(),
       });
-
       observable.subscribe((value: any) => {
         this.idMin = value.obs1.mineral.codigom;
         this.idAci = value.obs2.acido_graso.codigoa;
@@ -190,7 +227,11 @@ export class AlimentoComponent implements OnInit {
         this.agregarComposicion(this.composi);
         this.router.navigateByUrl('/dashboard/alimentos')
       });
-    });
+      });
+    }
+    
+   
+    
   }
 
   agregarMineral() {
