@@ -21,4 +21,7 @@ export class MineralService {
   crearMineral(data:Mineral) {
     return this.http.post(`${base_url}/api/minerales`,data,this.headers);
   }
+  actualizarMineral(id, data) {
+    return this.http.put(`${base_url}/api/minerales/${id}`,data,this.headers);
+  }
 }

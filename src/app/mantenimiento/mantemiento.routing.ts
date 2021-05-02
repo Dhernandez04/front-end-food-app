@@ -23,7 +23,7 @@ const routes:Routes = [
         {path:'',component:DashboardComponent},
         //  {path:'dashboard',component:DashboardComponent},
          {path:'alimentos',component:AlimentosComponent},
-         {path:'alimento/:id',component:AlimentoComponent},
+         {path:'alimentos/:tipo/:id',component:AlimentoComponent},
          {path:'roles',component:RolesComponent},
          {path:'usuarios',component:UsuariosComponent},
          {path:'usuarios/nuevo',component:UsuarioComponent},

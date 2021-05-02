@@ -41,5 +41,11 @@ export class AlimentoService {
       })
     );
   }
+//metodo para actualizar alimento
+  actualizarAlimento(id,data){
+    console.log(this.headers);
+    
+    return this.http.put(`${base_url}/api/alimentos/${id}`, data,this.headers);
+  }
 
 }

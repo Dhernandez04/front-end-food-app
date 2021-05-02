@@ -1,5 +1,5 @@
 export interface analisis{
-    id:number;
+    
     humedad: number,
     energiaKcal: number,
     energiaKj: number,

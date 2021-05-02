@@ -13,7 +13,7 @@ export class DocumentoService {
   constructor() { }
 
 
-  generarPdf(propiedades:any[],nombre:string,categoria:string, datosa:analisis[],datosm:Mineral[],datosG:AcidoGraso[],datosv:Vitamina[]) {
+  generarPdf(propiedades:any[],nombre:string,categoria:string, datosa:analisis[],datosm:Mineral[],datosG:AcidoGraso[],datosv:Vitamina[], tempe: number) {
     const pdf = new PdfMakeWrapper();
 
     pdf.add(new Txt('Propiedades Termosificas').bold().end);
@@ -54,6 +54,7 @@ export class DocumentoService {
     pdf.add(
       new Txt('Propiedades Termicas').bold().end
     )
+    pdf.add(this.temperatura(tempe));
     pdf.add(this.difusividad(propiedades[0]));
     pdf.add(this.conductividad(propiedades[1]));
     pdf.add(this.densidad(propiedades[2]));
@@ -134,18 +135,21 @@ export class DocumentoService {
 
   //propiedades Termicas
   difusividad(valor) {
-   return new Columns([ 'Difusividad', valor ]).columnGap(10).end
+   return new Columns([ 'Difusividad', `${valor} m²/s` ]).columnGap(10).end
   }
   densidad(valor) {
-    return new Columns([ 'Densidad', valor ]).columnGap(10).end
+    return new Columns([ 'Densidad', `${valor} kg/m³` ]).columnGap(10).end
   }
   conductividad(valor) {
-    return new Columns([ 'Conductividad', valor ]).columnGap(10).end
+    return new Columns([ 'Conductividad', `${valor} W/(m*k)` ]).columnGap(10).end
   }
   calorEspecifico(valor) {
-    return new Columns([ 'Calor especifico', valor ]).columnGap(10).end
+    return new Columns([ 'Calor especifico', `${valor} J/(kg*K)` ]).columnGap(10).end
   }
 
+  temperatura(valor) {
+    return new Columns([ 'Temperatura', `${valor} °C` ]).columnGap(10).end
+  }
   title(valor1:string,valor) {
     return new Columns([ valor1, valor ]).columnGap(100).end
   }
@@ -162,34 +166,34 @@ export class DocumentoService {
  
     
     return data.map(row => [
-      row.calcio,
-      row.hierro,
-      row.sodio,
-      row.fosforo,
-      row.yodo,
-      row.zinc,
-      row.magnecio,
-      row.potasio
+      `${row.calcio} %`,
+      `${row.hierro}%`,
+      `${row.sodio}%`,
+      `${row.fosforo}%`,
+      `${row.yodo}%`,
+      `${row.zinc}%`,
+      `${row.magnecio}%`,
+      `${row.potasio}%`
     ])
   }
   extraerVitaminas(data:any[]) {
     return data.map(row => [
-      row.tiamina,
-      row.riboflaxina,
-      row.niaxina,
-      row.folatos,
-      row.vitaminaA,
-      row.vitaminaC,
-      row.vitamina_b12
+      `${row.riboflaxina}%`,
+      `${row.tiamina}%`,
+      `${row.niaxina}%`,
+      `${row.folatos}%`,
+      `${row.vitaminaA}%`,
+      `${row.vitaminaC}%`,
+      `${row.vitamina_b12}%`
     ])
   }
   extraerAcidos(data:any[]) {
     return data.map(row => [
-      row.grasaSaturada,
-      row.grasaMenosSaturada,
-      row.grasaPoliinsaturada,
-      row.colesterol,
-      row.parteComestible
+      `${row.grasaSaturada}%`,
+      `${row.grasaMenosSaturada}%`,
+      `${row.grasaPoliinsaturada}%`,
+      `${row.colesterol}%`,
+      `${row.parteComestible}%`
     ])
   }
 }

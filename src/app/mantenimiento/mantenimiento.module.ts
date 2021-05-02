@@ -13,6 +13,7 @@ import { ModalImageComponent } from '../components/modal-image/modal-image.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuarioComponent } from './usuarios/usuario.component';
+import { ModalEditAComponent } from '../components/modal-edit-a/modal-edit-a.component';
 
 
 
@@ -27,9 +28,10 @@ import { UsuarioComponent } from './usuarios/usuario.component';
     CategoriasComponent,
     RolesComponent,
     AlimentoComponent,
-  ModalImageComponent,
-  PerfilComponent,
-  UsuarioComponent,
+    ModalImageComponent,
+    PerfilComponent,
+    UsuarioComponent,
+    ModalEditAComponent
  ],
   exports: [
     DashboardComponent,
@@ -38,7 +40,8 @@ import { UsuarioComponent } from './usuarios/usuario.component';
     AlimentosComponent,
     CategoriasComponent,
     RolesComponent,
-    ModalImageComponent
+    ModalImageComponent,
+    ModalEditAComponent
   ],
   imports: [
     CommonModule,

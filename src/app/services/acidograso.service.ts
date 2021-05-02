@@ -20,4 +20,7 @@ export class AcidograsoService {
   crearAcido(data:AcidoGraso) {
     return this.http.post(`${base_url}/api/acidos`,data,this.headers);
   }
+  actualiarAcido(id,data){
+       return this.http.put(`${base_url}/api/acidos/${id}`,data,this.headers);
+  }
 }
