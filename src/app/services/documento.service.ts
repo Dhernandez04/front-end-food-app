@@ -55,8 +55,8 @@ export class DocumentoService {
       new Txt('Propiedades Termicas').bold().end
     )
     pdf.add(this.temperatura(tempe));
-    pdf.add(this.difusividad(propiedades[0]));
-    pdf.add(this.conductividad(propiedades[1]));
+    pdf.add(this.difusividad(propiedades[1]));
+    pdf.add(this.conductividad(propiedades[0]));
     pdf.add(this.densidad(propiedades[2]));
     pdf.add(this.calorEspecifico(propiedades[3]));
 
@@ -92,7 +92,7 @@ export class DocumentoService {
     
     
     return new Table([
-      ['Calcio','Hierro','Sodio','Fosforo','Yodo','Zinc','Magnecio','Potacio'],
+      ['Calcio (mg)','Hierro (mg)','Sodio (mg)','Fosforo (mg)','Yodo (mg)','Zinc (mg)','Magnecio (mg)','Potacio (mg)'],
        ...this.extraerMinerales([data])
     ]
     ).widths('*')
@@ -107,7 +107,7 @@ export class DocumentoService {
 
   AcidosG(data: AcidoGraso[]) {
     return new Table([
-      ['Grasa','Grasa menos saturada','Polinsaturada','colesterol','Parte comestible'],
+      ['Grasa (mg)','Grasa menos saturada (mg)','Polinsaturada (mg)','colesterol (g)','Parte comestible %'],
       ...this.extraerAcidos([data])
     ]
     ).widths('*')
@@ -122,7 +122,7 @@ export class DocumentoService {
 
   Vitaminas(data:Vitamina[]) {
     return new Table([
-      ['Tiamina','Riboflaxina','Niaxina','Folatos','Vitamina A', 'Vitamina C','vitamina B12'],
+      ['Tiamina (mg)','Riboflaxina (mg)','Niacina (mg)','Folatos (mg)','Vitamina A (er)', 'Vitamina C (mg)','vitamina B12 (mg)'],
       ...this.extraerVitaminas([data])
     ]
     ).widths('*')
