@@ -23,14 +23,14 @@ const routes:Routes = [
         canActivate:[AuthGuard],
         children:[
         {path:'',component:DashboardComponent},
-         {path:'dashboard',component:DashboardComponent},
-         {path:'alimentos',component:AlimentosComponent},
-         {path:'alimentos/:tipo/:id',component:AlimentoComponent},
-         {path:'roles',component:RolesComponent},
-         {path:'usuarios',component:UsuariosComponent},
-         {path:'usuarios/nuevo',component:UsuarioComponent},
-         {path:'categorias',component:CategoriasComponent},
-         {path:'perfil',component:PerfilComponent},
+         {path:'dashboard',component:DashboardComponent, data:{titulo:'Dashboard'}},
+         {path:'alimentos',component:AlimentosComponent, data:{titulo:'Alimentos'}},
+         {path:'alimentos/:tipo/:id',component:AlimentoComponent, data:{titulo:'Alimento'}},
+         {path:'roles',component:RolesComponent, data:{titulo:'Roles'}},
+         {path:'usuarios',component:UsuariosComponent, data:{titulo:'Usuario'}},
+         {path:'usuarios/nuevo',component:UsuarioComponent, data:{titulo:'Nuevo usuario'}},
+         {path:'categorias',component:CategoriasComponent, data:{titulo:'Categoria'}},
+         {path:'perfil',component:PerfilComponent, data:{titulo:'Ajuste de cuenta'}},
          
          {path:'**', component:NotfoundComponent }
         ]

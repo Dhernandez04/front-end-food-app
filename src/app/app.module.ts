@@ -19,6 +19,7 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
   declarations: [
     AppComponent,
     NotfoundComponent,
+    
   
 
 

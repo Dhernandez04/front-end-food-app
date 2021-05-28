@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuarioComponent } from './usuarios/usuario.component';
 import { ModalEditAComponent } from '../components/modal-edit-a/modal-edit-a.component';
 import { PerfilComponent } from '../shared/perfil/perfil.component';
+import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
 
 
 
@@ -31,6 +32,7 @@ import { PerfilComponent } from '../shared/perfil/perfil.component';
     AlimentoComponent,
     ModalImageComponent,
     PerfilComponent,
+    BreadcrumbComponent,
     UsuarioComponent,
     ModalEditAComponent
  ],
@@ -38,6 +40,8 @@ import { PerfilComponent } from '../shared/perfil/perfil.component';
     DashboardComponent,
     UsuariosComponent,
     SidebarComponent,
+    PerfilComponent,
+    BreadcrumbComponent,
     AlimentosComponent,
     CategoriasComponent,
     RolesComponent,
