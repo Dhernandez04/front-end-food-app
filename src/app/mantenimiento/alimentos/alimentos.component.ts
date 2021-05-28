@@ -6,6 +6,7 @@ import { ModalImageService } from '../../services/modal-image.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ModalEditService } from '../../services/modal-edit.service';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-alimentos',
@@ -28,6 +29,13 @@ export class AlimentosComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarAlimentos();
+    this.modalImageService.nuevaImagen
+    .pipe(
+      delay(3000)
+    ).subscribe(img=>{
+    
+       this.cargarAlimentos()
+      })
 
   }
   abrirModal(alimento: Alimento) {

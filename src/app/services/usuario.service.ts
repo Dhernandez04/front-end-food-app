@@ -17,7 +17,6 @@ export class UsuarioService {
   constructor(private http: HttpClient, private router: Router) {
 
   }
-
   get token(): string {
     return localStorage.getItem('token');
   }
@@ -29,20 +28,15 @@ export class UsuarioService {
 
   }
   validarToken(): Observable<boolean> {
-
-
     const token = localStorage.getItem('token') || '';
     return this.http.get(`${base_url}/api/auth/renew`, { headers: { 'x-token': token } }).pipe(
-      tap((resp: any) => {
+      map((resp: any) => {
         const { nombre, apellido, email, id_rol, activo, imagen, id, } = resp.usuario;
         this.usuario = new Usuario(nombre, apellido, email, id_rol, activo, '', imagen, id);
-
-
         localStorage.setItem('token', resp.token);
-
+     return true;
       }),
-      map(resp => true),
-
+   
       catchError(error => of(false)
       )
     )
@@ -51,8 +45,10 @@ export class UsuarioService {
   obtenerUsuarios(desde: number = 0) {
     return this.http.get(`${base_url}/api/usuarios?desde=${desde}`, this.headers).pipe(
       map((resp: { role:any,usuarios: Usuario[] }) => {
-        return resp.usuarios;
+        const usuarios = resp.usuarios.map(user => new Usuario(user.nombre,user.apellido,user.email,user.id_rol,user.activo,'',user.imagen,user.id))
+        return usuarios;
       })
+ 
     );
   }
 
@@ -86,5 +82,12 @@ export class UsuarioService {
      
    }
 
+   actualizarPerfil(data:{email:string,nombre:string,id_rol:number}){
+     data = {
+       ...data,
+       id_rol:this.usuario.id_rol
+     }
+    return this.http.put(`${base_url}/api/usuarios/${this.id}`,data, this.headers)
+   }
 
 }

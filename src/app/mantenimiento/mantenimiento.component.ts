@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { Usuario } from '../models/usuario.model';
 import { UsuarioService } from '../services/usuario.service';
 
 @Component({
@@ -10,13 +11,13 @@ import { UsuarioService } from '../services/usuario.service';
 export class MantenimientoComponent implements OnInit {
   @ViewChild("wrapper") wrapper: ElementRef;
   public click: boolean = false;
-  public imagen: string;
-  public nombre:string;
-  constructor(private usuarioService:UsuarioService,private renderer: Renderer2) { }
-
+  public usuario:Usuario;
+  constructor(private usuarioService:UsuarioService,private renderer: Renderer2) {
+    this.usuario = usuarioService.usuario;
+    
+  }
   ngOnInit(): void {
-    this.imagen = this.usuarioService.usuario.imagenUrl;
-    this.nombre=this.usuarioService.usuario.nombre +' '+this.usuarioService.usuario.apellido;
+
   }
 
   open() {

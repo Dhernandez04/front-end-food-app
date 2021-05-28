@@ -42,10 +42,11 @@ export class ModalImageComponent implements OnInit {
     const id = this.modalImageService.id;
     const tipo = this.modalImageService.tipo;
 
-
+  
     this.uploadService.actualizarFoto(this.imagenSubir, tipo, id)
       .then(img => {
-
+        console.log(img);
+        
         Swal.fire('Correcto', 'Imagen actualizada.', 'success')
         this.modalImageService.nuevaImagen.emit(img)
         this.cerrarModal();

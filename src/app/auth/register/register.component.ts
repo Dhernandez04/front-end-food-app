@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
 export class RegisterComponent  {
   public formSumitted = false;
   public registerForm = this.fb.group({
-    nombre:['jose',Validators.required],
-    apellido:['miguel',Validators.required],
-    email: ['h1@gmail.com', Validators.required],
-    password: ['123456', Validators.required],
-    password2: ['123456', Validators.required],
+    nombre:['',Validators.required],
+    apellido:['',Validators.required],
+    email: ['', Validators.required],
+    password: ['', Validators.required],
+    password2: ['', Validators.required],
     id_rol:[1]
     
   }, {

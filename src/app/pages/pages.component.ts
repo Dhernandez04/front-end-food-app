@@ -9,10 +9,13 @@ import { UsuarioService } from '../services/usuario.service';
 })
 export class PagesComponent implements OnInit {
   public imagen: string;
+  public nombre:string;
   constructor(private usuarioService:UsuarioService) { }
 
   ngOnInit(): void {
     this.imagen = this.usuarioService.usuario.imagenUrl;
+   
+    this.nombre=this.usuarioService.usuario.nombre +' '+this.usuarioService.usuario.apellido;
   }
   logout() {
     this.usuarioService.logout()

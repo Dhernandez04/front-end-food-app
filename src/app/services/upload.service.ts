@@ -26,8 +26,9 @@ export class UploadService {
         body:formData
       })
       const data = await resp.json();
+      
         if(data.ok){
-          return data.nombreArchivo;
+          return data.img;
 
         } else {
           console.log(data.msg);

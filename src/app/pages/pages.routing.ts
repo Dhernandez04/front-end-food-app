@@ -5,6 +5,7 @@ import { CalculosComponent } from './calculos/calculos.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { DetalleComponent } from './catalogo/detalle.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 
 //mantenimiento
@@ -12,15 +13,15 @@ import { DetalleComponent } from './catalogo/detalle.component';
 
 
 const routes:Routes = [
-    {path:'',
+    {path:'home',
         component: PagesComponent,
         canActivate:[AuthGuard],
         children: [
-            {path:'',component:CalculosComponent},
+        {path:'',component:CalculosComponent},
          {path:'calculos',component:CalculosComponent},
          {path:'catalogo',component:CatalogoComponent},
          {path:'detalle/:id',component:DetalleComponent},
-
+         {path:'**', component:NotfoundComponent }
         ]
      }
     

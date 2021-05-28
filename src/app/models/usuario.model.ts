@@ -6,7 +6,7 @@ export class Usuario {
         public id_rol: number,
         public activo: boolean,
         public password?:string,
-       public imagen?:string,
+        public imagen?:string,
         public id?:string,
     ){}
 

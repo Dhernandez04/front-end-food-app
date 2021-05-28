@@ -6,7 +6,7 @@
 
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  agregar categoria
+  Agregar categoria
 </button>
 
 <!-- Modal -->
@@ -49,45 +49,46 @@
 
 
 <div class="row p-4">
-
-  <br>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th class="w100">Acciones</th>
-        <th class="w100">Id</th>
-        <th class="w-25">Nombre</th>
-        <th class="w100">Estado</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let categoria of categorias">
-      <tr>
-        <td scope="row">
-          <a class="cursor" data-toggle="tooltip" data-original-title="Guardar cambios"
-            (click)="cargarModal(categoria)" data-toggle="modal" data-target="#exampleModal1">
-            <i class="fa fa-pencil text-inverse m-r-10"></i>
-          </a>
-          <a class="cursor" data-toggle="tooltip" data-original-title="Close" (click)="eliminarCategoria(categoria)">
-            <i class="fa fa-close text-danger"></i>
-          </a>
-        </td>
-        <td>{{categoria.id}}</td>
-
-        <td>
-          {{categoria.nombre}}
-        </td>
-
-        <td *ngIf="categoria.activa">
-          <span class="bagde badge-info badge-pill">Activo</span>
-        </td>
-        <td *ngIf="!categoria.activa">
-          <span class="bagde badge-danger badge-pill">Inactivo</span>
-        </td>
-      </tr>
-
-    </tbody>
-  </table>
-
+  <div class="col-md-8">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th >Acciones</th>
+          <th >Id</th>
+          <th >Nombre</th>
+          <th >Estado</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let categoria of categorias">
+        <tr>
+          <td scope="row">
+            <a class="cursor" data-toggle="tooltip" data-original-title="Guardar cambios"
+              (click)="cargarModal(categoria)" data-toggle="modal" data-target="#exampleModal1">
+              <i class="fa fa-pencil text-inverse m-r-10"></i>
+            </a>
+            <a class="cursor" data-toggle="tooltip" data-original-title="Close" (click)="eliminarCategoria(categoria)">
+              <i class="fa fa-close text-danger"></i>
+            </a>
+          </td>
+          <td>{{categoria.id}}</td>
+  
+          <td>
+            {{categoria.nombre}}
+          </td>
+  
+          <td *ngIf="categoria.activa">
+            <span class="bagde badge-info badge-pill">Activo</span>
+          </td>
+          <td *ngIf="!categoria.activa">
+            <span class="bagde badge-danger badge-pill">Inactivo</span>
+          </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  
+  </div>
+ 
   <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -123,14 +124,15 @@
   </div>
 </div>
 
-  <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    </ul>
-  </nav>
 
 </div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>

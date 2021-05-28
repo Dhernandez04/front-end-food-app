@@ -36,14 +36,15 @@
             <td class="text-center">
               <img class="img-avatar cursor"
               alt="Avatar de usuario"
-               [src]="usuario.imagen"
+               [src]="usuario.imagenUrl"
                (click)="abrirModal(usuario)"
                 >
           </td>
+       
             <td>{{usuario.nombre}}</td>
             <td>{{usuario.apellido}}</td>
             <td>{{usuario.email}}</td>
-            <td>{{usuario.role.nombre}}</td>
+            <td>{{usuario.id_rol}}</td>
             <td *ngIf="usuario.activo">
               <span class="bagde badge-info badge-pill">Activo</span>
             </td>
