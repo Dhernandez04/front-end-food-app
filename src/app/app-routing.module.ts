@@ -14,7 +14,7 @@ import { AuthRoutingModule } from './auth/auth.routing';
 
 const routes: Routes = [
  
-  {path:'',pathMatch:'full',redirectTo:'/dashboard'},
+  {path:'',pathMatch:'full',redirectTo:'/login'},
   {path:'**', component:NotfoundComponent },
 ];
 
