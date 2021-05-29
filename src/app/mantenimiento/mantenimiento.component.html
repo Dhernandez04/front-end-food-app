@@ -9,19 +9,19 @@
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
-        <button class="btn btn-menu" (click)="open()" id="menu"><i class="fa fa-bars"></i></button>
+        <button class="btn btn-menu" (click)="open()" id="menu"><span class="iconify" data-icon="bx:bxs-dashboard" data-inline="false" data-width="28" data-height="28"></span></button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0 d-flex align-items-center">
             <li class="nav-item active" routerLinkActive="active">
-              <a class="nav-link" routerLink="/calculos">Calculadora <span class="sr-only">(current)</span></a>
+              <a class="nav-link" routerLink="/home/calculos">Calculadora <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item" routerLinkActive="active">
-              <a class="nav-link" routerLink="/catalogo">Catalogo</a>
+              <a class="nav-link" routerLink="/home/catalogo">Catalogo</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

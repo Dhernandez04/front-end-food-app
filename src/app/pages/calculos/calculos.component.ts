@@ -27,8 +27,7 @@ let datosCalculo: any;
 @Component({
   selector: 'app-calculos',
   templateUrl: './calculos.component.html',
-  styles: [
-  ]
+  styleUrls: [ './calculo.css']
 })
 export class CalculosComponent implements OnInit {
 
