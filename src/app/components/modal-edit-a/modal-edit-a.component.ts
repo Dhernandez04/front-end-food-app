@@ -36,4 +36,13 @@ export class ModalEditAComponent implements OnInit {
     this.router.navigateByUrl(`admin/alimentos/vitamina/${this.modalEditService.id}`)
   }
 
+  azucar() {
+    this.cerrarModal()
+    this.router.navigateByUrl(`admin/alimentos/azucar/${this.modalEditService.id}`)
+  }
+  aminoacido() {
+    this.cerrarModal()
+    this.router.navigateByUrl(`admin/alimentos/aminoacido/${this.modalEditService.id}`)
+  }
+
 }

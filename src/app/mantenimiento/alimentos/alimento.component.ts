@@ -39,6 +39,10 @@ export class AlimentoComponent implements OnInit {
   ctrlAminoacido:boolean = false;
   ctrlAzucar:boolean = false;
 
+  //variables para ocultar formulario de acidos grasos cuando se editan los aminoacidos o aucares
+  crtlEdit=false;
+  
+
   constructor(
 
     private fb: FormBuilder,
@@ -101,7 +105,26 @@ export class AlimentoComponent implements OnInit {
         grasaMenosSaturada: resp.composicionDB.acidos_graso.grasaMenosSaturada,
         grasaPoliinsaturada: resp.composicionDB.acidos_graso.grasaPoliinsaturada,
         colesterol: resp.composicionDB.acidos_graso.colesterol,
-        parteComestible: resp.composicionDB.acidos_graso.parteComestible
+        parteComestible: resp.composicionDB.acidos_graso.parteComestible,
+       //aminoacido
+        acido_aspartico:1,
+        treonina:1,
+        serina:1,
+        acido_glutaminico:1,
+        prolina:1,
+        glicina:1,
+        alanina:1,
+        cisteina:1,
+        valina:1,
+        metionina:1,
+        isoleucina:1,
+        leucina:1,
+        tirosina:1,
+        fenilalanina:1,
+        histidina:1,
+        lisina:1,
+        arginina:1,
+        triptofano:1
       })
     })
   }
@@ -109,12 +132,23 @@ export class AlimentoComponent implements OnInit {
   cargarStep(tipo) {
     if (tipo === 'mineral') {
       this.step = 2;
-    } else if (tipo === 'acidograso') {
+    } else if (tipo === 'acidograso' ) {
       this.step = 4;
     } else if (tipo === 'vitamina') {
       this.step=3
-    } else {
-      this.step = 1;
+    } else if(tipo === 'azucar' ) {
+      this.step=4;
+      this.ctrlAzucar = true;
+      this.crtlEdit = true;
+    } else if(tipo == 'aminoacido' ) {
+      this.step=4;
+      this.ctrlAminoacido = true;
+      this.crtlEdit=true;
+
+      console.log(this.crtlEdit);
+      
+    }else{
+        this.step = 1;
     }
   }
 //validaciones 
@@ -324,7 +358,6 @@ export class AlimentoComponent implements OnInit {
       isoleucina:[1,Validators.required],
       leucina:[1,Validators.required],
       tirosina:[1,Validators.required],
-
       fenilalanina:[1,Validators.required],
       histidina:[1,Validators.required],
       lisina:[1,Validators.required],
