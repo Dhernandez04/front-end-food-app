@@ -51,7 +51,7 @@ export class UsuarioComponent implements OnInit {
 
       Swal.fire('success', 'Usuario creado!', 'success');
 
-      this.router.navigateByUrl('/dashboard/usuarios')
+      this.router.navigateByUrl('/admin/usuarios')
       console.log('todo ok');
 
     }, (err => {

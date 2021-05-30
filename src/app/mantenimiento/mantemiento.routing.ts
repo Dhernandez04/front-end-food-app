@@ -14,6 +14,7 @@ import { AlimentoComponent } from './alimentos/alimento.component';
 import { UsuarioComponent } from './usuarios/usuario.component';
 import { NotfoundComponent } from '../pages/notfound/notfound.component';
 import { PerfilComponent } from '../shared/perfil/perfil.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 
@@ -23,14 +24,14 @@ const routes:Routes = [
         canActivate:[AuthGuard],
         children:[
         {path:'',component:DashboardComponent},
-         {path:'dashboard',component:DashboardComponent, data:{titulo:'Dashboard'}},
-         {path:'alimentos',component:AlimentosComponent, data:{titulo:'Alimentos'}},
-         {path:'alimentos/:tipo/:id',component:AlimentoComponent, data:{titulo:'Alimento'}},
-         {path:'roles',component:RolesComponent, data:{titulo:'Roles'}},
-         {path:'usuarios',component:UsuariosComponent, data:{titulo:'Usuario'}},
-         {path:'usuarios/nuevo',component:UsuarioComponent, data:{titulo:'Nuevo usuario'}},
-         {path:'categorias',component:CategoriasComponent, data:{titulo:'Categoria'}},
-         {path:'perfil',component:PerfilComponent, data:{titulo:'Ajuste de cuenta'}},
+         {path:'dashboard', canActivate:[AdminGuard],component:DashboardComponent, data:{titulo:'Dashboard'}},
+         {path:'alimentos', canActivate:[AdminGuard],component:AlimentosComponent, data:{titulo:'Alimentos'}},
+         {path:'alimentos/:tipo/:id', canActivate:[AdminGuard],component:AlimentoComponent, data:{titulo:'Alimento'}},
+         {path:'roles', canActivate:[AdminGuard],component:RolesComponent, data:{titulo:'Roles'}},
+         {path:'usuarios', canActivate:[AdminGuard],component:UsuariosComponent, data:{titulo:'Usuario'}},
+         {path:'usuarios/nuevo', canActivate:[AdminGuard],component:UsuarioComponent, data:{titulo:'Nuevo usuario'}},
+         {path:'categorias', canActivate:[AdminGuard],component:CategoriasComponent, data:{titulo:'Categoria'}},
+         {path:'perfil', canActivate:[AdminGuard],component:PerfilComponent, data:{titulo:'Ajuste de cuenta'}},
          
          {path:'**', component:NotfoundComponent }
         ]

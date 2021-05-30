@@ -10,6 +10,12 @@ import { DetalleComponent } from './catalogo/detalle.component';
 // Import pdfmake-wrapper and the fonts to use
 import { PdfMakeWrapper } from 'pdfmake-wrapper';
 import pdfFonts from "pdfmake/build/vfs_fonts"; // fonts provided for pdfmake
+import { ChartsModule } from 'ng2-charts';
+import { GraficaComponent } from '../components/grafica/grafica.component';
+import { ScatterComponent } from '../components/scatter/scatter.component';
+
+
+
 // Set the fonts to use
 PdfMakeWrapper.setFonts(pdfFonts)
 @NgModule({
@@ -18,16 +24,22 @@ PdfMakeWrapper.setFonts(pdfFonts)
     CalculosComponent,
     CatalogoComponent,
     DetalleComponent,
+    GraficaComponent,
+    ScatterComponent
+   
   ],
   exports: [
     CalculosComponent,
     CatalogoComponent,
+    GraficaComponent,
+    ScatterComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    ChartsModule,
   ]
 })
 export class PagesModule { }

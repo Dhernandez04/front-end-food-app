@@ -23,6 +23,9 @@ export class UsuarioService {
   get headers() {
     return { headers: { 'x-token': this.token } };
   }
+  get role(){
+    return this.usuario.id_rol;
+  }
   get id():string {
     return this.usuario.id || '';
 
@@ -31,9 +34,11 @@ export class UsuarioService {
     const token = localStorage.getItem('token') || '';
     return this.http.get(`${base_url}/api/auth/renew`, { headers: { 'x-token': token } }).pipe(
       map((resp: any) => {
+        
         const { nombre, apellido, email, id_rol, activo, imagen, id, } = resp.usuario;
         this.usuario = new Usuario(nombre, apellido, email, id_rol, activo, '', imagen, id);
         localStorage.setItem('token', resp.token);
+        localStorage.setItem('role',id_rol)
      return true;
       }),
    
@@ -74,6 +79,7 @@ export class UsuarioService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.router.navigateByUrl('/login')
   }
   eliminarUsuario(usuario: Usuario) {

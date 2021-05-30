@@ -207,7 +207,24 @@ bottom: 0px;
 .input-group-text{
     height: 38px;
 }
+
+/* CALCULOS STYLES */
+.graficas{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+.content-chart{
+    width: 616px;
+    height: 305px;
+}
+
 @media screen and (max-width:800px) {
+    .graficas{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
     .empty-state{
         width: 150px;
         height: 150px;

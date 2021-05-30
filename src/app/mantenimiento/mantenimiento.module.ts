@@ -34,7 +34,8 @@ import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
     PerfilComponent,
     BreadcrumbComponent,
     UsuarioComponent,
-    ModalEditAComponent
+    ModalEditAComponent,
+    
  ],
   exports: [
     DashboardComponent,
