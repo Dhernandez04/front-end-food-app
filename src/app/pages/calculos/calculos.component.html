@@ -34,15 +34,15 @@
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-    <div *ngIf="estado2" class="w-100 text-center mt-5">
+    <div *ngIf="estado2" class="w-100 text-center mt-5 animate__animated animate__fadeIn">
         <img class="empty-state"src="../../../assets/img/undraw_survey_05s5.svg" alt="">
         <p>Para buscar informacion primero selecciona una categoria y luego 
             escoge el alimento de tu preferencia.</p>
     </div>
     
     
-      <div *ngIf="estado" class="row">
-          <div class="col-md-5">
+      <div *ngIf="estado"  class="row">
+          <div class="col-md-5 animate__animated animate__fadeInLeft">
                 <h3 class="f-25">Propiedades termicas</h3>
                 <div class="card b-none" >
                     <form [formGroup]="temperaturaForm" (ngSubmit)="agregarTem()">
@@ -54,17 +54,18 @@
                       <div class="mb-3">
                         <button class="btn btn-primary" [disabled]="temperaturaForm.invalid">Calcular</button>
                       </div>
-                      <li class="group-item"><span>Conductividad</span>     <span>{{obtenerConductividad()}} <span class="medidas"> W/(m*k)</span></span></li>
-                      <li class="group-item"><span>Difusividad</span>       <span>{{obtenerDifusivity()}}    <span class="medidas"> m²/s</span></span></li>
-                      <li class="group-item"><span>Densidad</span>          <span>{{obtenerDensity()}}       <span class="medidas">kg/m³</span></span></li>
-                      <li class="group-item"><span>Calor especifico</span>  <span>{{obtenerSpecifici()}}     <span class="medidas"> J/(kg*K)</span> </span></li>
+
+                      <div  *ngIf="display" class="group-item"><span>Conductividad</span>     <span (change)="aminated()">{{obtenerConductividad()}} <span class="medidas"> W/(m*k)  </span></span></div>
+                      <div  *ngIf="display" class="group-item"><span>Difusividad</span>       <span (change)="aminated()">{{obtenerDifusivity()}}    <span class="medidas"> m²/s     </span></span></div>
+                      <div  *ngIf="display" class="group-item"><span>Densidad</span>          <span (change)="aminated()">{{obtenerDensity()}}       <span class="medidas"> kg/m³    </span></span></div>
+                      <div  *ngIf="display" class="group-item"><span>Calor especifico</span>  <span (change)="aminated()">{{obtenerSpecifici()}}     <span class="medidas"> J/(kg*K) </span> </span></div>
                
                   </div>
                   </form>
                 </div>
           </div>
          
-          <div class="col-md-7">
+          <div class="col-md-7 animate__animated animate__fadeInDown">
             <div class="row mb-4">
                 <div class="col-md-8">
                     <h3 class="f-25">Alimento seleccionado</h3>
@@ -85,95 +86,120 @@
                 <div class="card-body grid">
                     <ul>
                         <li>Analisis Proximal</li>
-                        <li><span>Humedad (g)</span>                    <span class="bold">{{alimento.humedad}}</span></li>
-                        <li><span>Energia (kcal)</span>                 <span class="bold">{{alimento.energiaKcal}}</span></li>
-                        <li><span>Energia (kj)</span>                   <span class="bold">{{alimento.energiaKj}}</span></li>
-                        <li><span>Proteinas (g)</span>                  <span class="bold">{{alimento.proteinaG}}</span></li>
-                        <li><span>Lipidos (g)</span>                    <span class="bold">{{alimento.lipidosG}}</span></li>
-                        <li><span>Carbohidratos total (g)</span>        <span class="bold">{{alimento.carbohidratos_total}}</span></li>
-                        <li><span>Carbohidratos disponibles (g)</span>  <span class="bold">{{alimento.carbohidratos_disp}}</span></li>
-                        <li><span>Fibra dietaria (g)</span>             <span class="bold">{{alimento.fibra_dietaria}}</span></li>
-                        <li><span>Ceniza (g)</span>                     <span class="bold">{{alimento.cenizas}}</span></li>
+                        <li class="group-item"><span>Humedad (g)</span>                    <span class="bold">{{alimento.humedad}}</span></li>
+                        <li class="group-item"><span>Energia (kcal)</span>                 <span class="bold">{{alimento.energiaKcal}}</span></li>
+                        <li class="group-item"><span>Energia (kj)</span>                   <span class="bold">{{alimento.energiaKj}}</span></li>
+                        <li class="group-item"><span>Proteinas (g)</span>                  <span class="bold">{{alimento.proteinaG}}</span></li>
+                        <li class="group-item"><span>Lipidos (g)</span>                    <span class="bold">{{alimento.lipidosG}}</span></li>
+                        <li class="group-item"><span>Carbohidratos total (g)</span>        <span class="bold">{{alimento.carbohidratos_total}}</span></li>
+                        <li class="group-item"><span>Carbohidratos disponibles (g)</span>  <span class="bold">{{alimento.carbohidratos_disp}}</span></li>
+                        <li class="group-item"><span>Fibra dietaria (g)</span>             <span class="bold">{{alimento.fibra_dietaria}}</span></li>
+                        <li class="group-item"><span>Ceniza (g)</span>                     <span class="bold">{{alimento.cenizas}}</span></li>
                         
                         
                     </ul>
                     <ul>
                         <li>Minerales</li>
-                        <li><span>Calcio (mg)</span>          <span class="bold">{{minerales.calcio}}</span></li>
-                        <li><span>Hierro (mg)</span>          <span class="bold">{{minerales.hierro}}</span></li>
-                        <li><span>Sodio (mg)</span>           <span class="bold">{{minerales.sodio}}</span></li>
-                        <li><span>Fosforo (mg)</span>         <span class="bold">{{minerales.fosforo}}</span></li>
-                        <li><span>Yodo (mg)</span>            <span class="bold">{{minerales.yodo}}</span></li>
-                        <li><span>Zinc (mg)</span>            <span class="bold">{{minerales.zinc}}</span></li>
-                        <li><span>Magnecio (mg)</span>        <span class="bold">{{minerales.magnecio}}</span></li>
-                        <li><span>Potacio (mg)</span>         <span class="bold">{{minerales.potasio}}</span></li>
+                        <li class="group-item"><span>Calcio (mg)</span>          <span class="bold">{{minerales.calcio}}</span></li>
+                        <li class="group-item"><span>Hierro (mg)</span>          <span class="bold">{{minerales.hierro}}</span></li>
+                        <li class="group-item"><span>Sodio (mg)</span>           <span class="bold">{{minerales.sodio}}</span></li>
+                        <li class="group-item"><span>Fosforo (mg)</span>         <span class="bold">{{minerales.fosforo}}</span></li>
+                        <li class="group-item"><span>Yodo (mg)</span>            <span class="bold">{{minerales.yodo}}</span></li>
+                        <li class="group-item"><span>Zinc (mg)</span>            <span class="bold">{{minerales.zinc}}</span></li>
+                        <li class="group-item"><span>Magnecio (mg)</span>        <span class="bold">{{minerales.magnecio}}</span></li>
+                        <li class="group-item"><span>Potacio (mg)</span>         <span class="bold">{{minerales.potasio}}</span></li>
 
                     </ul>
                     <ul>
                         <li>Vitaminas</li>
-                        <li><span>Tiamina (mg)</span>     <span class="bold"> {{vitamina.tiamina}}</span></li>
-                        <li><span>Riboflaxina (mg)</span> <span class="bold">{{vitamina.riboflaxina}}</span></li>
-                        <li><span>Niacina (mg)</span>     <span class="bold">{{vitamina.niaxina}}</span></li>
-                        <li><span>Folatos (mcg)</span>    <span class="bold">{{vitamina.folatos}}</span></li>
-                        <li><span>VitaminaB12 (mcg)</span><span class="bold">{{vitamina.vitamina_b12}}</span></li>
-                        <li><span>VitaminaC (mg)</span>   <span class="bold">{{vitamina.vitaminaC}}</span></li>
-                        <li><span>VitaminaA (ER)</span>   <span class="bold">{{vitamina.vitaminaA}}</span></li>
+                        <li class="group-item"><span>Tiamina (mg)</span>     <span class="bold"> {{vitamina.tiamina}}</span></li>
+                        <li class="group-item"><span>Riboflaxina (mg)</span> <span class="bold">{{vitamina.riboflaxina}}</span></li>
+                        <li class="group-item"><span>Niacina (mg)</span>     <span class="bold">{{vitamina.niaxina}}</span></li>
+                        <li class="group-item"><span>Folatos (mcg)</span>    <span class="bold">{{vitamina.folatos}}</span></li>
+                        <li class="group-item"><span>VitaminaB12 (mcg)</span><span class="bold">{{vitamina.vitamina_b12}}</span></li>
+                        <li class="group-item"><span>VitaminaC (mg)</span>   <span class="bold">{{vitamina.vitaminaC}}</span></li>
+                        <li class="group-item"><span>VitaminaA (ER)</span>   <span class="bold">{{vitamina.vitaminaA}}</span></li>
                        
                     </ul>
                     <ul>
-                      <li>Aminoacidos</li>
-                      <li><span>Ácido Aspártico (g)</span>   <span class="bold">0.8</span></li>
-                      <li><span>Treonina (g)</span>          <span class="bold">0.8</span></li>
-                      <li><span>Serina (g)</span>            <span class="bold">0.8</span></li>
-                      <li><span>Ácido Glutáminico (g)</span> <span class="bold">0.8</span></li>
-                      <li><span>Prolina (g)</span>           <span class="bold">0.8</span></li>
-                      <li><span>Glicina (g)</span>           <span class="bold">0.8</span></li>
-                      <li><span>Cisteina (g)</span>          <span class="bold">0.8</span></li>
-                      <li><span>Valina (g)</span>            <span class="bold">0.8</span></li>
-                      <li><span>Metionina (g)</span>         <span class="bold">0.8</span></li>
-                      <li><span>Isoleucina (g)</span>        <span class="bold">0.8</span></li>
-                      <li><span>Leucina (g)</span>           <span class="bold">0.8</span></li>
-                      <li><span>Tirosina (g)</span>          <span class="bold">0.8</span></li>
-                      <li><span>Fenilalanina (g)</span>      <span class="bold">0.8</span></li>
-                      <li><span>Histidina (g)</span>         <span class="bold">0.8</span></li>
-                      <li><span>Lisina (g)</span>            <span class="bold">0.8</span></li>
-                      <li><span>Arginina (g)</span>          <span class="bold">0.8</span></li>
-                      <li><span>Triptófano (g)</span>        <span class="bold">0.8</span></li>
+                      <li class="group-item">Aminoacidos</li>
+                      <li class="group-item"><span>Ácido Aspártico (g)</span>   <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Treonina (g)</span>          <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Serina (g)</span>            <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Ácido Glutáminico (g)</span> <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Prolina (g)</span>           <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Glicina (g)</span>           <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Cisteina (g)</span>          <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Valina (g)</span>            <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Metionina (g)</span>         <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Isoleucina (g)</span>        <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Leucina (g)</span>           <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Tirosina (g)</span>          <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Fenilalanina (g)</span>      <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Histidina (g)</span>         <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Lisina (g)</span>            <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Arginina (g)</span>          <span class="bold">0.8</span></li>
+                      <li class="group-item"><span>Triptófano (g)</span>        <span class="bold">0.8</span></li>
                   </ul>
                     <ul>
                         <li>Ácidos Grasos</li>
-                        <li><span>Grasa saturada (g)</span>       <span class="bold">{{acidos.grasaSaturada}}</span></li>
-                        <li><span>Grasa Monoinsaturada (g)</span> <span class="bold">{{acidos.grasaMenosSaturada}}</span></li>
-                        <li><span>Grasa Poliinsaturada (g)</span> <span class="bold">{{acidos.grasaPoliinsaturada}}</span></li>
-                        <li><span>Colesterol (mg)</span>          <span class="bold">{{acidos.colesterol}}</span></li>
-                        <li><span>Parte Comestible (%)</span>     <span class="bold">{{acidos.parteComestible}}</span></li>
+                        <li class="group-item"><span>Grasa saturada (g)</span>       <span class="bold">{{acidos.grasaSaturada}}</span></li>
+                        <li class="group-item"><span>Grasa Monoinsaturada (g)</span> <span class="bold">{{acidos.grasaMenosSaturada}}</span></li>
+                        <li class="group-item"><span>Grasa Poliinsaturada (g)</span> <span class="bold">{{acidos.grasaPoliinsaturada}}</span></li>
+                        <li class="group-item"><span>Colesterol (mg)</span>          <span class="bold">{{acidos.colesterol}}</span></li>
+                        <li class="group-item"><span>Parte Comestible (%)</span>     <span class="bold">{{acidos.parteComestible}}</span></li>
                     </ul>
                   
                     <ul>
                         <li>Azucar</li>
-                        <li><span>Azucares disponibles t. (g)</span>   <span class="bold">0.8</span></li>
-                        <li><span>Azucares no reductores (g)</span>    <span class="bold">0.8</span></li>
-                        <li><span>Azucares reductores (g)</span>       <span class="bold">0.8</span></li>
-                        <li><span class="bold">Monosacáridos</span>                    </li>
-                        <li><span>Fructosa (g)</span>                  <span class="bold">0.8</span></li>
-                        <li><span>Galactosa (g)</span>                 <span class="bold">0.8</span></li>
-                        <li><span>Glucosa (g)</span>                   <span class="bold">0.8</span></li>
-                        <li><span class="bold">Disacáridos</span>                      </li>
-                        <li><span>Lactosa (g)</span>                   <span class="bold">0.8</span></li>
-                        <li><span>Sacarosa (g)</span>                  <span class="bold">0.8</span></li>
+                        <li class="group-item"><span>Azucares disponibles t. (g)</span>   <span class="bold">0.8</span></li>
+                        <li class="group-item"><span>Azucares no reductores (g)</span>    <span class="bold">0.8</span></li>
+                        <li class="group-item"><span>Azucares reductores (g)</span>       <span class="bold">0.8</span></li>
+                        <li class="group-item"><span class="bold">Monosacáridos</span>                    </li>
+                        <li class="group-item"><span>Fructosa (g)</span>                  <span class="bold">0.8</span></li>
+                        <li class="group-item"><span>Galactosa (g)</span>                 <span class="bold">0.8</span></li>
+                        <li class="group-item"><span>Glucosa (g)</span>                   <span class="bold">0.8</span></li>
+                        <li class="group-item"><span class="bold">Disacáridos</span>                      </li>
+                        <li class="group-item"><span>Lactosa (g)</span>                   <span class="bold">0.8</span></li>
+                        <li class="group-item"><span>Sacarosa (g)</span>                  <span class="bold">0.8</span></li>
                      
                     </ul>
                 </div>
               </div>
           </div>
-          
-          <div class="row p-5">
-                  <div class="col-md-6"><app-grafica></app-grafica></div>
-                  <div class="col-md-6"><app-grafica></app-grafica></div>
-          </div>
-          <div class="row p-5">
-            <div class="col-md-6"><app-grafica></app-grafica></div>
-            <div class="col-md-6"><app-grafica></app-grafica></div>
+         <div class="row col-md-6" *ngIf="statuschart">
+             
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a [ngClass]="{'active':grafica1}" class="nav-link" (click)="verGrafica1()">Temperatura</a>
+                </li>
+                <li class="nav-item">
+                  <a [ngClass]="{'active':!grafica1}" class="nav-link" (click)="verGrafica2()">Humedad</a>
+                </li>
+               
+              </ul>
+         </div>
+         <div *ngIf="grafica1">
+                <div class="row p-5">
+                        <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de difusividad  termica" ejey="Difusividad( m²/s )"pointColor="rgb(242 116 116 / 41%)" ejex="Temperatura (°c)" [data]="tempDifusivity"></app-scatter></div>
+                        <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de densidad termica"  ejey="Densidad (kg/m³)"      pointColor="rgb(242 116 116 / 41%)" ejex="Temperatura (°c)" [data]="tempDensity"></app-scatter></div>
+                        
+                </div>
+                <div class="row p-5">
+                        <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de especificidad  termica" ejey="Especificidad (m²/s)"   pointColor="rgb(242 116 116 / 41%)" ejex="Temperatura (°c)" [data]="tempSpecifity"></app-scatter></div>
+                        <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de conductividad  termica" ejey="Conductividad (W/(m*k))"pointColor="rgb(242 116 116 / 41%)" ejex="Temperatura (°c)" [data]="tempConductivity"></app-scatter></div>
+                </div>
+         </div>
+         <div *ngIf="grafica2">
+                 <div class="row p-5">
+                        <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de difusividad  termica" ejey="Difusividad (m²/s) " pointColor="rgb(13 110 253 / 25%)" ejex="Humedad (%)"[data]="humDifusivity"></app-scatter></div>
+                        <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de densidad termica"  ejey="Densidad (kg/m³)"      pointColor="rgb(13 110 253 / 25%)" ejex="Humedad (%)"[data]="humDensity"></app-scatter></div>
+                        
+                </div>
+                <div class="row p-5">
+                        <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de especificidad  termica" ejey="Especificidad (m²/s)" pointColor="rgb(13 110 253 / 25%)"   ejex="Humedad (%)" [data]="humSpecifity"></app-scatter></div>
+                        <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de conductividad  termica" ejey="Conductividad (W/(m*k))" pointColor="rgb(13 110 253 / 25%)" ejex="Humedad (%) "[data]="humConductivity"></app-scatter></div>
+                </div>
          </div>
       </div>
 

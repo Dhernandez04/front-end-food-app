@@ -7,14 +7,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from './pages/pages.module';
 import { MantenimientoModule } from './mantenimiento/mantenimiento.module';
 import { AuthModule } from './auth/auth.module';
-import { ChartsModule } from 'ng2-charts';
-
 import { AppComponent } from './app.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
-import { GraficaComponent } from './components/grafica/grafica.component';
+import {  BrowserAnimationsModule  }  from  '@angular/platform-browser/animations' ;
 
-
-
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -23,10 +20,9 @@ import { GraficaComponent } from './components/grafica/grafica.component';
   declarations: [
     AppComponent,
     NotfoundComponent,
-   
-   
-
+    
   ],
+ 
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -34,8 +30,8 @@ import { GraficaComponent } from './components/grafica/grafica.component';
     PagesModule,
     MantenimientoModule,
     AuthModule,
-    
-   
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

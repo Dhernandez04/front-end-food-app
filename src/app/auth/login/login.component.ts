@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit{
     }
     }
   login() {
+    this.loginForm.value.email.toLowerCase();
     this.usuarioService.login(this.loginForm.value).subscribe((resp) => {
       this.router.navigateByUrl('/admin/dashboard')
     }, (err => {

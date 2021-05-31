@@ -1,7 +1,16 @@
-<div style="display: block;">
-  <canvas baseChart
-    [datasets]="scatterChartData"
-    [options]="scatterChartOptions"
-    [chartType]="scatterChartType">
-  </canvas>
-</div>
+<div class="card" >
+      <div class="card-body">
+          <h3>{{title}}</h3>
+          <small>{{ejey}}</small>
+          <div style="display: block;">
+            <canvas baseChart
+              [datasets]="scatterChartData"
+              [options]="scatterChartOptions"
+              [chartType]="scatterChartType"
+              [colors]="chartColors">
+            </canvas>
+            <small class="d-flex justify-content-end"> {{ejex}}</small>
+          </div>
+    </div>
+  </div>
+
