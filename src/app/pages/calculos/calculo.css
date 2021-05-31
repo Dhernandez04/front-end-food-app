@@ -3,7 +3,7 @@
 
 body{
     font-family: 'Roboto', sans-serif;
- 
+    color: #2b2b2b;
     box-sizing: border-box;
 }
 
@@ -11,6 +11,10 @@ body{
 .grid{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
+    height: 300px;
+    box-sizing: border-box;
+    overflow: auto;
+
 }
 
 .card-header{
@@ -26,11 +30,12 @@ body{
 ul{
     padding-left: 1rem !important;
 }
-li{
+li.group-item{
     width: 100%;
     display: flex;
     padding: 2px 0px;
     justify-content: space-between;
+    border-bottom: none;
 }
 /* MARGENES PERSONALIZADOS */
 .m-32{
@@ -42,12 +47,15 @@ li{
 }
 h1,h2,h3,h4,h5{
     margin-top: 34px;
+    font-weight: 400!important;
 }
+
 
 #wrapper{
     max-width: 100%;
     margin: 0 32px;
     margin-bottom: 30px;
+    overflow: hidden;
 }
 .left{
     width: 837px;
@@ -83,6 +91,27 @@ h1,h2,h3,h4,h5{
     padding: 10px 0px;
 }
 
+/* GRAPHIC */
+.nav-tabs .nav-link{
+    color: #2b2b2b;
+    cursor: pointer;
+}
+.nav-tabs .nav-link.active{
+    color: #4CA02F !important;
+}
+.content-chart{
+    display: grid;
+    width: 100%;
+   grid-template-columns: repeat(2,1fr);
+}
+.navegacion{
+    grid-column: 1/4;
+}
+.chart{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: 300px 300px;
+}
 
 @media screen and (max-width:480px) {
     #wrapper{

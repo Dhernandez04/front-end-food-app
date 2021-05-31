@@ -16,6 +16,7 @@ import { ScatterComponent } from '../components/scatter/scatter.component';
 
 
 
+
 // Set the fonts to use
 PdfMakeWrapper.setFonts(pdfFonts)
 @NgModule({
@@ -25,14 +26,16 @@ PdfMakeWrapper.setFonts(pdfFonts)
     CatalogoComponent,
     DetalleComponent,
     GraficaComponent,
-    ScatterComponent
+    ScatterComponent,
+  
    
   ],
   exports: [
     CalculosComponent,
     CatalogoComponent,
     GraficaComponent,
-    ScatterComponent
+    ScatterComponent,
+  
   ],
   imports: [
     CommonModule,

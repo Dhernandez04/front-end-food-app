@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~11.0.3",
+    "@angular/animations": "^11.0.9",
     "@angular/common": "~11.0.3",
     "@angular/compiler": "~11.0.3",
     "@angular/core": "~11.0.3",
@@ -20,7 +20,10 @@
     "@angular/platform-browser-dynamic": "~11.0.3",
     "@angular/router": "~11.0.3",
     "chart.js": "^2.9.3",
+
     "ng2-charts": "^2.4.2",
+    "ngx-toastr": "^14.0.0",
+
     "pdfmake": "^0.1.71",
     "pdfmake-wrapper": "^2.1.1",
     "rxjs": "~6.6.0",
