@@ -121,26 +121,28 @@
                         <li class="group-item"><span>VitaminaA (ER)</span>   <span class="bold">{{vitamina.vitaminaA}}</span></li>
                        
                     </ul>
-                    <ul>
-                      <li class="group-item">Aminoacidos</li>
-                      <li class="group-item"><span>Ácido Aspártico (g)</span>   <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Treonina (g)</span>          <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Serina (g)</span>            <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Ácido Glutáminico (g)</span> <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Prolina (g)</span>           <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Glicina (g)</span>           <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Cisteina (g)</span>          <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Valina (g)</span>            <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Metionina (g)</span>         <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Isoleucina (g)</span>        <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Leucina (g)</span>           <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Tirosina (g)</span>          <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Fenilalanina (g)</span>      <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Histidina (g)</span>         <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Lisina (g)</span>            <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Arginina (g)</span>          <span class="bold">0.8</span></li>
-                      <li class="group-item"><span>Triptófano (g)</span>        <span class="bold">0.8</span></li>
-                  </ul>
+
+                    <ul *ngIf="acidoEstado">
+                      <li>Aminoacidos</li>
+                      <li><span>Ácido Aspártico (g)</span>   <span class="bold">{{Aminoacido.acido_aspartico}}</span></li>
+                      <li><span>Treonina (g)</span>          <span class="bold">{{Aminoacido.treonina}}</span></li>
+                      <li><span>Serina (g)</span>            <span class="bold">{{Aminoacido.serina}}</span></li>
+                      <li><span>Ácido Glutáminico (g)</span> <span class="bold">{{Aminoacido.acido_glutaminico}}</span></li>
+                      <li><span>Prolina (g)</span>           <span class="bold">{{Aminoacido.prolina}}</span></li>
+                      <li><span>Glicina (g)</span>           <span class="bold">{{Aminoacido.glicina}}</span></li>
+                      <li><span>Cisteina (g)</span>          <span class="bold">{{Aminoacido.cisteina}}</span></li>
+                      <li><span>Valina (g)</span>            <span class="bold">{{Aminoacido.valina}}</span></li>
+                      <li><span>Metionina (g)</span>         <span class="bold">{{Aminoacido.metionina}}</span></li>
+                      <li><span>Isoleucina (g)</span>        <span class="bold">{{Aminoacido.isoleucina}}</span></li>
+                      <li><span>Leucina (g)</span>           <span class="bold">{{Aminoacido.leucina}}</span></li>
+                      <li><span>Tirosina (g)</span>          <span class="bold">{{Aminoacido.tirosina}}</span></li>
+                      <li><span>Fenilalanina (g)</span>      <span class="bold">{{Aminoacido.fenilalanina}}</span></li>
+                      <li><span>Histidina (g)</span>         <span class="bold">{{Aminoacido.histidina}}</span></li>
+                      <li><span>Lisina (g)</span>            <span class="bold">{{Aminoacido.lisina}}</span></li>
+                      <li><span>Arginina (g)</span>          <span class="bold">{{Aminoacido.arginina}}</span></li>
+                      <li><span>Triptófano (g)</span>        <span class="bold">{{Aminoacido.triptofano}}</span></li>
+                      <li><span>Alanina (g)</span>        <span class="bold">{{Aminoacido.alanina}}</span></li>
+
                     <ul>
                         <li>Ácidos Grasos</li>
                         <li class="group-item"><span>Grasa saturada (g)</span>       <span class="bold">{{acidos.grasaSaturada}}</span></li>
@@ -150,18 +152,20 @@
                         <li class="group-item"><span>Parte Comestible (%)</span>     <span class="bold">{{acidos.parteComestible}}</span></li>
                     </ul>
                   
-                    <ul>
+                    <ul *ngIf="azucarEstado">
                         <li>Azucar</li>
-                        <li class="group-item"><span>Azucares disponibles t. (g)</span>   <span class="bold">0.8</span></li>
-                        <li class="group-item"><span>Azucares no reductores (g)</span>    <span class="bold">0.8</span></li>
-                        <li class="group-item"><span>Azucares reductores (g)</span>       <span class="bold">0.8</span></li>
-                        <li class="group-item"><span class="bold">Monosacáridos</span>                    </li>
-                        <li class="group-item"><span>Fructosa (g)</span>                  <span class="bold">0.8</span></li>
-                        <li class="group-item"><span>Galactosa (g)</span>                 <span class="bold">0.8</span></li>
-                        <li class="group-item"><span>Glucosa (g)</span>                   <span class="bold">0.8</span></li>
-                        <li class="group-item"><span class="bold">Disacáridos</span>                      </li>
-                        <li class="group-item"><span>Lactosa (g)</span>                   <span class="bold">0.8</span></li>
-                        <li class="group-item"><span>Sacarosa (g)</span>                  <span class="bold">0.8</span></li>
+
+                        <li><span>Azucares disponibles t. (g)</span>   <span class="bold">{{Azucar.azucares_disponibles}}</span></li>
+                        <li><span>Azucares no reductores (g)</span>    <span class="bold">{{Azucar.azucares_no_reductores}}</span></li>
+                        <li><span>Azucares reductores (g)</span>       <span class="bold">{{Azucar.azucares_reductores}}</span></li>
+                        <li><span class="bold">Monosacáridos</span>                    </li>
+                        <li><span>Fructosa (g)</span>                  <span class="bold">{{Azucar.fructosa}}</span></li>
+                        <li><span>Galactosa (g)</span>                 <span class="bold">{{Azucar.galactosa}}</span></li>
+                        <li><span>Glucosa (g)</span>                   <span class="bold">{{Azucar.Glucosa}}</span></li>
+                        <li><span class="bold">Disacáridos</span>                      </li>
+                        <li><span>Lactosa (g)</span>                   <span class="bold">{{Azucar.lactosa}}</span></li>
+                        <li><span>Sacarosa (g)</span>                  <span class="bold">{{Azucar.Sacarosa}}</span></li>
+
                      
                     </ul>
                 </div>

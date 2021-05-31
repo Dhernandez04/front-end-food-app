@@ -16,6 +16,12 @@ import { DocumentoService } from '../../services/documento.service';
 import { Mineral } from '../../models/mineral.model';
 import { Vitamina } from '../../models/Vitamina.model';
 import { AcidoGraso } from '../../models/AcidoGraso';
+
+import { aminoacido } from '../../interfaces/aminoacido.interface';
+import { AminoacidoService } from '../../services/aminoacido.service';
+import { azucar } from '../../interfaces/azucar.interface';
+import { AzucarService } from '../../services/azucar.service';
+
 import { delay } from 'rxjs/operators';
 
 
@@ -24,6 +30,7 @@ let difu = 0;
 let densy = 0;
 let speci = 0;
 let codigo = 0;
+
 let datosCalculo: any;
 @Component({
   selector: 'app-calculos',
@@ -44,11 +51,18 @@ export class CalculosComponent implements OnInit {
   public minerales: Mineral[] = [];
   public vitamina: Vitamina[] = [];
   public acidos: AcidoGraso[] = [];
+  public Aminoacido: aminoacido[]=[];
+  public Azucar: azucar[]=[];
   
   public estado: boolean = false;//variable para mostrar el el div con la informacion del alimento
   public estado2: boolean = true; //variable para mostrar empty state
   public display:boolean = false;
   public statusPdf:boolean = false;
+
+
+  public acidoEstado:boolean=false;
+  public azucarEstado:boolean=false;
+
   //variables para almacenar la data y graficar la temperatura respecto a las propiedades termicas
   public tempDifusivity:any[];
   public tempDensity:any[];
@@ -64,13 +78,19 @@ export class CalculosComponent implements OnInit {
    //variables para controlar la visualizacion de las graficas
    public grafica1:boolean=true;
    public grafica2:boolean=false;
+
   constructor(private fb: FormBuilder,
     private calculoService: CalculoService,
     private CategoriaService: CategoriaService,
     private alimetoService: AlimentoService,
     private busquedaService: BusquedaService,
+
+    private AminoacidoService: AminoacidoService,
+    private azucarService: AzucarService,
     private pdf: DocumentoService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService
+   ) { }
+
 
 
 
@@ -107,12 +127,13 @@ export class CalculosComponent implements OnInit {
   cargaralimentos(co: number) {
     this.alimetoService.cargarAliCatego(co).subscribe((alimentos: Alimento[]) => {
       this.alimentos = alimentos['alimentoDB'];
-
     })
   }
 
   cargarComposicion() {
     this.cargando = true;
+    this.cargarAminoacido();
+    this.cargarAzucar();
     const id = this.buscarForm.get('alimen').value;
     this.busquedaService.cargarComposicion(id).subscribe((resp) => {
       this.minerales = resp.composicionDB.minerale
@@ -122,10 +143,38 @@ export class CalculosComponent implements OnInit {
       this.estado = true;
       this.estado2 = false;
       this.cargarAlimento();
-
+      
+     
     })
-
+    
   }
+
+  cargarAminoacido(){
+    const id=this.buscarForm.get('alimen').value;
+    this.AminoacidoService.cargarAminoacido(id).subscribe((resp)=>{
+     this.Aminoacido=resp['aminoacidoDB'];
+     if(resp['ok']==true){
+       this.acidoEstado=true;
+     }else{
+       this.acidoEstado=false;
+     }
+     console.log(resp)
+    })
+  }
+
+  cargarAzucar(){
+    const id=this.buscarForm.get('alimen').value;
+    this.azucarService.cargarAzucar(id).subscribe((resp)=>{
+     this.Azucar=resp['azucarDB'];
+     console.log(resp)
+     if(resp['ok']==true){
+      this.azucarEstado=true;
+    }else{
+      this.azucarEstado=false;
+    }
+    })
+  }
+
   estados() {
     this.estado = false;
     this.estado2 = true;
@@ -140,7 +189,7 @@ export class CalculosComponent implements OnInit {
   }
 
   cargarAlimento() {
-    
+
     const id = this.buscarForm.get('alimen').value;
     this.alimetoService.cargarAlimento(id).subscribe((alimento: Alimento[]) => {
       this.alimento = alimento['alimentoDB'];
@@ -154,7 +203,6 @@ export class CalculosComponent implements OnInit {
         carbohidratos_disp:alimento['alimentoDB'].carbohidratos_disp,
         fibra_dietaria:alimento['alimentoDB'].fibra_dietaria,
         cenizas: alimento['alimentoDB'].cenizas,
-     
       };
     })
   }
