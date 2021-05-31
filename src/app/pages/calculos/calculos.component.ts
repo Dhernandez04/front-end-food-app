@@ -11,18 +11,22 @@ import { Categoria } from '../../models/categoria.model';
 import { Alimento } from '../../models/alimento.model';
 import { BusquedaService } from '../../services/busqueda.service';
 
-import { analisis } from '../../interfaces/analisis.interfaces';
 import { DocumentoService } from '../../services/documento.service';
 import { Mineral } from '../../models/mineral.model';
 import { Vitamina } from '../../models/Vitamina.model';
 import { AcidoGraso } from '../../models/AcidoGraso';
 import Swal from 'sweetalert2';
+import { aminoacido } from '../../interfaces/aminoacido.interface';
+import { AminoacidoService } from '../../services/aminoacido.service';
+import { azucar } from '../../interfaces/azucar.interface';
+import { AzucarService } from '../../services/azucar.service';
 
 let conduc = 0;
 let difu = 0;
 let densy = 0;
 let speci = 0;
 let codigo = 0;
+
 let datosCalculo: any;
 @Component({
   selector: 'app-calculos',
@@ -42,11 +46,16 @@ export class CalculosComponent implements OnInit {
   public minerales: Mineral[] = [];
   public vitamina: Vitamina[] = [];
   public acidos: AcidoGraso[] = [];
+  public Aminoacido: aminoacido[]=[];
+  public Azucar: azucar[]=[];
   
   public estado: boolean = false;
   public estado2: boolean = true;
   public analisis: any;
   public statusPdf:boolean = false;
+
+  public acidoEstado:boolean=false;
+  public azucarEstado:boolean=false;
 
 
   constructor(private fb: FormBuilder,
@@ -54,6 +63,8 @@ export class CalculosComponent implements OnInit {
     private CategoriaService: CategoriaService,
     private alimetoService: AlimentoService,
     private busquedaService: BusquedaService,
+    private AminoacidoService: AminoacidoService,
+    private azucarService: AzucarService,
     private pdf: DocumentoService) { }
 
 
@@ -79,21 +90,20 @@ export class CalculosComponent implements OnInit {
 
   cargarCategorias() {
     this.CategoriaService.cargarCategoria().subscribe((categorias: Categoria[]) => {
-
       this.categorias = categorias;
     })
   }
 
   cargaralimentos(co: number) {
-    console.log(co);
     this.alimetoService.cargarAliCatego(co).subscribe((alimentos: Alimento[]) => {
       this.alimentos = alimentos['alimentoDB'];
-
     })
   }
 
   cargarComposicion() {
     this.cargando = true;
+    this.cargarAminoacido();
+    this.cargarAzucar();
     const id = this.buscarForm.get('alimen').value;
     this.busquedaService.cargarComposicion(id).subscribe((resp) => {
       console.log(resp)
@@ -104,10 +114,38 @@ export class CalculosComponent implements OnInit {
       this.estado = true;
       this.estado2 = false;
       this.cargarAlimento();
-
+      
+     
     })
-
+    
   }
+
+  cargarAminoacido(){
+    const id=this.buscarForm.get('alimen').value;
+    this.AminoacidoService.cargarAminoacido(id).subscribe((resp)=>{
+     this.Aminoacido=resp['aminoacidoDB'];
+     if(resp['ok']==true){
+       this.acidoEstado=true;
+     }else{
+       this.acidoEstado=false;
+     }
+     console.log(resp)
+    })
+  }
+
+  cargarAzucar(){
+    const id=this.buscarForm.get('alimen').value;
+    this.azucarService.cargarAzucar(id).subscribe((resp)=>{
+     this.Azucar=resp['azucarDB'];
+     console.log(resp)
+     if(resp['ok']==true){
+      this.azucarEstado=true;
+    }else{
+      this.azucarEstado=false;
+    }
+    })
+  }
+
   estados() {
     this.estado = false;
     this.estado2 = true;
@@ -123,13 +161,10 @@ export class CalculosComponent implements OnInit {
 
   cargarAlimento() {
     console.log(this.buscarForm.get('alimen'));
-    
     const id = this.buscarForm.get('alimen').value;
     this.alimetoService.cargarAlimento(id).subscribe((alimento: Alimento[]) => {
       this.alimento = alimento['alimentoDB'];
-     
-   
-      datosCalculo =   {
+        datosCalculo =   {
         humedad: alimento['alimentoDB'].humedad,
         energiaKcal: alimento['alimentoDB'].energiaKcal,
         energiaKj: alimento['alimentoDB'].energiaKj,
@@ -139,7 +174,6 @@ export class CalculosComponent implements OnInit {
         carbohidratos_disp:alimento['alimentoDB'].carbohidratos_disp,
         fibra_dietaria:alimento['alimentoDB'].fibra_dietaria,
         cenizas: alimento['alimentoDB'].cenizas,
-     
       };
     ;
     })

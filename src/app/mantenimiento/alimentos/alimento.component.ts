@@ -13,6 +13,8 @@ import { Compocision } from '../../models/Compocision';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AminoacidoService } from 'src/app/services/aminoacido.service';
+import { AzucarService } from '../../services/azucar.service';
+import { aminoacido } from 'src/app/interfaces/aminoacido.interface';
 
 
 @Component({
@@ -27,8 +29,10 @@ export class AlimentoComponent implements OnInit {
   formaAlimento: FormGroup; //formulario de alimentos
 
   composicionSelecionanda: any;
+  Aminoacido: any;
 
   public categorias: Categoria[] = [];
+  //public Aminoacido: aminoacido[]=[];
 
   idRes: number;
   idMin: number;
@@ -36,12 +40,12 @@ export class AlimentoComponent implements OnInit {
   idAci: number;
   composi: Compocision;
   // variable para abrir los formulario de aminoacidos y azucares
-  ctrlAminoacido:boolean = false;
-  ctrlAzucar:boolean = false;
+  ctrlAminoacido: boolean = false;
+  ctrlAzucar: boolean = false;
 
   //variables para ocultar formulario de acidos grasos cuando se editan los aminoacidos o aucares
-  crtlEdit=false;
-  
+  crtlEdit = false;
+
 
   constructor(
 
@@ -51,12 +55,13 @@ export class AlimentoComponent implements OnInit {
     private mineralService: MineralService,
     private acidograsoService: AcidograsoService,
     private vitaminaService: VitaminaService,
-    private aminoacidoService:AminoacidoService,
+    private aminoacidoService: AminoacidoService,
     private compocisionService: CompocisionService,
+
     private router: Router,
     private activatedRoute: ActivatedRoute) { }
-    public id: string;
-    public tipo:string;
+  public id: string;
+  public tipo: string;
   ngOnInit(): void {
     this.crearForm();
     this.traerCategorias();
@@ -65,34 +70,35 @@ export class AlimentoComponent implements OnInit {
       this.tipo = tipo;
       this.cargarStep(tipo);
       this.cargarcomposicionPorId(id);
-      
+
     })
 
   }
-// cargando la composicion del alimento
+  // cargando la composicion del alimento
   cargarcomposicionPorId(id: number) {
-    this.compocisionService.ComposicionById(id).subscribe((resp:any) => {
+    this.cargarAminoacido(id);
+    this.compocisionService.ComposicionById(id).subscribe((resp: any) => {
       this.composicionSelecionanda = resp;
       this.formaAlimento.setValue({
-        id_categoria:resp.composicionDB.alimento.id_categoria,
-        nombre:resp.composicionDB.alimento.nombre,
-        parte_analizada:resp.composicionDB.alimento.parte_analizada ,
-        humedad: resp.composicionDB.alimento.humedad ,
-        energiaKcal:resp.composicionDB.alimento.energiaKcal,
-        energiaKj:resp.composicionDB.alimento.energiaKj,
+        id_categoria: resp.composicionDB.alimento.id_categoria,
+        nombre: resp.composicionDB.alimento.nombre,
+        parte_analizada: resp.composicionDB.alimento.parte_analizada,
+        humedad: resp.composicionDB.alimento.humedad,
+        energiaKcal: resp.composicionDB.alimento.energiaKcal,
+        energiaKj: resp.composicionDB.alimento.energiaKj,
         proteinaG: resp.composicionDB.alimento.proteinaG,
         lipidosG: resp.composicionDB.alimento.lipidosG,
-        carbohidratos_total:resp.composicionDB.alimento.carbohidratos_total,
-        carbohidratos_disp:resp.composicionDB.alimento.carbohidratos_disp ,
-        fibra_dietaria:resp.composicionDB.alimento.fibra_dietaria ,
+        carbohidratos_total: resp.composicionDB.alimento.carbohidratos_total,
+        carbohidratos_disp: resp.composicionDB.alimento.carbohidratos_disp,
+        fibra_dietaria: resp.composicionDB.alimento.fibra_dietaria,
         cenizas: resp.composicionDB.alimento.cenizas,
-        calcio:resp.composicionDB.minerale.calcio ,
-        hierro:resp.composicionDB.minerale.hierro ,
-        sodio:resp.composicionDB.minerale.sodio ,
-        fosforo:resp.composicionDB.minerale.fosforo ,
+        calcio: resp.composicionDB.minerale.calcio,
+        hierro: resp.composicionDB.minerale.hierro,
+        sodio: resp.composicionDB.minerale.sodio,
+        fosforo: resp.composicionDB.minerale.fosforo,
         yodo: resp.composicionDB.minerale.yodo,
         zinc: resp.composicionDB.minerale.zinc,
-        magnecio:resp.composicionDB.minerale.magnecio,
+        magnecio: resp.composicionDB.minerale.magnecio,
         potasio: resp.composicionDB.minerale.potasio,
         tiamina: resp.composicionDB.vitamina.tiamina,
         riboflaxina: resp.composicionDB.vitamina.riboflaxina,
@@ -107,51 +113,64 @@ export class AlimentoComponent implements OnInit {
         colesterol: resp.composicionDB.acidos_graso.colesterol,
         parteComestible: resp.composicionDB.acidos_graso.parteComestible,
        //aminoacido
-        acido_aspartico:1,
-        treonina:1,
-        serina:1,
-        acido_glutaminico:1,
-        prolina:1,
-        glicina:1,
-        alanina:1,
-        cisteina:1,
-        valina:1,
-        metionina:1,
-        isoleucina:1,
-        leucina:1,
-        tirosina:1,
-        fenilalanina:1,
-        histidina:1,
-        lisina:1,
-        arginina:1,
-        triptofano:1
+      acido_aspartico: this.Aminoacido.acido_aspartico,
+      treonina: this.Aminoacido.treonina,
+      serina: this.Aminoacido.serina,
+      acido_glutaminico: this.Aminoacido.acido_glutaminico,
+      prolina: this.Aminoacido.prolina,
+      glicina: this.Aminoacido.glicina,
+      alanina: this.Aminoacido.alanina,
+      cisteina: this.Aminoacido.cisteina,
+      valina: this.Aminoacido.valina,
+      metionina: this.Aminoacido.metionina,
+      isoleucina: this.Aminoacido.isoleucina,
+      leucina: this.Aminoacido.leucina,
+      tirosina: this.Aminoacido.tirosina,
+      fenilalanina: this.Aminoacido.fenilalanina,
+      histidina: this.Aminoacido.histidina,
+      lisina: this.Aminoacido.lisina,
+      arginina: this.Aminoacido.arginina,
+      triptofano: this.Aminoacido.triptofano
       })
     })
+
+  
+
+
   }
-//control del formulario
+  cargarAminoacido(id: number){
+    this.aminoacidoService.cargarAminoacido(id).subscribe((resp)=>{
+     this.Aminoacido=resp['aminoacidoDB'];
+     console.log(this.Aminoacido);
+     
+    })
+  }
+
+
+  //control del formulario
   cargarStep(tipo) {
     if (tipo === 'mineral') {
       this.step = 2;
-    } else if (tipo === 'acidograso' ) {
+    } else if (tipo === 'acidograso') {
       this.step = 4;
     } else if (tipo === 'vitamina') {
-      this.step=3
-    } else if(tipo === 'azucar' ) {
-      this.step=4;
+      this.step = 3
+    } else if (tipo === 'azucar') {
+      this.step = 4;
       this.ctrlAzucar = true;
       this.crtlEdit = true;
-    } else if(tipo == 'aminoacido' ) {
-      this.step=4;
+    } else if (tipo == 'aminoacido') {
+      this.step = 4;
       this.ctrlAminoacido = true;
-      this.crtlEdit=true;
+      this.crtlEdit = true;
 
       console.log(this.crtlEdit);
-      
-    }else{
-        this.step = 1;
+
+    } else {
+      this.step = 1;
     }
   }
-//validaciones 
+  //validaciones 
   get nombreInvalid() {
     return this.formaAlimento.get('nombre').invalid && this.formaAlimento.get('nombre').touched;
   }
@@ -191,7 +210,7 @@ export class AlimentoComponent implements OnInit {
   get cenizaInvalid() {
     return this.formaAlimento.get('cenizas').invalid && this.formaAlimento.get('cenizas').touched;
   }
-//metodos para controlar el formulario
+  //metodos para controlar el formulario
   siguiente() {
     if (this.step < 5) {
       this.step = this.step + 1;
@@ -203,84 +222,97 @@ export class AlimentoComponent implements OnInit {
       this.step = this.step - 1;
     }
   }
-//metodo para agregar composicion
-  agregar() {  
-    if(this.id !== 'nuevo'){
-     
-       switch (this.tipo) {
-         case 'alimento':
-           this.alimentoService.actualizarAlimento(this.id,this.formaAlimento.value).subscribe((resp:any)=>{
-             console.log(resp);
-             Swal.fire('success', `${resp.mgs}`, 'success');
-             this.router.navigateByUrl('/dashboard/alimentos')
-           })      
-           break;
-           case 'vitamina':
-           this.vitaminaService.actualizarVitamina(this.id,this.formaAlimento.value).subscribe((resp:any)=>{
+  //metodo para agregar composicion
+  agregar() {
+    if (this.id !== 'nuevo') {
 
-          
-             Swal.fire('success', `${resp.mgs}`, 'success');
-             this.router.navigateByUrl('/dashboard/alimentos')
-           })
-           break;
-           case'mineral':
-           this.mineralService.actualizarMineral(this.id,this.formaAlimento.value).subscribe((resp:any)=>{
-            
-             Swal.fire('success', `${resp.mgs}`, 'success');
-             this.router.navigateByUrl('/dashboard/alimentos')
-           })
-
-           case'acidograso':
-           this.acidograsoService.actualiarAcido(this.id,this.formaAlimento.value).subscribe((resp:any)=>{
+      switch (this.tipo) {
+        case 'alimento':
+          this.alimentoService.actualizarAlimento(this.id, this.formaAlimento.value).subscribe((resp: any) => {
+            console.log(resp);
             Swal.fire('success', `${resp.mgs}`, 'success');
             this.router.navigateByUrl('/dashboard/alimentos')
-           })
-        
-           break;
+          })
+          break;
+        case 'vitamina':
+          this.vitaminaService.actualizarVitamina(this.id, this.formaAlimento.value).subscribe((resp: any) => {
 
-           
-         default:
-           break;
-       }
-    }else{
+
+            Swal.fire('success', `${resp.mgs}`, 'success');
+            this.router.navigateByUrl('/dashboard/alimentos')
+          })
+          break;
+        case 'mineral':
+          this.mineralService.actualizarMineral(this.id, this.formaAlimento.value).subscribe((resp: any) => {
+
+            Swal.fire('success', `${resp.mgs}`, 'success');
+            this.router.navigateByUrl('/dashboard/alimentos')
+          })
+
+        case 'acidograso':
+          this.acidograsoService.actualiarAcido(this.id, this.formaAlimento.value).subscribe((resp: any) => {
+            Swal.fire('success', `${resp.mgs}`, 'success');
+            this.router.navigateByUrl('/dashboard/alimentos')
+          })
+          break;
+
+        case 'aminoacido':
+          this.aminoacidoService.actualizarAminoacido(this.id, this.formaAlimento.value).subscribe((resp: any) => {
+            Swal.fire('success', `${resp.mgs}`, 'success');
+            this.router.navigateByUrl('/dashboard/alimentos')
+          })
+          break;
+        /*
+        case'azucar':
+        this.acidograsoService.actualiarAcido(this.id,this.formaAlimento.value).subscribe((resp:any)=>{
+         Swal.fire('success', `${resp.mgs}`, 'success');
+         this.router.navigateByUrl('/dashboard/alimentos')
+        })
+        break;
+       */
+
+        default:
+          break;
+      }
+    } else {
       console.log(this.formaAlimento.value);
-       this.alimentoService.crearAlimento(this.formaAlimento.value).subscribe((res: any) => {
-      this.idRes = res.alimento.codigo;
-      
-      const observable = forkJoin({
-        obs1: this.agregarMineral(),
-        obs2: this.agregarAcido(),
-        obs3: this.agregarVitamina(),
-       
-      });
-      observable.subscribe((value: any) => {
-        this.idMin = value.obs1.mineral.codigom;
-        this.idAci = value.obs2.acido_graso.codigoa;
-        this.idVit = value.obs3.vitamina.codigov;
-        this.composi = {
-          id_minerales: this.idMin,
-          id_vitaminas: this.idVit,
-          id_acidosGrasos: this.idAci,
-          cod_alimento: this.idRes,
-          estado: "Aprobado",
-        };
+      this.alimentoService.crearAlimento(this.formaAlimento.value).subscribe((res: any) => {
+        this.idRes = res.alimento.codigo;
 
-       
-        //se manda el id del alimento si tiene aminoacido
-        if(this.ctrlAminoacido){
-          this.agregarAminoacido(this.idRes);
-          this.agregarComposicion(this.composi);
-          this.router.navigateByUrl('/admin/alimentos')
-        }else{
-          this.agregarComposicion(this.composi);
-          this.router.navigateByUrl('/admin/alimentos')
-        }
-      });
+        const observable = forkJoin({
+          obs1: this.agregarMineral(),
+          obs2: this.agregarAcido(),
+          obs3: this.agregarVitamina(),
+
+        });
+        observable.subscribe((value: any) => {
+          this.idMin = value.obs1.mineral.codigom;
+          this.idAci = value.obs2.acido_graso.codigoa;
+          this.idVit = value.obs3.vitamina.codigov;
+          this.composi = {
+            id_minerales: this.idMin,
+            id_vitaminas: this.idVit,
+            id_acidosGrasos: this.idAci,
+            cod_alimento: this.idRes,
+            estado: "Aprobado",
+          };
+
+
+          //se manda el id del alimento si tiene aminoacido
+          if (this.ctrlAminoacido) {
+            this.agregarAminoacido(this.idRes);
+            this.agregarComposicion(this.composi);
+            this.router.navigateByUrl('/admin/alimentos')
+          } else {
+            this.agregarComposicion(this.composi);
+            this.router.navigateByUrl('/admin/alimentos')
+          }
+        });
       });
     }
-       
+
   }
-//implementando los servicios
+  //implementando los servicios
   agregarMineral() {
     return this.mineralService.crearMineral(this.formaAlimento.value)
   }
@@ -293,18 +325,15 @@ export class AlimentoComponent implements OnInit {
     return this.vitaminaService.crearVitamina(this.formaAlimento.value);
   }
 
-  agregarAminoacido(id){
-
-    return this.aminoacidoService.crearAminoacido(this.formaAlimento.value,id).subscribe((res:any)=>{
+  agregarAminoacido(id) {
+    return this.aminoacidoService.crearAminoacido(this.formaAlimento.value, id).subscribe((res: any) => {
       console.log(res);
-      
     });
-
   }
 
   agregarComposicion(compocision) {
     this.compocisionService.crearComposiciones(compocision).subscribe((res: any) => {
-    
+
       Swal.fire('success', 'Alimento agregado', 'success')
     })
   }
@@ -343,28 +372,30 @@ export class AlimentoComponent implements OnInit {
       grasaPoliinsaturada: [1, Validators.required],
       colesterol: [1, Validators.required],
       parteComestible: [1, Validators.required],
-      
+
       //aminoacidos
-      acido_aspartico:[1,Validators.required],
-      treonina:[1,Validators.required],
-      serina:[1,Validators.required],
-      acido_glutaminico:[1,Validators.required],
-      prolina:[1,Validators.required],
-      glicina:[1,Validators.required],
-      alanina:[1,Validators.required],
-      cisteina:[1,Validators.required],
-      valina:[1,Validators.required],
-      metionina:[1,Validators.required],
-      isoleucina:[1,Validators.required],
-      leucina:[1,Validators.required],
-      tirosina:[1,Validators.required],
-      fenilalanina:[1,Validators.required],
-      histidina:[1,Validators.required],
-      lisina:[1,Validators.required],
-      arginina:[1,Validators.required],
-      triptofano:[1,Validators.required]
+      acido_aspartico: [1, Validators.required],
+      treonina: [1, Validators.required],
+      serina: [1, Validators.required],
+      acido_glutaminico: [1, Validators.required],
+      prolina: [1, Validators.required],
+      glicina: [1, Validators.required],
+      alanina: [1, Validators.required],
+      cisteina: [1, Validators.required],
+      valina: [1, Validators.required],
+      metionina: [1, Validators.required],
+      isoleucina: [1, Validators.required],
+      leucina: [1, Validators.required],
+      tirosina: [1, Validators.required],
+      fenilalanina: [1, Validators.required],
+      histidina: [1, Validators.required],
+      lisina: [1, Validators.required],
+      arginina: [1, Validators.required],
+      triptofano: [1, Validators.required]
+
+      //azucares
     });
-   
+
   }
 
   traerCategorias() {
@@ -372,28 +403,28 @@ export class AlimentoComponent implements OnInit {
       this.categorias = categorias;
     })
   }
-desplegarForm(){
-  if(!this.ctrlAminoacido){
-    this.ctrlAminoacido = true;
-  }else if(this.ctrlAminoacido){
-    this.ctrlAminoacido= false;
+  desplegarForm() {
+    if (!this.ctrlAminoacido) {
+      this.ctrlAminoacido = true;
+    } else if (this.ctrlAminoacido) {
+      this.ctrlAminoacido = false;
+    }
   }
-}
 
-desplegarForm1(){
-  if(!this.ctrlAzucar){
-    this.ctrlAzucar= true;
-  }else if(this.ctrlAzucar){
-    this.ctrlAzucar= false;
+  desplegarForm1() {
+    if (!this.ctrlAzucar) {
+      this.ctrlAzucar = true;
+    } else if (this.ctrlAzucar) {
+      this.ctrlAzucar = false;
+    }
   }
-}
 
-ocultardiv(tipo:string){
-  if(tipo=='azucar'){
-    this.ctrlAzucar = false;
-  }else if(tipo == 'aminoacido'){
-    this.ctrlAminoacido = false;
+  ocultardiv(tipo: string) {
+    if (tipo == 'azucar') {
+      this.ctrlAzucar = false;
+    } else if (tipo == 'aminoacido') {
+      this.ctrlAminoacido = false;
+    }
   }
-}
 
 }
