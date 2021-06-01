@@ -19,7 +19,7 @@
             <th scope="col">Acciones</th>
             <th scope="col">Id</th>
             <th scope="col">Img</th>
-            <th class="w-25" scope="col">Nombre</th>
+            <th class="col" scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Email</th>
             <th scope="col">Rol</th>
@@ -29,7 +29,6 @@
         <tbody *ngFor="let usuario of usuarios">
           <tr >
             <td scope="row">
-              <a class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a> &nbsp;
               <a class="btn btn-sm btn-danger"(click)="eliminarUsuario(usuario)"><i class="fas fa-trash"></i></a>
             </td>
             <td>{{usuario.id}}</td>
@@ -44,7 +43,12 @@
             <td>{{usuario.nombre}}</td>
             <td>{{usuario.apellido}}</td>
             <td>{{usuario.email}}</td>
-            <td>{{usuario.id_rol}}</td>
+            <td>
+              <select class="form-select"[(ngModel)]="usuario.id_rol" (change)="cambiarRol(usuario)">
+                <option value="1">Administrador</option>
+                <option value="2">Usuario</option>
+              </select>
+          </td>
             <td *ngIf="usuario.activo">
               <span class="bagde badge-info badge-pill">Activo</span>
             </td>
