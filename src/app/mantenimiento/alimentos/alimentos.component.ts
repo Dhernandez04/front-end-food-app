@@ -85,7 +85,7 @@ export class AlimentosComponent implements OnInit {
 
   editar(alimento: Alimento) {
     this.modalEditService.abrirModal(alimento.codigo);
-    console.log('hola');
+    
     //this.router.navigateByUrl(`dashboard/alimento/${alimento.codigo}`)
   }
 
