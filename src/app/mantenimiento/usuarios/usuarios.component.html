@@ -5,8 +5,11 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <a  [routerLink]="['/admin/usuarios/nuevo']" class="btn btn-primary">Nuevo usuario</a>
+  </div>
+  <div class="col-md-6">
+    <input class="form-control" placeholder="Buscar usuarios..." (keyup)="buscar(txtTermino.value)" #txtTermino>
   </div>
 </div>
 
@@ -59,8 +62,8 @@
          
         </tbody>
       </table>
-
-      <nav aria-label="Page navigation example">
+{{usuarios | json}}
+      <nav *ngIf="txtTermino.value.length === 0" aria-label="Page navigation example">
         <ul class="pagination">
           <li class="page-item"><button (click)="cargarPagina(-6)" class="page-link">Anterior</button></li>
        

@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { ModalEditService } from '../../services/modal-edit.service';
 import { delay } from 'rxjs/operators';
+import { BusquedaService } from 'src/app/services/busqueda.service';
 
 @Component({
   selector: 'app-alimentos',
@@ -17,6 +18,7 @@ import { delay } from 'rxjs/operators';
 export class AlimentosComponent implements OnInit {
   cargando: boolean = false;
   public alimentos: Alimento[] = [];
+  public alimentosTemp: Alimento[] = [];
   public composiciones: any = [];
   public total: number;
   public desde: number = 0;
@@ -24,14 +26,15 @@ export class AlimentosComponent implements OnInit {
     private router: Router,
     private alimentoService: AlimentoService,
     private modalImageService: ModalImageService,
-    private modalEditService:ModalEditService
+    private modalEditService:ModalEditService,
+    private busquedaService:BusquedaService
   ) { }
 
   ngOnInit(): void {
     this.cargarAlimentos();
     this.modalImageService.nuevaImagen
     .pipe(
-      delay(3000)
+      delay(1000)
     ).subscribe(img=>{
     
        this.cargarAlimentos()
@@ -47,6 +50,7 @@ export class AlimentosComponent implements OnInit {
     this.alimentoService.cargarAlimetos(this.desde).subscribe((resp: any) => {
       this.total = resp.count;
       this.alimentos = resp.alimentos;
+      this.alimentosTemp = resp.alimentos;
       this.cargando = true;
     })
   }
@@ -60,7 +64,7 @@ export class AlimentosComponent implements OnInit {
     this.cargarAlimentos();
   }
 
-  eliminarUsuario(alimento: Alimento) {
+  eliminarAlimento(alimento: Alimento) {
 
 
     Swal.fire({
@@ -83,6 +87,21 @@ export class AlimentosComponent implements OnInit {
     this.modalEditService.abrirModal(alimento.codigo);
     console.log('hola');
     //this.router.navigateByUrl(`dashboard/alimento/${alimento.codigo}`)
+  }
+
+  buscar(termino:string){
+    console.log(termino.length);
+    
+    if(termino.length === 0 ){
+      console.log('vacio');
+      
+      return this.cargarAlimentos();
+    }
+    this.busquedaService.buscar('alimentos',termino).subscribe((resp:any)=>{
+      this.alimentos = resp;
+
+    })
+    
   }
 
 }

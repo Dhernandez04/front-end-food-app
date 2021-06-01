@@ -5,6 +5,7 @@ import { ModalImageService } from '../../services/modal-image.service';
 import Swal from 'sweetalert2';
 import { delay } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { BusquedaService } from 'src/app/services/busqueda.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -19,7 +20,9 @@ export class UsuariosComponent implements OnInit,OnDestroy {
   public total: number;
   public desde: number = 0;
   public imgSubs: Subscription;
-  constructor(private usuarioService:UsuarioService,private modalImageService:ModalImageService) { }
+  constructor(private usuarioService:UsuarioService,
+    private modalImageService:ModalImageService,
+    private busquedaService:BusquedaService) { }
   
   ngOnDestroy(): void {
     this.imgSubs.unsubscribe();
@@ -38,6 +41,8 @@ export class UsuariosComponent implements OnInit,OnDestroy {
   cargarUsuarios() {
     this.cargando = false;
     this.usuarioService.obtenerUsuarios(this.desde).subscribe((resp) => {
+     
+      
       this.usuarios = resp;
       this.usuariosTemp = resp;
       this.cargando = true;
@@ -82,6 +87,16 @@ export class UsuariosComponent implements OnInit,OnDestroy {
       this.desde -= valor;
     }
     this.cargarUsuarios();
+  }
+  buscar(termino:string){
+    if(termino.length ==0 ){
+      return this.usuarios = this.usuariosTemp;
+    }
+    this.busquedaService.buscar('usuarios',termino).subscribe(resultados=>{
+      this.usuarios = resultados;
+      
+    })
+    
   }
   cambiarRol(usuario:Usuario){
 this.usuarioService.cambiarRol(usuario).subscribe(resp=>{

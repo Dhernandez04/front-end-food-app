@@ -1,26 +1,23 @@
 
-interface analisis{
-    id:number;
-    humedad: number,
-    energiaKcal: number,
-    energiaKj: number,
-    proteinaG:number,
-    lipidosG:number, 
-    carbohidratos_total:number,
-    carbohidratos_disp:number,
-    fibra_dietaria:number,
-    cenizas: number
-}
+
 export class Alimento {
     constructor(
         public estado:boolean ,
         public nombre:string ,
+        public humedad: number,
+        public energiaKcal: number,
+        public energiaKj: number,
+        public carbohidratos_total:number,
+        public carbohidratos_disp:number,
+        public proteinaG:number,
+        public lipidosG:number, 
+        public fibra_dietaria:number,
+        public cenizas: number,
         public codigo?: number,
         public imagen?:string ,
         public id_img?:string,
         public parte_analizada?:string ,
         public id_categoria?:number,
-        public analisis?:analisis,
         public id_usuario?:number
     ) { }
     

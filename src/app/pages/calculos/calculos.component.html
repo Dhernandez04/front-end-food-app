@@ -123,24 +123,24 @@
   
           <ul *ngIf="acidoEstado">
             <li>Aminoacidos</li>
-            <li><span class="group-item">Ácido Aspártico (g)</span>   <span class="bold">{{Aminoacido.acido_aspartico}}</span></li>
-            <li><span class="group-item">Treonina (g)</span>          <span class="bold">{{Aminoacido.treonina}}</span></li>
-            <li><span class="group-item">Serina (g)</span>            <span class="bold">{{Aminoacido.serina}}</span></li>
-            <li><span class="group-item">Ácido Glutáminico (g)</span> <span class="bold">{{Aminoacido.acido_glutaminico}}</span></li>
-            <li><span class="group-item">Prolina (g)</span>           <span class="bold">{{Aminoacido.prolina}}</span></li>
-            <li><span class="group-item">Glicina (g)</span>           <span class="bold">{{Aminoacido.glicina}}</span></li>
-            <li><span class="group-item">Cisteina (g)</span>          <span class="bold">{{Aminoacido.cisteina}}</span></li>
-            <li><span class="group-item">Valina (g)</span>            <span class="bold">{{Aminoacido.valina}}</span></li>
-            <li><span class="group-item">Metionina (g)</span>         <span class="bold">{{Aminoacido.metionina}}</span></li>
-            <li><span class="group-item">Isoleucina (g)</span>        <span class="bold">{{Aminoacido.isoleucina}}</span></li>
-            <li><span class="group-item">Leucina (g)</span>           <span class="bold">{{Aminoacido.leucina}}</span></li>
-            <li><span class="group-item">Tirosina (g)</span>          <span class="bold">{{Aminoacido.tirosina}}</span></li>
-            <li><span class="group-item">Fenilalanina (g)</span>      <span class="bold">{{Aminoacido.fenilalanina}}</span></li>
-            <li><span class="group-item">Histidina (g)</span>         <span class="bold">{{Aminoacido.histidina}}</span></li>
-            <li><span class="group-item">Lisina (g)</span>            <span class="bold">{{Aminoacido.lisina}}</span></li>
-            <li><span class="group-item">Arginina (g)</span>          <span class="bold">{{Aminoacido.arginina}}</span></li>
-            <li><span class="group-item">Triptófano (g)</span>        <span class="bold">{{Aminoacido.triptofano}}</span></li>
-            <li><span class="group-item">Alanina (g)</span>        <span class="bold">{{Aminoacido.alanina}}</span></li>
+            <li class="group-item"><span >Ácido Aspártico (g)</span>   <span class="bold">{{Aminoacido.acido_aspartico}}</span></li>
+            <li class="group-item"><span >Treonina (g)</span>          <span class="bold">{{Aminoacido.treonina}}</span></li>
+            <li class="group-item"><span >Serina (g)</span>            <span class="bold">{{Aminoacido.serina}}</span></li>
+            <li class="group-item"><span >Ácido Glutáminico (g)</span> <span class="bold">{{Aminoacido.acido_glutaminico}}</span></li>
+            <li class="group-item"><span >Prolina (g)</span>           <span class="bold">{{Aminoacido.prolina}}</span></li>
+            <li class="group-item"><span >Glicina (g)</span>           <span class="bold">{{Aminoacido.glicina}}</span></li>
+            <li class="group-item"><span >Cisteina (g)</span>          <span class="bold">{{Aminoacido.cisteina}}</span></li>
+            <li class="group-item"><span >Valina (g)</span>            <span class="bold">{{Aminoacido.valina}}</span></li>
+            <li class="group-item"><span >Metionina (g)</span>         <span class="bold">{{Aminoacido.metionina}}</span></li>
+            <li class="group-item"><span >Isoleucina (g)</span>        <span class="bold">{{Aminoacido.isoleucina}}</span></li>
+            <li class="group-item"><span >Leucina (g)</span>           <span class="bold">{{Aminoacido.leucina}}</span></li>
+            <li class="group-item"><span >Tirosina (g)</span>          <span class="bold">{{Aminoacido.tirosina}}</span></li>
+            <li class="group-item"><span >Fenilalanina (g)</span>      <span class="bold">{{Aminoacido.fenilalanina}}</span></li>
+            <li class="group-item"><span >Histidina (g)</span>         <span class="bold">{{Aminoacido.histidina}}</span></li>
+            <li class="group-item"><span >Lisina (g)</span>            <span class="bold">{{Aminoacido.lisina}}</span></li>
+            <li class="group-item"><span >Arginina (g)</span>          <span class="bold">{{Aminoacido.arginina}}</span></li>
+            <li class="group-item"><span >Triptófano (g)</span>        <span class="bold">{{Aminoacido.triptofano}}</span></li>
+            <li class="group-item"><span >Alanina (g)</span>        <span class="bold">{{Aminoacido.alanina}}</span></li>
           </ul>
               <ul>
               <li>Ácidos Grasos</li>
@@ -154,56 +154,57 @@
                <ul *ngIf="azucarEstado">
               <li>Azucar</li>
   
-              <li><span>Azucares disponibles t. (g)</span>   <span class="bold">{{Azucar.azucares_disponibles}}</span></li>
-              <li><span>Azucares no reductores (g)</span>    <span class="bold">{{Azucar.azucares_no_reductores}}</span></li>
-              <li><span>Azucares reductores (g)</span>       <span class="bold">{{Azucar.azucares_reductores}}</span></li>
-              <li><span class="bold">Monosacáridos</span>                    </li>
-              <li><span>Fructosa (g)</span>                  <span class="bold">{{Azucar.fructosa}}</span></li>
-              <li><span>Galactosa (g)</span>                 <span class="bold">{{Azucar.galactosa}}</span></li>
-              <li><span>Glucosa (g)</span>                   <span class="bold">{{Azucar.Glucosa}}</span></li>
-              <li><span class="bold">Disacáridos</span>                      </li>
-              <li><span>Lactosa (g)</span>                   <span class="bold">{{Azucar.lactosa}}</span></li>
-              <li><span>Sacarosa (g)</span>                  <span class="bold">{{Azucar.Sacarosa}}</span></li>
+              <li class="group-item"><span>Azucares disponibles t. (g)</span>   <span class="bold">{{Azucar.azucares_disponibles}}</span></li>
+              <li class="group-item"><span>Azucares no reductores (g)</span>    <span class="bold">{{Azucar.azucares_no_reductores}}</span></li>
+              <li class="group-item"><span>Azucares reductores (g)</span>       <span class="bold">{{Azucar.azucares_reductores}}</span></li>
+              <li class="group-item"><span class="bold">Monosacáridos</span>                    </li>
+              <li class="group-item"><span>Fructosa (g)</span>                  <span class="bold">{{Azucar.fructosa}}</span></li>
+              <li class="group-item"><span>Galactosa (g)</span>                 <span class="bold">{{Azucar.galactosa}}</span></li>
+              <li class="group-item"><span>Glucosa (g)</span>                   <span class="bold">{{Azucar.Glucosa}}</span></li>
+              <li class="group-item"><span class="bold">Disacáridos</span>                      </li>
+              <li class="group-item"><span>Lactosa (g)</span>                   <span class="bold">{{Azucar.lactosa}}</span></li>
+              <li class="group-item"><span>Sacarosa (g)</span>                  <span class="bold">{{Azucar.Sacarosa}}</span></li>
   
            
               </ul>
            </div>
           </div>
         </div>
+        <div class="row " *ngIf="statuschart">
+             
+          <ul class="nav nav-tabs nv-p">
+              <li class="nav-item">
+                <a [ngClass]="{'active':grafica1}" class="nav-link" (click)="verGrafica1()">Temperatura</a>
+              </li>
+              <li class="nav-item">
+                <a [ngClass]="{'active':!grafica1}" class="nav-link" (click)="verGrafica2()">Humedad</a>
+              </li>
+             
+            </ul>
+            <div *ngIf="grafica1">
+              <div class="row p-5">
+                      <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de difusividad  termica" ejey="Difusividad( m²/s )"pointColor="rgb(242 116 116 / 41%)" ejex="Temperatura (°c)" [data]="tempDifusivity"></app-scatter></div>
+                      <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de densidad termica"  ejey="Densidad (kg/m³)"      pointColor="rgb(242 116 116 / 41%)" ejex="Temperatura (°c)" [data]="tempDensity"></app-scatter></div>
+                      
+              </div>
+              <div class="row p-5">
+                      <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de especificidad  termica" ejey="Especificidad (m²/s)"   pointColor="rgb(242 116 116 / 41%)" ejex="Temperatura (°c)" [data]="tempSpecifity"></app-scatter></div>
+                      <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de conductividad  termica" ejey="Conductividad (W/(m*k))"pointColor="rgb(242 116 116 / 41%)" ejex="Temperatura (°c)" [data]="tempConductivity"></app-scatter></div>
+              </div>
+       </div>
+       <div *ngIf="grafica2">
+               <div class="row p-5">
+                      <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de difusividad  termica" ejey="Difusividad (m²/s) " pointColor="rgb(13 110 253 / 25%)" ejex="Humedad (%)"[data]="humDifusivity"></app-scatter></div>
+                      <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de densidad termica"  ejey="Densidad (kg/m³)"      pointColor="rgb(13 110 253 / 25%)" ejex="Humedad (%)"[data]="humDensity"></app-scatter></div>
+                      
+              </div>
+              <div class="row p-5">
+                      <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de especificidad  termica" ejey="Especificidad (m²/s)" pointColor="rgb(13 110 253 / 25%)"   ejex="Humedad (%)" [data]="humSpecifity"></app-scatter></div>
+                      <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de conductividad  termica" ejey="Conductividad (W/(m*k))" pointColor="rgb(13 110 253 / 25%)" ejex="Humedad (%) "[data]="humConductivity"></app-scatter></div>
+              </div>
+       </div>
+       </div> 
       </div>
 
-      <div class="row " *ngIf="statuschart">
-             
-        <ul class="nav nav-tabs nv-p">
-            <li class="nav-item">
-              <a [ngClass]="{'active':grafica1}" class="nav-link" (click)="verGrafica1()">Temperatura</a>
-            </li>
-            <li class="nav-item">
-              <a [ngClass]="{'active':!grafica1}" class="nav-link" (click)="verGrafica2()">Humedad</a>
-            </li>
-           
-          </ul>
-          <div *ngIf="grafica1">
-            <div class="row p-5">
-                    <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de difusividad  termica" ejey="Difusividad( m²/s )"pointColor="rgb(242 116 116 / 41%)" ejex="Temperatura (°c)" [data]="tempDifusivity"></app-scatter></div>
-                    <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de densidad termica"  ejey="Densidad (kg/m³)"      pointColor="rgb(242 116 116 / 41%)" ejex="Temperatura (°c)" [data]="tempDensity"></app-scatter></div>
-                    
-            </div>
-            <div class="row p-5">
-                    <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de especificidad  termica" ejey="Especificidad (m²/s)"   pointColor="rgb(242 116 116 / 41%)" ejex="Temperatura (°c)" [data]="tempSpecifity"></app-scatter></div>
-                    <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de conductividad  termica" ejey="Conductividad (W/(m*k))"pointColor="rgb(242 116 116 / 41%)" ejex="Temperatura (°c)" [data]="tempConductivity"></app-scatter></div>
-            </div>
-     </div>
-     <div *ngIf="grafica2">
-             <div class="row p-5">
-                    <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de difusividad  termica" ejey="Difusividad (m²/s) " pointColor="rgb(13 110 253 / 25%)" ejex="Humedad (%)"[data]="humDifusivity"></app-scatter></div>
-                    <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de densidad termica"  ejey="Densidad (kg/m³)"      pointColor="rgb(13 110 253 / 25%)" ejex="Humedad (%)"[data]="humDensity"></app-scatter></div>
-                    
-            </div>
-            <div class="row p-5">
-                    <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de especificidad  termica" ejey="Especificidad (m²/s)" pointColor="rgb(13 110 253 / 25%)"   ejex="Humedad (%)" [data]="humSpecifity"></app-scatter></div>
-                    <div class="col-md-6"><app-scatter *ngIf="statuschart"title="Grafica de conductividad  termica" ejey="Conductividad (W/(m*k))" pointColor="rgb(13 110 253 / 25%)" ejex="Humedad (%) "[data]="humConductivity"></app-scatter></div>
-            </div>
-     </div>
-     </div> 
+     
 </div>
