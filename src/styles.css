@@ -401,6 +401,7 @@ h3{
     }
   }
   @media all and (min-width: 241px) and (max-width: 480px) {
+
     .toast-container .ngx-toastr.div {
       padding: 8px 8px 8px 50px;
       width: 18em;
@@ -418,6 +419,10 @@ h3{
   }
   
 @media screen and (max-width:800px) {
+  .p-32{
+    padding: 10px 16px!important;
+}
+
     .graficas{
         display: grid;
         grid-template-columns: 1fr;

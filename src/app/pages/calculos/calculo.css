@@ -114,13 +114,20 @@ h1,h2,h3,h4,h5{
 }
 
 @media screen and (max-width:480px) {
+   h3.m-32{
+      margin: 32px 16px !important;
+   }
+   
+    .row.p-5, .nv-p{
+       padding: 32px 0px!important;
+    }
     #wrapper{
         width: auto;
         margin: 0 16px;
     }
     .filter{
         display: flex;
-        height: 200px;
+        height: 250px;
         align-items: center;
     }
     .form-select{
