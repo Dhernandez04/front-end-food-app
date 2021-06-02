@@ -42,6 +42,9 @@ export class BusquedaService {
             return this.transformarUsuarios(resp.resultados)
           case 'alimentos':
               return resp.resultados;
+      
+            case 'categorias':
+              return resp.resultados;
           default:
             return [];
         }

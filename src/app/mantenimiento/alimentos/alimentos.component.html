@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-md-3">
-    <a class="btn btn-success" [routerLink]="['/admin/alimentos','alimento','nuevo']"><i class="fas fa-plus"></i> Nuevo alimento</a>
+  <div class="col-md-2">
+    <a class="btn btn-primary" [routerLink]="['/admin/alimentos','alimento','nuevo']"><i class="fas fa-plus"></i> Nuevo alimento</a>
   </div>
-  <div class="col-md-3">
-    <h3>Total de Alimentos <small>{{total}}</small></h3>
+  <div class="col-md-4">
+    <h3>Total de alimentos <small>{{total}}</small></h3>
   </div>
   <div class="col-md-6">
     <input class="form-control" placeholder="Buscar alimentos..." (keyup)="buscar(txtTermino.value)" #txtTermino>

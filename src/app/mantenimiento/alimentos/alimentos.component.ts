@@ -52,8 +52,6 @@ export class AlimentosComponent implements OnInit {
       this.alimentos = resp.alimentos;
       this.alimentosTemp = resp.alimentos;
       this.cargando = true;
-      console.log(this.alimentos);
-      
     })
   }
   cargarPagina(valor: number) {
@@ -101,11 +99,10 @@ export class AlimentosComponent implements OnInit {
   }
 
   buscar(termino:string){
-    console.log(termino.length);
+ 
     
     if(termino.length === 0 ){
-      console.log('vacio');
-      
+    
       return this.cargarAlimentos();
     }
     this.busquedaService.buscar('alimentos',termino).subscribe((resp:any)=>{

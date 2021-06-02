@@ -21,10 +21,10 @@ export class CategoriaService{
     }
   
   
-    cargarCategoria(){
-          return this.http.get(`${base_url}/api/categoria`,this.headers).pipe(
-      map(( resp :{categoria:Categoria[]}) => {
-        return resp.categoria;
+    cargarCategoria(desde:number){
+          return this.http.get(`${base_url}/api/categoria?desde=${desde}`,this.headers).pipe(
+      map(( resp :{count:number,categoria:Categoria[]}) => {
+        return resp;
       })
     );
     }

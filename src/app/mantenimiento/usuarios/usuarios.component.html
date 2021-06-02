@@ -5,8 +5,11 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-2">
     <a  [routerLink]="['/admin/usuarios/nuevo']" class="btn btn-primary">Nuevo usuario</a>
+  </div>
+  <div class="col-md-4">
+    <h3>Total de usuarios <small>{{total}}</small></h3>
   </div>
   <div class="col-md-6">
     <input class="form-control" placeholder="Buscar usuarios..." (keyup)="buscar(txtTermino.value)" #txtTermino>

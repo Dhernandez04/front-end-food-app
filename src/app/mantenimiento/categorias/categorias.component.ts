@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BusquedaService } from 'src/app/services/busqueda.service';
 import Swal from 'sweetalert2';
 import { Categoria } from '../../models/categoria.model';
 import { CategoriaService } from '../../services/categoria.service';
@@ -16,10 +17,12 @@ export class CategoriasComponent implements OnInit {
 
   id: number;
   nombre: string;
+  public desde:number =0;
+  public total:number;
 
   public categoriaForm: FormGroup;
   public actualizarCForm: FormGroup;
-  constructor(private categoriaService:CategoriaService, private fb: FormBuilder) { }
+  constructor(private categoriaService:CategoriaService,private busquedaService:BusquedaService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.listarCategoria();
@@ -35,8 +38,9 @@ export class CategoriasComponent implements OnInit {
 
   }
   listarCategoria(){
-    this.categoriaService.cargarCategoria().subscribe((resp) => {    
-      this.categorias = resp;
+    this.categoriaService.cargarCategoria(this.desde).subscribe((resp:any) => {  
+      this.total = resp.count;  
+      this.categorias = resp.categoria;
       this.cargando = true;
    });
   }
@@ -55,6 +59,19 @@ export class CategoriasComponent implements OnInit {
       })
     
   }
+  buscar(termino:string){
+  
+    
+    if(termino.length === 0 ){
+  
+      return this.listarCategoria();
+    }
+    this.busquedaService.buscar('categorias',termino).subscribe((resp:any)=>{
+      this.categorias= resp;
+
+    })
+    
+  }
 
   eliminarCategoria(categoria: Categoria) {
     this.categoriaService.eliminarCategoria(categoria.id)
@@ -64,6 +81,16 @@ export class CategoriasComponent implements OnInit {
         
       })
   }
+  cargarPagina(valor: number) {
+    this.desde += valor;
+    if (this.desde < 0) {
+      this.desde = 0
+    } else if (this.desde > this.total) {
+      this.desde -= valor;
+    }
+    this.listarCategoria();
+  }
+
 
   agregarCategoria() {
     console.log(this.categoriaForm.value.nombre);

@@ -49,9 +49,9 @@ export class UsuarioService {
 
   obtenerUsuarios(desde: number = 0) {
     return this.http.get(`${base_url}/api/usuarios?desde=${desde}`, this.headers).pipe(
-      map((resp: { role:any,usuarios: Usuario[] }) => {
+      map((resp: {count:number, role:any,usuarios: Usuario[] }) => {
         const usuarios = resp.usuarios.map(user => new Usuario(user.nombre,user.apellido,user.email,user.id_rol,user.activo,'',user.imagen,user.id))
-        return usuarios;
+        return {count:resp.count,usuarios};
       })
  
     );

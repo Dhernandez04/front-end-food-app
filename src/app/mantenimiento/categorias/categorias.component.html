@@ -4,10 +4,20 @@
   </div>
 </div>
 
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Agregar categoria
-</button>
+<div class="row">
+<div class="col-md-2">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Agregar categoria
+  </button>
+  
+</div>
+<div class="col-md-4">
+  <h3>Total de categorias <small>{{total}}</small></h3>
+</div>
+  <div class="col-md-6">
+    <input class="form-control" placeholder="Buscar categoria..." (keyup)="buscar(txtTermino.value)" #txtTermino>
+  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -127,12 +137,10 @@
 
 </div>
 
-<nav aria-label="Page navigation example">
+<nav *ngIf="txtTermino.value.length === 0" aria-label="Page navigation example">
   <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    <li class="page-item"><button (click)="cargarPagina(-6)" class="page-link">Anterior</button></li>
+ 
+    <li class="page-item"><button (click)="cargarPagina(6)" class="page-link">Siguiente</button></li>
   </ul>
 </nav>

@@ -40,11 +40,11 @@ export class UsuariosComponent implements OnInit,OnDestroy {
 
   cargarUsuarios() {
     this.cargando = false;
-    this.usuarioService.obtenerUsuarios(this.desde).subscribe((resp) => {
+    this.usuarioService.obtenerUsuarios(this.desde).subscribe((resp:any) => {
      
-      
-      this.usuarios = resp;
-      this.usuariosTemp = resp;
+      this.total = resp.count; 
+      this.usuarios = resp.usuarios;
+      this.usuariosTemp = resp.usuarios;
       this.cargando = true;
     })
   }
