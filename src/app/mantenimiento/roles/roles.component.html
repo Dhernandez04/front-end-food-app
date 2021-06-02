@@ -1,1 +1,57 @@
-<p>roles works!</p>
+<div *ngIf="!cargando" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  
+  
+  <button type="button" class="btn btn-primary" (click)="crearRol()">
+    Nuevo rol
+  </button>
+ 
+  
+  
+  <div class="row p-4">
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th >Acciones</th>
+            <th >Id</th>
+            <th >Nombre</th>
+            <th >Estado</th>
+            <th >Fecha de creacion</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let rol of roles">
+          <tr>
+            <td >
+              <a class="cursor" data-toggle="tooltip" data-original-title="Guardar cambios"
+                >
+                <i class="fa fa-pencil text-inverse m-r-10"></i>
+              </a>
+              <a class="cursor" (click)="eliminarRol(rol)" class="btn btn-danger"data-toggle="tooltip" data-original-title="Close" >
+                <i class="fas fa-trash"></i>
+              </a>
+            </td>
+            <td>{{rol.id}}</td>
+    
+            <td>
+              {{rol.nombre}}
+            </td>      
+            <td *ngIf="rol.activo">
+              <span class="bagde badge-info badge-pill">Activo</span>
+            </td>
+            <td *ngIf="!rol.activo">
+              <span class="bagde badge-danger badge-pill">Inactivo</span>
+            </td>
+            <td>{{rol.createdAt}}</td>
+          </tr>
+    
+        </tbody>
+      </table>
+    
+    </div>
+  
+  </div>
+  

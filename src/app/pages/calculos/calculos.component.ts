@@ -1,28 +1,28 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { delay } from 'rxjs/operators';
 
 
 import { CalculoService } from '../../services/calculo.service';
 import { CategoriaService } from '../../services/categoria.service';
 import { AlimentoService } from '../../services/alimento.service';
+import { DocumentoService } from '../../services/documento.service';
+import { AzucarService } from '../../services/azucar.service';
+import { AminoacidoService } from '../../services/aminoacido.service';
+import { BusquedaService } from '../../services/busqueda.service';
 
 
 import { Categoria } from '../../models/categoria.model';
 import { Alimento } from '../../models/alimento.model';
-import { BusquedaService } from '../../services/busqueda.service';
-import { ToastrService } from 'ngx-toastr';
 
-import { DocumentoService } from '../../services/documento.service';
 import { Mineral } from '../../models/mineral.model';
 import { Vitamina } from '../../models/Vitamina.model';
 import { AcidoGraso } from '../../models/AcidoGraso';
 
 import { aminoacido } from '../../interfaces/aminoacido.interface';
-import { AminoacidoService } from '../../services/aminoacido.service';
 import { azucar } from '../../interfaces/azucar.interface';
-import { AzucarService } from '../../services/azucar.service';
 
-import { delay } from 'rxjs/operators';
 
 
 let conduc = 0;
@@ -152,22 +152,21 @@ export class CalculosComponent implements OnInit {
   cargarAminoacido(){
     const id=this.buscarForm.get('alimen').value;
     this.AminoacidoService.cargarAminoacido(id).subscribe((resp)=>{
-     this.Aminoacido=resp['aminoacidoDB'];
-     if(resp['ok']==true){
+      if(resp['ok']==true){
+       this.Aminoacido=resp['aminoacidoDB'];
        this.acidoEstado=true;
      }else{
        this.acidoEstado=false;
      }
-     console.log(resp)
     })
   }
 
   cargarAzucar(){
     const id=this.buscarForm.get('alimen').value;
     this.azucarService.cargarAzucar(id).subscribe((resp)=>{
-     this.Azucar=resp['azucarDB'];
-     console.log(resp)
-     if(resp['ok']==true){
+      
+      if(resp['ok']==true){
+       this.Azucar=resp['azucarDB'];
       this.azucarEstado=true;
     }else{
       this.azucarEstado=false;
@@ -246,11 +245,6 @@ export class CalculosComponent implements OnInit {
       })
   }
 
-  animated(){
-    console.log('aminando');
-    
-  }
-
   obtenerConductividad() {
     return conduc['component'];
   }
@@ -270,12 +264,15 @@ export class CalculosComponent implements OnInit {
   //generando pdf
   generarPdf() {
     let data = [datosCalculo];
+    console.log(this.Azucar);
+    
     let propiedades = [
       this.obtenerConductividad(),
       this.obtenerDifusivity(),
       this.obtenerSpecifici(),
       this.obtenerDensity()];
-    this.pdf.generarPdf(propiedades,this.alimento['nombre'],this.alimento['categoria'].nombre,data,this.minerales, this.acidos, this.vitamina, this.temperaturaForm.value['temperatura'] );
+      
+    this.pdf.generarPdf(propiedades,this.alimento['nombre'],this.alimento['categoria'].nombre,data,this.minerales, this.acidos, this.vitamina, this.Aminoacido,this.Azucar, this.temperaturaForm.value['temperatura'] );
   }
   //'Humedad(g)','Energia(kcal)','Energia(kj)','Proteina(g)','Proteina(g)','lipidos(g)','carbohidrato totales(g)','carbohidratos disponibles(g)','fibra dietaria(g)','cenizas(g)'
 }

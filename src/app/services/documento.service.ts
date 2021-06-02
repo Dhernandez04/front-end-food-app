@@ -5,6 +5,9 @@ import { analisis } from '../interfaces/analisis.interfaces';
 import { Mineral } from '../models/mineral.model';
 import { Vitamina } from '../models/Vitamina.model';
 import { AcidoGraso } from '../models/AcidoGraso';
+
+import { azucar } from '../interfaces/azucar.interface';
+import { aminoacido } from '../interfaces/aminoacido.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +16,7 @@ export class DocumentoService {
   constructor() { }
 
 
-  generarPdf(propiedades:any[],nombre:string,categoria:string, datosa:analisis[],datosm:Mineral[],datosG:AcidoGraso[],datosv:Vitamina[], tempe: number) {
+  generarPdf(propiedades:any[],nombre:string,categoria:string, datosa:analisis[],datosm:Mineral[],datosG:AcidoGraso[],datosv:Vitamina[],aminoacido:any,azucar:any, tempe: number) {
     const pdf = new PdfMakeWrapper();
 
     pdf.add(new Txt('Propiedades Termosificas').bold().end);
@@ -49,7 +52,48 @@ export class DocumentoService {
       new Txt('Acidos Grasos').bold().end
     )
     pdf.add(this.AcidosG(datosG));
+    pdf.add(pdf.ln())
+    //AGREGANDO AMINOACIDOS
+    if(aminoacido.length !== 0){
+      pdf.add(
+        new Txt('Aminoacidos').bold().end
+      )
+      pdf.add(this.title('Acido aspartico (g)',aminoacido.acido_aspartico))
+      pdf.add(this.title('Treonina (g)',aminoacido.treonina))
+      pdf.add(this.title('Serina (g)',aminoacido.serina))
+      pdf.add(this.title('Acido glutaminico (g)',aminoacido.acido_glutaminico))
+      pdf.add(this.title('Prolina (g)',aminoacido.prolina))
+      pdf.add(this.title('glicina (g)',aminoacido.glicina))
+      pdf.add(this.title('alanina (g)',aminoacido.alanina))
+      pdf.add(this.title('cisteina (g)',aminoacido.cisteina))
+      pdf.add(this.title('valina (g)',aminoacido.valina))
+      pdf.add(this.title('metionina (g)',aminoacido.metionina))
+      pdf.add(this.title('isoleucina (g)',aminoacido.isoleucina))
+      pdf.add(this.title('leucina (g)',aminoacido.leucina))
+      pdf.add(this.title('tirosina (g)',aminoacido.tirosina))
+      pdf.add(this.title('fenilalanina (g)',aminoacido.fenilalanina))
+      pdf.add(this.title('histidina (g)',aminoacido.histidina))
+      pdf.add(this.title('lisina (g)',aminoacido.lisina))
+      pdf.add(this.title('arginina (g)',aminoacido.arginina))
+      pdf.add(this.title('triptofano (g)',aminoacido.triptofano))
+    }
+  if(azucar.length !== 0){
+   //AGREGANDO AZUCAR
+   pdf.add(pdf.ln())
+   pdf.add(
+     new Txt('Azucares').bold().end
+   )
+   pdf.add(this.title('Azucares disponibles (g)',azucar.azucares_disponibles))
+   pdf.add(this.title('Azucares no_reductores (g)',azucar.azucares_no_reductores))
+   pdf.add(this.title('Azucares reductores (g)',azucar.azucares_reductores))
+   pdf.add(this.title('Fructosa (g)',azucar.fructosa))
+   pdf.add(this.title('Galactosa (g)',azucar.galactosa))
+   pdf.add(this.title('Glucosa (g)',azucar.Glucosa))
+   pdf.add(this.title('Lactosa (g)',azucar.lactosa))
+   pdf.add(this.title('Sacarosa (g)',azucar.Sacarosa))
 
+  }
+   
     pdf.add(pdf.ln(2))
     pdf.add(
       new Txt('Propiedades Termicas').bold().end

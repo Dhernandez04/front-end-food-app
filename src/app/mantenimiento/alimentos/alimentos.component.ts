@@ -52,6 +52,8 @@ export class AlimentosComponent implements OnInit {
       this.alimentos = resp.alimentos;
       this.alimentosTemp = resp.alimentos;
       this.cargando = true;
+      console.log(this.alimentos);
+      
     })
   }
   cargarPagina(valor: number) {
@@ -83,8 +85,17 @@ export class AlimentosComponent implements OnInit {
 
   }
 
-  editar(alimento: Alimento) {
-    this.modalEditService.abrirModal(alimento.codigo);
+  editar(alimento: any) {
+    if(alimento.aminoacidos){
+      this.modalEditService.abrirModal(alimento.codigo,true,false);
+    }else  if(alimento.azucares){
+      this.modalEditService.abrirModal(alimento.codigo,false,true);
+    }else{
+      this.modalEditService.abrirModal(alimento.codigo);
+    }
+    
+    
+    
     
     //this.router.navigateByUrl(`dashboard/alimento/${alimento.codigo}`)
   }

@@ -17,4 +17,10 @@ export class RolService {
   obtenerRoles() {
     return this.http.get(`${base_url}/api/roles`, this.headers);
   }
+  crearRol(nombre:string){
+    return this.http.post(`${base_url}/api/roles`,{nombre}, this.headers);
+  }
+  eliminarRol(rol:any){
+    return this.http.delete(`${base_url}/api/roles/${rol.id}`, this.headers);
+  }
 }

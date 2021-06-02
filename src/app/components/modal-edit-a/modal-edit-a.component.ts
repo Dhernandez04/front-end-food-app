@@ -8,10 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./modal-edit-a.component.css']
 })
 export class ModalEditAComponent implements OnInit {
+  public aminoacidos:boolean=false;
+  public azucares:boolean=false;
 
-  constructor(public modalEditService: ModalEditService, private router: Router) { }
-
+  constructor(public modalEditService: ModalEditService, private router: Router) {
+  
+    
+   }
   ngOnInit(): void {
+   
   }
   cerrarModal() {
 
