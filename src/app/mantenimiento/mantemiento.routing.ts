@@ -15,6 +15,7 @@ import { UsuarioComponent } from './usuarios/usuario.component';
 import { NotfoundComponent } from '../pages/notfound/notfound.component';
 import { PerfilComponent } from '../shared/perfil/perfil.component';
 import { AdminGuard } from '../guards/admin.guard';
+import { DetalleComponent } from '../pages/catalogo/detalle.component';
 
 
 
@@ -27,6 +28,7 @@ const routes:Routes = [
          {path:'dashboard', canActivate:[AdminGuard],component:DashboardComponent, data:{titulo:'Dashboard'}},
          {path:'alimentos', canActivate:[AdminGuard],component:AlimentosComponent, data:{titulo:'Alimentos'}},
          {path:'alimentos/:tipo/:id', canActivate:[AdminGuard],component:AlimentoComponent, data:{titulo:'Alimento'}},
+         {path:'alimento/detalles/:id', canActivate:[AdminGuard],component:DetalleComponent, data:{titulo:'Detalles'}},
          {path:'roles', canActivate:[AdminGuard],component:RolesComponent, data:{titulo:'Roles'}},
          {path:'usuarios', canActivate:[AdminGuard],component:UsuariosComponent, data:{titulo:'Usuario'}},
          {path:'usuarios/nuevo', canActivate:[AdminGuard],component:UsuarioComponent, data:{titulo:'Nuevo usuario'}},

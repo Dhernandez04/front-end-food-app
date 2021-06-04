@@ -79,6 +79,13 @@ export class UsuariosComponent implements OnInit,OnDestroy {
     })
     
   }
+
+  activarUsuario(usuario: Usuario) {
+        this.usuarioService.activarUsuario(usuario).subscribe(resp => {
+          Swal.fire('Usuario activado',`${usuario.nombre} fue activado`,'success')
+          this.cargarUsuarios();
+        })    
+  }
   cargarPagina(valor: number) {
     this.desde += valor;
     if (this.desde < 0) {

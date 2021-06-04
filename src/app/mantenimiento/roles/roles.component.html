@@ -26,13 +26,14 @@
         <tbody *ngFor="let rol of roles">
           <tr>
             <td >
-              <a class="cursor" data-toggle="tooltip" data-original-title="Guardar cambios"
+              <a class="btn btn-sm btn-warning cursor" data-toggle="tooltip" data-original-title="Guardar cambios"
                 >
                 <i class="fa fa-pencil text-inverse m-r-10"></i>
-              </a>
-              <a class="cursor" (click)="eliminarRol(rol)" class="btn btn-danger"data-toggle="tooltip" data-original-title="Close" >
+              </a>&nbsp;
+              <a class="cursor" (click)="eliminarRol(rol)" class="btn btn-sm btn-danger"data-toggle="tooltip" data-original-title="Close" >
                 <i class="fas fa-trash"></i>
-              </a>
+              </a>&nbsp;
+              <a *ngIf="!rol.activo" (click)="activar(rol)"class="btn btn-info">Activar</a>
             </td>
             <td>{{rol.id}}</td>
     

@@ -74,14 +74,13 @@ export class AlimentoComponent implements OnInit {
     })
 
   }
+  
   // cargando la composicion del alimento
   cargarcomposicionPorId(id: number) {
     this.cargarAminoacido(id);
     this.cargarAzucar(id);
     this.compocisionService.ComposicionById(id).subscribe((resp: any) => {
       this.composicionSelecionanda = resp;
-      
-      
    if(this.Azucar == null){
      this.Azucar={azucares_disponibles:'',
                   azucares_no_reductores:'',
@@ -222,6 +221,7 @@ export class AlimentoComponent implements OnInit {
     }
   }
   //validaciones 
+ 
   get nombreInvalid() {
     return this.formaAlimento.get('nombre').invalid && this.formaAlimento.get('nombre').touched;
   }
@@ -400,8 +400,8 @@ export class AlimentoComponent implements OnInit {
   crearForm() {
     this.formaAlimento = this.fb.group({
       id_categoria: [Validators.required],
-      nombre: [ Validators.required],
-      parte_analizada: [ Validators.required],
+      nombre: ['', Validators.required],
+      parte_analizada: ['', Validators.required],
       humedad: [ Validators.required],
       energiaKcal: [ Validators.required],
       energiaKj: [ Validators.required],
@@ -466,8 +466,10 @@ export class AlimentoComponent implements OnInit {
   }
 
   traerCategorias() {
-    this.categoriaService.cargarCategoria().subscribe((categorias: Categoria[]) => {
-      this.categorias = categorias;
+    this.categoriaService.cargarCategoria().subscribe((resp) => {
+      console.log(resp);
+      
+      this.categorias = resp.categorias;
     })
   }
   desplegarForm() {

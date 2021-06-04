@@ -38,9 +38,9 @@ export class CategoriasComponent implements OnInit {
 
   }
   listarCategoria(){
-    this.categoriaService.cargarCategoria(this.desde).subscribe((resp:any) => {  
+    this.categoriaService.cargarCategoria(this.desde,6).subscribe((resp:any) => {  
       this.total = resp.count;  
-      this.categorias = resp.categoria;
+      this.categorias = resp.categorias;
       this.cargando = true;
    });
   }

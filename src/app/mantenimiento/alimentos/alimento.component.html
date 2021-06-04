@@ -16,12 +16,12 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Categoria</label>
-                    <select class="form-control form-control-sm" formControlName="id_categoria">
-                        <option value="">Selecione una categoria</option>
+                    <select  class="form-select form-select-sm" formControlName="id_categoria">
+                        <option value="" selected>Selecione una categoria</option>
                         <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}
                         </option>
                     </select>
-
+                   
                 </div>
             </div>
             <div class="col-md-3">
@@ -29,7 +29,7 @@
                     <label for="exampleInputPassword1">Nombre del alimento</label>
                     <input type="text" autofocus class="form-control form-control-sm" id="exampleInputPassword1"
                         formControlName="nombre" [class.is-invalid]="nombreInvalid">
-                    <small *ngIf="proteinaInvalid" class="text-danger">
+                    <small *ngIf="nombreInvalid" class="text-danger">
                         Ingrese el nombre
                     </small>
                 </div>

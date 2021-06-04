@@ -119,8 +119,8 @@ export class CalculosComponent implements OnInit {
   }
  
   cargarCategorias() {
-    this.CategoriaService.cargarCategoria().subscribe((categorias: Categoria[]) => {
-      this.categorias = categorias;
+    this.CategoriaService.cargarCategoria().subscribe((resp) => {
+      this.categorias = resp.categorias;
     })
   }
 

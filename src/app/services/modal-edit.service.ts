@@ -14,12 +14,11 @@ export class ModalEditService {
   get ocultarModal() {
     return this._ocultarModal;
   }
-  abrirModal(codigo:number,aminoacido?:boolean,azucar?:boolean) {
+  abrirModal(codigo:number,aminoacido:boolean=false,azucar:boolean=false) {
     this._ocultarModal = false;
     this.azucar=azucar;
     this.aminoacido= aminoacido;
     this.id = codigo;
-    console.log(aminoacido);
 
   }
   obtenerEstadoAminoacido(){

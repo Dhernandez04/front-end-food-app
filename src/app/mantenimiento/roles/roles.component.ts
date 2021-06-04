@@ -48,6 +48,13 @@ public roles:any[];
     })
     
   }
+
+  activar(rol){
+    this.rolService.activarRol(rol).subscribe((resp:any)=>{
+      Swal.fire('Exito', resp.msg, 'success');
+      this.cargarRoles();
+    })
+  }
   async abrirSweetAlert(){
     const {value=''} = await Swal.fire<string>({
         title:'Crear rol',

@@ -72,11 +72,11 @@
       <tbody *ngFor="let categoria of categorias">
         <tr>
           <td scope="row">
-            <a class="cursor" data-toggle="tooltip" data-original-title="Guardar cambios"
+            <a class="btn btn-sm btn-warning cursor" data-toggle="tooltip" data-original-title="Guardar cambios"
               (click)="cargarModal(categoria)" data-toggle="modal" data-target="#exampleModal1">
               <i class="fa fa-pencil text-inverse m-r-10"></i>
-            </a>
-            <a class="cursor" data-toggle="tooltip" data-original-title="Close" (click)="eliminarCategoria(categoria)">
+            </a>&nbsp;
+            <a class="btn btn-sm btn-danger cursor" data-toggle="tooltip" data-original-title="Close" (click)="eliminarCategoria(categoria)">
               <i class="fas fa-trash"></i>
             </a>
           </td>

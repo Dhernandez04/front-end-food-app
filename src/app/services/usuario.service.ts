@@ -101,4 +101,9 @@ export class UsuarioService {
    return this.http.put(`${base_url}/api/usuarios/${usuario.id}`,usuario, this.headers)
   }
 
+  activarUsuario(usuario:Usuario){
+   
+    return this.http.put(`${base_url}/api/usuarios/activar/${usuario.id}`,{active:true}, this.headers)
+   }
+
 }

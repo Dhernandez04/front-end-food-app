@@ -21,9 +21,9 @@ export class CategoriaService{
     }
   
   
-    cargarCategoria(desde:number){
-          return this.http.get(`${base_url}/api/categoria?desde=${desde}`,this.headers).pipe(
-      map(( resp :{count:number,categoria:Categoria[]}) => {
+    cargarCategoria(desde?:number,limit?:number){
+          return this.http.get(`${base_url}/api/categoria?desde=${desde}&limit=${limit}`,this.headers).pipe(
+      map(( resp :{count:number,categorias:Categoria[]}) => {
         return resp;
       })
     );

@@ -23,4 +23,8 @@ export class RolService {
   eliminarRol(rol:any){
     return this.http.delete(`${base_url}/api/roles/${rol.id}`, this.headers);
   }
+  activarRol(rol:any){
+    console.log(this.token);
+    return this.http.put(`${base_url}/api/roles/activar/${rol.id}`,{active:true},this.headers);
+  }
 }

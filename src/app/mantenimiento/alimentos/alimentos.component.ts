@@ -36,9 +36,12 @@ export class AlimentosComponent implements OnInit {
     .pipe(
       delay(1000)
     ).subscribe(img=>{
-    
        this.cargarAlimentos()
       })
+
+  }
+  detalles(alimento){
+    this.router.navigateByUrl(`/admin/alimento/detalles/${alimento.codigo}`)
 
   }
   abrirModal(alimento: Alimento) {
@@ -84,30 +87,21 @@ export class AlimentosComponent implements OnInit {
   }
 
   editar(alimento: any) {
-    if(alimento.aminoacidos){
+    if(alimento.aminoacidos.length !==0){
       this.modalEditService.abrirModal(alimento.codigo,true,false);
-    }else  if(alimento.azucares){
+    }else  if(alimento.azucares.length !== 0){
       this.modalEditService.abrirModal(alimento.codigo,false,true);
     }else{
       this.modalEditService.abrirModal(alimento.codigo);
     }
-    
-    
-    
-    
-    //this.router.navigateByUrl(`dashboard/alimento/${alimento.codigo}`)
   }
 
   buscar(termino:string){
- 
-    
     if(termino.length === 0 ){
-    
       return this.cargarAlimentos();
     }
     this.busquedaService.buscar('alimentos',termino).subscribe((resp:any)=>{
       this.alimentos = resp;
-
     })
     
   }

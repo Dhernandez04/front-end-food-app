@@ -35,7 +35,8 @@
         <tbody *ngFor="let usuario of usuarios">
           <tr >
             <td scope="row">
-              <a class="btn btn-sm btn-danger"(click)="eliminarUsuario(usuario)"><i class="fas fa-trash"></i></a>
+              <a class="btn btn-sm btn-danger"(click)="eliminarUsuario(usuario)"><i class="fas fa-trash"></i></a>&nbsp;
+              <a *ngIf="!usuario.activo" class="btn btn-sm btn-info"(click)="activarUsuario(usuario)">activar</a>
             </td>
             <td>{{usuario.id}}</td>
             <td class="text-center">

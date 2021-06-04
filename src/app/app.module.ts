@@ -13,13 +13,11 @@ import {  BrowserAnimationsModule  }  from  '@angular/platform-browser/animation
 
 import { ToastrModule } from 'ngx-toastr';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
     NotfoundComponent,
+  
     
   ],
  

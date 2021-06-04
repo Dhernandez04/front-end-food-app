@@ -16,6 +16,7 @@ import { UsuarioComponent } from './usuarios/usuario.component';
 import { ModalEditAComponent } from '../components/modal-edit-a/modal-edit-a.component';
 import { PerfilComponent } from '../shared/perfil/perfil.component';
 import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
+import { DetallesComponent } from './alimentos/detalles/detalles.component';
 
 
 
@@ -35,6 +36,7 @@ import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
     BreadcrumbComponent,
     UsuarioComponent,
     ModalEditAComponent,
+    DetallesComponent,
     
  ],
   exports: [
