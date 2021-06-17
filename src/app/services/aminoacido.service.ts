@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { aminoacido } from '../interfaces/aminoacido.interface';
-import { map } from 'rxjs/operators';
 
 const base_url = environment.base_url;
 @Injectable({

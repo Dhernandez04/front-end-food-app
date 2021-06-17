@@ -76,8 +76,13 @@
               (click)="cargarModal(categoria)" data-toggle="modal" data-target="#exampleModal1">
               <i class="fa fa-pencil text-inverse m-r-10"></i>
             </a>&nbsp;
-            <a class="btn btn-sm btn-danger cursor" data-toggle="tooltip" data-original-title="Close" (click)="eliminarCategoria(categoria)">
+            
+            <a class="btn btn-sm btn-danger cursor" *ngIf="categoria.activa" data-toggle="tooltip" data-original-title="Close" (click)="eliminarCategoria(categoria)">
               <i class="fas fa-trash"></i>
+            </a>
+            &nbsp;
+            <a  class="btn btn-sm btn-success cursor" *ngIf="!categoria.activa" data-toggle="tooltip" data-original-title="Close" (click)="activarCategoria(categoria)">
+              Activar
             </a>
           </td>
           <td>{{categoria.id}}</td>
@@ -87,10 +92,10 @@
           </td>
   
           <td *ngIf="categoria.activa">
-            <span class="bagde badge-info badge-pill">Activo</span>
+            <span class="badge bg-success">Activo</span>
           </td>
           <td *ngIf="!categoria.activa">
-            <span class="bagde badge-danger badge-pill">Inactivo</span>
+            <span class="badge bg-danger">Inactivo</span>
           </td>
         </tr>
   

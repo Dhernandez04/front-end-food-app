@@ -36,7 +36,7 @@
           <tr >
             <td scope="row">
               <a class="btn btn-sm btn-danger"(click)="eliminarUsuario(usuario)"><i class="fas fa-trash"></i></a>&nbsp;
-              <a *ngIf="!usuario.activo" class="btn btn-sm btn-info"(click)="activarUsuario(usuario)">activar</a>
+              <a *ngIf="!usuario.activo" class="btn btn-sm btn-success"(click)="activarUsuario(usuario)">activar</a>
             </td>
             <td>{{usuario.id}}</td>
             <td class="text-center">
@@ -57,10 +57,10 @@
               </select>
           </td>
             <td *ngIf="usuario.activo">
-              <span class="bagde badge-info badge-pill">Activo</span>
+              <span class="badge bg-success">Activo</span>
             </td>
             <td *ngIf="!usuario.activo">
-              <span class="bagde badge-danger badge-pill">Inactivo</span>
+              <span class="badge bg-danger">Inactivo</span>
             </td>
           </tr>
          

@@ -33,7 +33,7 @@
               <a class="cursor" (click)="eliminarRol(rol)" class="btn btn-sm btn-danger"data-toggle="tooltip" data-original-title="Close" >
                 <i class="fas fa-trash"></i>
               </a>&nbsp;
-              <a *ngIf="!rol.activo" (click)="activar(rol)"class="btn btn-info">Activar</a>
+              <a *ngIf="!rol.activo" (click)="activar(rol)"class="btn btn-success">Activar</a>
             </td>
             <td>{{rol.id}}</td>
     
@@ -41,10 +41,10 @@
               {{rol.nombre}}
             </td>      
             <td *ngIf="rol.activo">
-              <span class="bagde badge-info badge-pill">Activo</span>
+              <span class="badge bg-success">Activo</span>
             </td>
             <td *ngIf="!rol.activo">
-              <span class="bagde badge-danger badge-pill">Inactivo</span>
+              <span class="badge bg-danger">Inactivo</span>
             </td>
             <td>{{rol.createdAt}}</td>
           </tr>

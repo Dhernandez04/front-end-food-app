@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Categoria</label>
                     <select  class="form-select form-select-sm" formControlName="id_categoria">
-                        <option value="" selected>Selecione una categoria</option>
+                        <option  selected value="">Selecione una categoria</option>
                         <option *ngFor="let categoria of categorias" [value]="categoria.id">{{categoria.nombre}}
                         </option>
                     </select>

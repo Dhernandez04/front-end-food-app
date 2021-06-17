@@ -81,6 +81,14 @@ export class CategoriasComponent implements OnInit {
         
       })
   }
+  activarCategoria(categoria: Categoria) {
+    this.categoriaService.activarCategoria(categoria.id,true)
+      .subscribe((resp:any) => {
+        this.listarCategoria();
+        Swal.fire('activado', resp.msg, 'success');
+        
+      })
+  }
   cargarPagina(valor: number) {
     this.desde += valor;
     if (this.desde < 0) {

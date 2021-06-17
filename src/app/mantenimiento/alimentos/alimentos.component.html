@@ -1,4 +1,10 @@
 <div class="row">
+  <div class="col-md-12 d-flex justify-content-end mb-3">
+    <a class="btn btn-outline-danger" *ngIf="!verAlimentosEliminados" (click)="eliminados()"> <i class="fas fa-eye"></i>Alimentos eliminados</a>
+    <a class="btn btn-outline-success" *ngIf="verAlimentosEliminados" (click)="cargarAlimentos()"> <i class="fas fa-eye"></i>Alimentos</a>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-2">
     <a class="btn btn-primary" [routerLink]="['/admin/alimentos','alimento','nuevo']"><i class="fas fa-plus"></i> Nuevo alimento</a>
   </div>
@@ -16,7 +22,7 @@
 </div>
 
 <div class="row p-4">
-    <table class="table table-bordered">
+    <table class="table table-bordered" *ngIf="!verAlimentosEliminados">
         <thead>
           <tr>
             <th scope="col">Acciones</th>
@@ -36,7 +42,8 @@
             <td scope="row">
               <a (click)="detalles(alimento)" class="btn btn-sm btn-info"><i class="fas fa-eye"></i></a> &nbsp;
               <a (click)="editar(alimento)" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a> &nbsp;
-              <a class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+              <a *ngIf="alimento?.estado == 1" (click)="eliminarAlimento(alimento)" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>&nbsp;
+              <a *ngIf="alimento?.estado == 0" (click)="activarAlimento(alimento)" class="btn btn-sm btn-success">Activar</a>
             </td>
             <td>{{alimento?.codigo}}</td>
             <td class="text-center">
@@ -51,10 +58,52 @@
             <td>{{alimento?.parte_analizada}}</td>
             
             <td *ngIf="alimento?.estado == 1">
-              <span class="bagde badge-info badge-pill">Activo</span>
+              <span class="badge bg-success">Activo</span>
             </td>
             <td *ngIf="alimento?.estado == 0">
-              <span class="bagde badge-danger badge-pill">Inactivo</span>
+              <span class="badge bg-danger">Inactivo</span>
+            </td>
+          </tr>
+         
+        </tbody>
+      </table>
+      <table class="table table-bordered" *ngIf="verAlimentosEliminados">
+        <thead>
+          <tr>
+            <th scope="col">Acciones</th>
+            <th scope="col">Id</th>
+            <th scope="col">Img</th>
+            <th class="w-25" scope="col">Nombre</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Parte analizada</th>
+            <th scope="col">Estado</th>
+          </tr>
+        </thead>
+        
+        <tbody *ngFor="let alimento of alimentos" >
+         
+       
+          <tr >
+            <td scope="row">
+              <a *ngIf="alimento?.estado == 0" (click)="activarAlimento(alimento)" class="btn btn-sm btn-success">Activar</a>
+            </td>
+            <td>{{alimento?.codigo}}</td>
+            <td class="text-center">
+              <img class="img-avatar cursor"
+              alt="imagen del alimento"
+               [src]="alimento.imagen"
+               (click)="abrirModal(alimento)"
+                >
+          </td>
+            <td>{{alimento?.nombre}}</td>
+            <td>{{alimento?.categoria.nombre}}</td>
+            <td>{{alimento?.parte_analizada}}</td>
+            
+            <td *ngIf="alimento?.estado == 1">
+              <span class="badge bg-success">Activo</span>
+            </td>
+            <td *ngIf="alimento?.estado == 0">
+              <span class="badge bg-danger">Inactivo</span>
             </td>
           </tr>
          

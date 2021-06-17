@@ -29,8 +29,6 @@ export class CategoriaService{
     );
     }
 
-   
-
     crearCategoria(categoria: Categoria){
       const url=`${base_url}/api/categoria`;
         return this.http.post(url,categoria,this.headers);
@@ -49,4 +47,12 @@ export class CategoriaService{
       return this.http.delete(`${base_url}/api/categoria/${id}`, this.headers);
     
     }
+
+    
+    activarCategoria(id:number,estado: boolean) {
+    
+      return this.http.put(`${base_url}/api/categoria/activar/${id}`, { estado }, this.headers);
+    
+    }
+  
 }

@@ -68,7 +68,10 @@ export class AlimentoComponent implements OnInit {
       this.id = id;
       this.tipo = tipo;
       this.cargarStep(tipo);
-      this.cargarcomposicionPorId(id);
+
+      if(this.id!=='nuevo'){
+        this.cargarcomposicionPorId(id);
+      }
  
       
     })
@@ -167,14 +170,14 @@ export class AlimentoComponent implements OnInit {
         arginina: this.Aminoacido.arginina,
         triptofano: this.Aminoacido.triptofano,
         //azucar
-        azucares_disponibles:this.Azucar.azucares_disponibles || 0,
-        azucares_no_reductores:this.Azucar.azucares_no_reductores || 0,
-        azucares_reductores:this.Azucar.azucares_reductores || 0,
-        fructosa:this.Azucar.fructosa || 0,
-        galactosa:this.Azucar.galactosa || 0,
-        Glucosa:this.Azucar.Glucosa || 0,
-        lactosa:this.Azucar.lactosa || 0,
-        Sacarosa:this.Azucar.Sacarosa || 0,
+        azucares_disponibles:this.Azucar.azucares_disponibles,
+        azucares_no_reductores:this.Azucar.azucares_no_reductores,
+        azucares_reductores:this.Azucar.azucares_reductores,
+        fructosa:this.Azucar.fructosa,
+        galactosa:this.Azucar.galactosa,
+        Glucosa:this.Azucar.Glucosa,
+        lactosa:this.Azucar.lactosa,
+        Sacarosa:this.Azucar.Sacarosa,
       })
 
       
@@ -337,7 +340,8 @@ export class AlimentoComponent implements OnInit {
             id_acidosGrasos: value.obs3.vitamina.codigov,
             cod_alimento: this.idRes,
             estado: "Aprobado",
-          };
+          }; 
+console.log(value.obs1.mineral);
 
 
           //se manda el id del alimento si tiene aminoacido
@@ -399,7 +403,7 @@ export class AlimentoComponent implements OnInit {
   //metodo para crear los formularios
   crearForm() {
     this.formaAlimento = this.fb.group({
-      id_categoria: [Validators.required],
+      id_categoria: ['',Validators.required],
       nombre: ['', Validators.required],
       parte_analizada: ['', Validators.required],
       humedad: [ Validators.required],
@@ -467,8 +471,6 @@ export class AlimentoComponent implements OnInit {
 
   traerCategorias() {
     this.categoriaService.cargarCategoria().subscribe((resp) => {
-      console.log(resp);
-      
       this.categorias = resp.categorias;
     })
   }

@@ -130,7 +130,7 @@ bottom: 0px;
 #login-wrapper{
     box-sizing: border-box;
     height: 100vh;
-    
+    margin-left: 32px;
     display: flex;
     justify-content: space-between;
 }
@@ -421,6 +421,13 @@ h3{
 @media screen and (max-width:800px) {
   .p-32{
     padding: 10px 16px!important;
+}
+
+#login-wrapper{
+  margin:0px auto;
+}
+.content-register>.row, form{
+  padding: 0px 16px;
 }
 
     .graficas{

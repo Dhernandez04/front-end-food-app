@@ -20,6 +20,7 @@ export class AlimentosComponent implements OnInit {
   public alimentos: Alimento[] = [];
   public alimentosTemp: Alimento[] = [];
   public composiciones: any = [];
+  public verAlimentosEliminados:boolean= false;
   public total: number;
   public desde: number = 0;
   constructor(
@@ -47,8 +48,18 @@ export class AlimentosComponent implements OnInit {
   abrirModal(alimento: Alimento) {
     this.modalImageService.abrirModal('alimentos', alimento.codigo, alimento.imagen);
   }
-
+eliminados(){
+  this.cargando = false;
+  this.verAlimentosEliminados=true;
+  this.alimentoService.cargarAlimetosEliminados(this.desde).subscribe((resp: any) => {
+    this.total = resp.count;
+    this.alimentos = resp.alimentos;
+    this.alimentosTemp = resp.alimentos;
+    this.cargando = true;
+  })
+}
   cargarAlimentos() {
+    this.verAlimentosEliminados=false;
     this.cargando = false;
     this.alimentoService.cargarAlimetos(this.desde).subscribe((resp: any) => {
       this.total = resp.count;
@@ -57,6 +68,34 @@ export class AlimentosComponent implements OnInit {
       this.cargando = true;
     })
   }
+  eliminarAlimento(alimento:Alimento) {
+    Swal.fire({
+      title: '¿Borrar Alimento?',
+      text: `Esta a punto de borrar a ${alimento.nombre}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor:'#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText:'Si, borrarlo'
+    }).then(result=>{
+      if (result.value) {
+        this.alimentoService.eliminarAlimento(alimento.codigo).subscribe(resp => {
+          Swal.fire('Alimento borrado',`El alimento fue eliminado correctamente`,'success')
+          this.cargarAlimentos();
+        })
+      
+      }
+    })
+    
+  } activarCategoria(alimento:Alimento) {
+    this.alimentoService.activarAlimento(alimento.codigo,true)
+      .subscribe((resp:any) => {
+        this.cargarAlimentos();
+        Swal.fire('activado', resp.msg, 'success');
+        
+      })
+  }
+
   cargarPagina(valor: number) {
     this.desde += valor;
     if (this.desde < 0) {
@@ -65,25 +104,6 @@ export class AlimentosComponent implements OnInit {
       this.desde -= valor;
     }
     this.cargarAlimentos();
-  }
-
-  eliminarAlimento(alimento: Alimento) {
-
-
-    Swal.fire({
-      title: '¿Borrar Alimento?',
-      text: `Esta a punto de borrar a ${alimento.nombre}`,
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, borrarlo'
-    }).then(result => {
-
-
-    })
-
-
   }
 
   editar(alimento: any) {

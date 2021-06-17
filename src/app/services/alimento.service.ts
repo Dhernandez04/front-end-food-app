@@ -21,6 +21,9 @@ export class AlimentoService {
   cargarAlimetos(desde:number=0) {
     return this.http.get(`${base_url}/api/alimentos?desde=${desde}`, this.headers);
   }
+  cargarAlimetosEliminados(desde:number=0) {
+    return this.http.get(`${base_url}/api/alimentos/eliminados?desde=${desde}`, this.headers);
+  }
 
   //metodo para crear un alimento
   crearAlimento(data) {
@@ -43,9 +46,13 @@ export class AlimentoService {
   }
 //metodo para actualizar alimento
   actualizarAlimento(id,data){
-    console.log(this.headers);
-    
     return this.http.put(`${base_url}/api/alimentos/${id}`, data,this.headers);
   }
 
+  eliminarAlimento(id){
+    return this.http.delete(`${base_url}/api/alimentos/${id}`,this.headers)
+  }
+  activarAlimento(id,estado){
+    return this.http.put(`${base_url}/api/alimentos/activar/${id}`, estado,this.headers);
+  }
 }

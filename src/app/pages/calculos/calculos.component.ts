@@ -264,14 +264,11 @@ export class CalculosComponent implements OnInit {
   //generando pdf
   generarPdf() {
     let data = [datosCalculo];
-    console.log(this.Azucar);
-    
     let propiedades = [
       this.obtenerConductividad(),
       this.obtenerDifusivity(),
       this.obtenerSpecifici(),
-      this.obtenerDensity()];
-      
+      this.obtenerDensity()];   
     this.pdf.generarPdf(propiedades,this.alimento['nombre'],this.alimento['categoria'].nombre,data,this.minerales, this.acidos, this.vitamina, this.Aminoacido,this.Azucar, this.temperaturaForm.value['temperatura'] );
   }
   //'Humedad(g)','Energia(kcal)','Energia(kj)','Proteina(g)','Proteina(g)','lipidos(g)','carbohidrato totales(g)','carbohidratos disponibles(g)','fibra dietaria(g)','cenizas(g)'
