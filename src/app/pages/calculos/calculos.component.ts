@@ -218,6 +218,8 @@ export class CalculosComponent implements OnInit {
     this.display=false;
     datosCalculo.temperatura = Number(t);
     datosCalculo.hielo = 0;
+    datosCalculo.humedityrange1=0;
+    datosCalculo.humedityrange2=100;
     this.calculoService.hacerCalculo(datosCalculo)
     .pipe(
       delay(500)
@@ -233,6 +235,7 @@ export class CalculosComponent implements OnInit {
         this.humDensity = data['density'].humedityGraph;
         this.humSpecifity = data['specifici'].humedityGraph;
         this.humConductivity = data['conductivity'].humedityGraph;
+     
         
         this.statuschart = true;
         conduc = data['conductivity'];
